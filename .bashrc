@@ -39,8 +39,8 @@ esac
 # PS1...プロンプト表示を設定
 # カラー対応端末ならプロンプトもカラーに
 case "$TERM" in
-    xterm-color|*-256color) PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ';;
-    *) PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';;
+    xterm-color|*-256color) PS1='$(case $? in 0) echo "\[\e[38;5;208m\] ☀ \[\e[0m\]";; 1) echo "\[\e[38;5;027m\] ☂ \[\e[0m\]";; *) printf "\[\e[31m\]%3d \[\e[0m\]" $?;; esac)${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ ';;
+    *) PS1='$(echo $?):${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';;
 esac
 
 # xterm系列端末ならウィンドウのタイトルも変更する
