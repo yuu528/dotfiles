@@ -39,7 +39,7 @@ esac
 # PS1...プロンプト表示を設定
 # カラー対応端末ならプロンプトもカラーに
 case "$TERM" in
-    xterm-color|*-256color) PS1='\[\e[38;5;160m\e[48;5;236m\] \t \[\e[m\]\[\e[48;5;083m\]$(case $? in 0) echo "\[\e[38;5;208m\] ☀ ";; 1) echo "\[\e[38;5;027m\] ☂ ";; *) printf "\[\e[31m\]%4d" $?;; esac)\[\e[m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;022m\e[48;5;156m\] \u \[\e[48;5;192m\] \h \[\e[48;5;228m\] \w \[\e[m\]$([ ${EUID:-${UID}} -eq 0 ] && echo "\[\e[38;5;214m\e[41m\] ⚠ \[\e[m\]")\[\e[38;5;135m\e[40m\] ▶ \[\e[m\]';;
+    xterm-color|*-256color) PS1='\[\e[38;5;160m\e[48;5;236m\] \t \[\e[48;5;083m\e[38;5;236m\]$(case $? in 0) echo "\[\e[38;5;208m\] ☀ ";; 1) echo "\[\e[38;5;027m\] ☂ ";; *) printf "\[\e[31m\]%4d" $?;; esac)\[\e[m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;083m\e[48;5;156m\]\[\e[38;5;022m\] \u \[\e[38;5;156m\e[48;5;192m\]\[\e[38;5;022m\] \h \[\e[38;5;192m\e[48;5;228m\]\[\e[38;5;022m\] \w $(if [ ${EUID:-${UID}} -eq 0 ]; then echo "\[\e[38;5;228m\e[41m\]\[\e[38;5;214m\] ⚠ \[\e[m\e[31m\] "; else echo "\[\e[m\e[38;5;228m\] "; fi)\[\e[m\]';;
     *) PS1='$(echo $?):${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';;
 esac
 
