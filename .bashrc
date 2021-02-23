@@ -32,24 +32,23 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
 # PS1...プロンプト表示を設定
 # カラー対応端末ならプロンプトもカラーに
 case "$TERM" in
-    xterm-color|*-256color) PS1='\[\e[38;5;160m\e[48;5;236m\] \t \[\e[48;5;083m\e[38;5;236m\]$(case $? in 0) echo "\[\e[38;5;208m\] ☀ ";; 1) echo "\[\e[38;5;027m\] ☂ ";; *) printf "\[\e[31m\]%4d" $?;; esac)\[\e[m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;083m\e[48;5;156m\]\[\e[38;5;022m\] \u \[\e[38;5;156m\e[48;5;192m\]\[\e[38;5;022m\] \h \[\e[38;5;192m\e[48;5;228m\]\[\e[38;5;022m\] \w $(if [ ${EUID:-${UID}} -eq 0 ]; then echo "\[\e[38;5;228m\e[41m\]\[\e[38;5;214m\] ⚠ \[\e[m\e[31m\] "; else echo "\[\e[m\e[38;5;228m\] "; fi)\[\e[m\]';;
+    xterm-color|*-256color)
+		PS1='\[\e[38;5;160m\e[48;5;236m\] \t \[\e[48;5;083m\e[38;5;236m\]$(case $? in 0) echo "\[\e[38;5;208m\] ☀ ";; 1) echo "\[\e[38;5;027m\] ☂ ";; *) printf "\[\e[31m\]%4d" $?;; esac)\[\e[m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;083m\e[48;5;156m\]\[\e[38;5;022m\] \u \[\e[38;5;156m\e[48;5;192m\]\[\e[38;5;022m\] \h \[\e[38;5;192m\e[48;5;228m\]\[\e[38;5;022m\] \w $(if [ ${EUID:-${UID}} -eq 0 ]; then echo "\[\e[38;5;228m\e[41m\]\[\e[38;5;214m\] ⚠ \[\e[m\e[31m\] "; else echo "\[\e[m\e[38;5;228m\] "; fi)\[\e[m\]'
+		# GCCをカラーに
+		export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+		# grepをカラーに
+		export GREP_OPTIONS='--color=auto';;
+
     *) PS1='$(echo $?):${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';;
 esac
 
 # xterm系列端末ならウィンドウのタイトルも変更する
 case "$TERM" in
 xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1";;
 esac
 
 # ディレクトリのカラー設定をし、ls, grep等のコマンドをカラーに
@@ -58,14 +57,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
 fi
-
-# GCCをカラーに
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # 時間がかかるコマンドのあとに通知を行えるalertエイリアスを作成
 # ex: sleep 10; alert
