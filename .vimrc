@@ -15,6 +15,7 @@ call dein#begin(s:dein_dir)
 
 call dein#add('Shougo/dein.vim')
 call dein#add('morhetz/gruvbox')
+call dein#add('cohama/lexima.vim')
 
 call dein#end()
 
@@ -34,7 +35,6 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
-
 
 " 見た目系
 " 行番号を表示
