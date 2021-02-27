@@ -40,7 +40,9 @@ case "$TERM" in
 		# GCCをカラーに
 		export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 		# grepをカラーに
-		export GREP_OPTIONS='--color=auto';;
+		alias grep='grep --color=auto'
+		alias fgrep='grep --color=auto'
+		alias egrep='grep --color=auto';;
 
     *) PS1='$(echo $?):${debian_chroot:+($debian_chroot)}\u@\h:\w\$ ';;
 esac
