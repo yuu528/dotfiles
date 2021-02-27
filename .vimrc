@@ -15,6 +15,7 @@ call dein#begin(s:dein_dir)
 
 call dein#add('Shougo/dein.vim')
 call dein#add('morhetz/gruvbox')
+call dein#add('Lokaltog/vim-powerline')
 call dein#add('cohama/lexima.vim')
 
 call dein#end()
