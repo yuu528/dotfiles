@@ -18,6 +18,9 @@ HISTSIZE=1000
 # .bash_historyのリスト数
 HISTFILESIZE=2000
 
+# デフォルトエディタをvimに
+EDITOR=vim
+
 # ウィンドウサイズを$LINES, $COLUMNSに反映させる
 shopt -s checkwinsize
 
