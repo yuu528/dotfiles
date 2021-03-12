@@ -63,6 +63,7 @@ nnoremap k gk
 syntax enable
 
 " Theme setting
+let g:gruvbox_contrast_dark='hard'
 colorscheme gruvbox
 set background=dark
 
