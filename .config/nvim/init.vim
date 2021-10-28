@@ -1,3 +1,7 @@
+augroup MyAutoCmd
+  autocmd!
+augroup END
+
 " deinディレクトリ設定
 let s:dein_dir=expand('~/.cache/dein')
 let s:dein_repo_dir=s:dein_dir . '/repos/github.com/Shougo/dein.vim'
@@ -60,11 +64,6 @@ nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
 syntax enable
-
-" Theme setting
-let g:gruvbox_contrast_dark='hard'
-colorscheme gruvbox
-set background=dark
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)

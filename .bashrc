@@ -68,6 +68,8 @@ fi
 # ex: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
+alias vim=nvim
+
 # .bash_aliasesがある場合実行
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

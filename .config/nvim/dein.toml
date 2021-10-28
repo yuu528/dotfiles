@@ -1,0 +1,19 @@
+[[plugins]]
+repo = 'morhetz/gruvbox'
+hook_add = '''
+	set background=dark
+	let g:gruvbox_contrast_dark='hard'
+	au MyAutoCmd VimEnter * nested colorscheme gruvbox
+'''
+
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'Lokaltog/vim-powerline'
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+
+[[plugins]]
+repo = 'github/copilot.vim'
