@@ -10,7 +10,10 @@ hook_add = '''
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'Lokaltog/vim-powerline'
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
+repo = 'vim-airline/vim-airline-themes'
 
 [[plugins]]
 repo = 'cohama/lexima.vim'

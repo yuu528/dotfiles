@@ -64,6 +64,10 @@ nnoremap j gj
 nnoremap k gk
 " シンタックスハイライトの有効化
 syntax enable
+" vim-airline
+let g:airline_theme = 'base16'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
