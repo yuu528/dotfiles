@@ -1,5 +1,9 @@
 # .bashrc
 
+function _update_ps1() {
+	PS1=$(powerline-shell $?)
+}
+
 # iオプションがない場合.bashrcを実行しない
 case $- in
     *i*) ;;
@@ -39,7 +43,9 @@ fi
 # カラー対応端末ならプロンプトもカラーに
 case "$TERM" in
     xterm-color|*-256color)
-		PS1='\[\e[38;5;160m\e[48;5;236m\] \t \[\e[48;5;083m\e[38;5;236m\]$(case $? in 0) echo "\[\e[38;5;208m\] ☀ ";; 1) echo "\[\e[38;5;027m\] ☂ ";; *) printf "\[\e[31m\]%4d" $?;; esac)\[\e[m\]${debian_chroot:+($debian_chroot)}\[\e[38;5;083m\e[48;5;156m\]\[\e[38;5;022m\] \u \[\e[38;5;156m\e[48;5;192m\]\[\e[38;5;022m\] \h \[\e[38;5;192m\e[48;5;228m\]\[\e[38;5;022m\] \w $(if [ ${EUID:-${UID}} -eq 0 ]; then echo "\[\e[38;5;228m\e[41m\]\[\e[38;5;214m\] ⚠ \[\e[m\e[31m\] "; else echo "\[\e[m\e[38;5;228m\] "; fi)\[\e[m\]'
+		if [[ ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+			PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+		fi
 		# GCCをカラーに
 		export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 		# grepをカラーに
