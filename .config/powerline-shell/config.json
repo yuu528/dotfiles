@@ -1,0 +1,19 @@
+{
+	"segments": [
+		"time",
+		"virtual_env",
+		"username",
+		"hostname",
+		"ssh",
+		"cwd",
+		"git",
+		"hg",
+		"jobs",
+		"root"
+	],
+	"cwd": {
+		"max_dir_size": 12,
+		"full_cwd": true
+	},
+	"theme": "gruvbox"
+}
