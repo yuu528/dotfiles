@@ -2,6 +2,7 @@
 	"segments": [
 		"time",
 		"virtual_env",
+		"~/.config/powerline-shell/custom_segments/exit_code_emoji.py",
 		"username",
 		"hostname",
 		"ssh",
