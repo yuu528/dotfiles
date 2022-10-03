@@ -33,6 +33,8 @@ if has('vim_starting') && dein#check_install()
   call dein#install()
 endif
 
+" python
+let g:python3_host_prog = 'python'
 "文字コードをUTF-8に設定
 set fenc=utf-8
 " バックアップファイルを作らない
