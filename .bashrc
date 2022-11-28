@@ -4,6 +4,10 @@ function _update_ps1() {
 	PS1=$(powerline-shell $?)
 }
 
+function mkcd() {
+	mkdir $1 && cd $1
+}
+
 # iオプションがない場合.bashrcを実行しない
 case $- in
     *i*) ;;
