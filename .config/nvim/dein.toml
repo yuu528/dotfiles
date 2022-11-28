@@ -24,3 +24,6 @@ repo = 'github/copilot.vim'
 [[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = "release"
+
+[[plugins]]
+repo = 'pepo-le/win-ime-con.nvim'
