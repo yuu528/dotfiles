@@ -26,4 +26,7 @@ repo = 'neoclide/coc.nvim'
 rev = "release"
 
 [[plugins]]
+repo = 'mattn/emmet-vim'
+
+[[plugins]]
 repo = 'pepo-le/win-ime-con.nvim'
