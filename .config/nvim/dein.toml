@@ -29,4 +29,7 @@ rev = "release"
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
+repo = 'posva/vim-vue'
+
+[[plugins]]
 repo = 'pepo-le/win-ime-con.nvim'
