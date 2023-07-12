@@ -2,7 +2,7 @@
 
 LOCAL_BASHRC="$HOME/.bashrc"
 LOCAL_CONFIG="$HOME/.config"
-REPO_BASHRC="./.bashrc"
+REPO_BASHRC="$(cd $(dirname $0); pwd)/.bashrc"
 REPO_CONFIG="$(cd $(dirname $0); pwd)/.config"
 
 function askyn() {
@@ -61,7 +61,8 @@ echo "First time setup wizard of dotfiles"
 
 askyn "Install .bashrc?" && {
 	mvbak "$LOCAL_BASHRC"
-	ln -s "$REPO_BASHRC" "$LOCAL_BASHRC"
+	pushd "$HOME"
+	ln -s "$REPO_BASHRC" ".bashrc"
 }
 
 askyn "Install CUI app configs?" && {
