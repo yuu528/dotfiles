@@ -76,6 +76,8 @@ set autoread
 set hidden
 " 入力中のコマンドをステータスに表示する
 set showcmd
+" マウス無効化
+set mouse=
 
 " 見た目系
 " 行番号を表示
