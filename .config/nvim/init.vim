@@ -136,5 +136,6 @@ set wrapscan
 set hlsearch
 
 " fern
-nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=30<CR>
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=35<CR>
 let g:fern#renderer = 'nerdfont'
+let g:fern#renderer#nerdfont#indent_markers = 1
