@@ -35,4 +35,7 @@ repo = 'posva/vim-vue'
 repo = 'machakann/vim-sandwich'
 
 [[plugins]]
+repo = 'lambdalisue/fern.vim'
+
+[[plugins]]
 repo = 'pepo-le/win-ime-con.nvim'

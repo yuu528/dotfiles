@@ -134,3 +134,7 @@ set incsearch
 set wrapscan
 " 検索語をハイライト表示
 set hlsearch
+
+" fern
+nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=30<CR>
+let g:fern#renderer = 'nerdfont'
