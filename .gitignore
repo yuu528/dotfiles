@@ -1,2 +1,4 @@
+.config/nvim/.last_update
+.config/nvim/secret.tsv
 .config/powerline-shell/custom_segments/__pycache__/
 **node_modules

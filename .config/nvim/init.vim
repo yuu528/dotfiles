@@ -28,9 +28,38 @@ if dein#load_state(s:dein_dir)
   call dein#end()
   call dein#save_state()
 endif
+
 " プラグインの自動インストール
 if has('vim_starting') && dein#check_install()
   call dein#install()
+endif
+
+" GitHubのtokenを書いたファイルをsecret.tsvとして置くことで自動高速更新
+" secret.tsvがなければ遅い可能性があるので更新しない
+let s:secretFilePath = fnamemodify(expand('<sfile>'), ':h').'/secret.tsv'
+
+if getftype(s:secretFilePath) != ''
+	let s:secretFile = readfile(s:secretFilePath)
+
+	if len(s:secretFile) > 0
+		let g:dein#install_github_api_token = s:secretFile[0]
+
+		" 1日1回更新チェックする
+		let s:lastUpdateFilePath = fnamemodify(expand('<sfile>'), ':h').'/.last_update'
+		let s:today = strftime('%Y/%m/%d')
+		if getftype(s:lastUpdateFilePath) == ''
+			echo "Updating..."
+			call dein#check_update(v:true)
+			call writefile([s:today], s:lastUpdateFilePath)
+		else
+			let s:lastUpdateFile = readfile(s:lastUpdateFilePath)
+			if len(s:lastUpdateFile) > 0 && s:lastUpdateFile[0] != s:today
+				echo "Updating..."
+				call dein#check_update(v:true)
+				call writefile([s:today], s:lastUpdateFilePath)
+			endif
+		endif
+	endif
 endif
 
 " python
