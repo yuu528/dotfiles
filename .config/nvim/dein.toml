@@ -32,4 +32,7 @@ repo = 'mattn/emmet-vim'
 repo = 'posva/vim-vue'
 
 [[plugins]]
+repo = 'machakann/vim-sandwich'
+
+[[plugins]]
 repo = 'pepo-le/win-ime-con.nvim'
