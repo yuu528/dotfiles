@@ -64,7 +64,7 @@
           "type": "git",
           "style": "diamond",
           "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:dark1",
           "background": "p:faded_green",
           "foreground_templates": [
@@ -81,14 +81,13 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:light0",
           "background": "p:bright_yellow",
           "background_templates": [
             "{{ if gt .Ahead 0 }}"
           ],
-          "template": "{{ if gt .Ahead 0 }}{{ .Ahead }}\udb80\udde7\ue729 {{ end }}",
+          "template": "{{ if gt .Ahead 0 }} {{ .Ahead }}\udb80\udde7\ue729 {{ end }}",
           "properties": {
             "fetch_status": true
           }
@@ -96,11 +95,10 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:light0",
           "background": "p:bright_red",
-          "template": "{{ if gt .Behind 0 }}{{ .Behind }}\ue729\udb80\udde7 {{ end }}",
+          "template": "{{ if gt .Behind 0 }} {{ .Behind }}\ue729\udb80\udde7 {{ end }}",
           "properties": {
             "fetch_status": true
           }
@@ -108,11 +106,10 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:light0",
           "background": "p:neutral_green",
-          "template": "{{ if .Staging.Changed }}{{ add .Staging.Deleted .Staging.Added .Staging.Modified }}\uf00c {{ end }}",
+          "template": "{{ if .Staging.Changed }} {{ add .Staging.Deleted .Staging.Added .Staging.Modified }}\uf00c {{ end }}",
           "properties": {
             "fetch_status": true
           }
@@ -120,11 +117,10 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:light0",
           "background": "p:faded_red",
-          "template": "{{ if gt .Working.Deleted 0 }}{{ .Working.Deleted }}\udb80\uddb4 {{ end }}",
+          "template": "{{ if gt .Working.Deleted 0 }} {{ .Working.Deleted }}\udb80\uddb4 {{ end }}",
           "properties": {
             "fetch_status": true
           }
@@ -132,11 +128,10 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:light0",
           "background": "p:neutral_orange",
-          "template": "{{ if gt .Working.Modified 0 }}{{ .Working.Modified }}\udb80\udfeb {{ end }}",
+          "template": "{{ if gt .Working.Modified 0 }} {{ .Working.Modified }}\udb80\udfeb {{ end }}",
           "properties": {
             "fetch_status": true
           }
@@ -144,11 +139,10 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:light0",
           "background": "p:neutral_red",
-          "template": "{{ if gt .Working.Untracked 0 }}{{ .Working.Untracked }}\uf128 {{ end }}",
+          "template": "{{ if gt .Working.Untracked 0 }} {{ .Working.Untracked }}\uf128 {{ end }}",
           "properties": {
             "fetch_status": true
           }
@@ -156,11 +150,10 @@
         {
           "type": "git",
           "style": "diamond",
-          "leading_diamond": "\ue0b6",
-          "trailing_diamond": "\ue0b4 ",
+          "trailing_diamond": "\ue0b4",
           "foreground": "p:dark0",
           "background": "p:neutral_yellow",
-          "template": "{{ if gt .StashCount 0 }}{{ .StashCount }}\udb80\udd93 {{ end }}",
+          "template": "{{ if gt .StashCount 0 }} {{ .StashCount }}\udb80\udd93 {{ end }}",
           "properties": {
             "fetch_status": true
           }
