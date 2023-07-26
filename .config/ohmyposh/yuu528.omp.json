@@ -196,16 +196,16 @@
         {
           "type": "os",
           "style": "powerline",
-          "foreground": "p:light3",
-          "background": "p:dark3",
+          "foreground": "p:dark4",
+          "background": "p:light0",
           "foreground_templates": [
             "{{ if eq .OS \"linux\" }}p:bright_yellow{{ end }}",
             "{{ if eq .OS \"windows\" }}p:bright_aqua{{ end }}",
-            "{{ if eq .OS \"debian\" }}p:faded_red{{ end }}",
-            "{{ if eq .OS \"raspbian\" }}p:faded_red{{ end }}",
+            "{{ if eq .OS \"debian\" }}p:neutral_red{{ end }}",
+            "{{ if eq .OS \"raspbian\" }}p:neutral_red{{ end }}",
             "{{ if eq .OS \"ubuntu\" }}p:bright_orange{{ end }}"
           ],
-          "template": " {{ if .WSL }}WSL {{ end }}{{ .Icon }}"
+          "template": " {{ if .WSL }}WSL {{ end }}{{ .Icon }} "
         },
         {
           "type": "path",
