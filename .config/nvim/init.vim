@@ -8,6 +8,20 @@ augroup HighlightTrailingSpaces
 	autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
+command -nargs=1 Stw call SetTabWidth(<f-args>)
+function SetTabWidth(width)
+	let s:numWidth = str2nr(a:width)
+	exec 'set ts=' . s:numWidth
+	exec 'set sw=' . s:numWidth
+	set noet
+endfunction
+
+command -nargs=1 Sts call SetTabSpaceWidth(<f-args>)
+function SetTabSpaceWidth(width)
+	call SetTabWidth(a:width)
+	set et
+endfunction
+
 " deinディレクトリ設定
 let s:dein_dir=expand('~/.cache/dein')
 let s:dein_repo_dir=s:dein_dir . '/repos/github.com/Shougo/dein.vim'
