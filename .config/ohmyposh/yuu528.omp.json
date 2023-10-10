@@ -37,7 +37,7 @@
             "{{ if eq .Code 1 }}109{{ end }}"
           ],
           "background": "p:dark2",
-          "template": "{{ if eq .Code 0 }} \udb81\udda8 {{ else if eq .Code 1 }} \ue239 {{ else }}{{ .Code }} {{ end }}",
+          "template": "{{ if eq .Code 0 }} \udb81\udda8{{ else if eq .Code 1 }} \ue239{{ else }} {{ .Code }}{{ end }}",
           "properties": {
             "always_enabled": true
           }
