@@ -44,8 +44,8 @@ bar:
   opacity: 1.0
   background: "#20242cc4"
   foreground: "#ffffff"
-  font_family: "PlemolJP35"
-  font_size: "13px"
+  font_family: "IBM Plex Sans JP"
+  font_size: "12px"
   padding: "4px 6px"
   offset_x: "0"
   offset_y: "0"
