@@ -25,7 +25,7 @@ gaps:
   inner_gap: "0px"
 
   # Gap between windows and the screen edge.
-  outer_gap: "0px 2px 0px 2px"
+  outer_gap: "0px 0px 0px 0px"
 
 # Highlight active/inactive windows with a colored border.
 # ** Exclusive to Windows 11 due to API limitations.
@@ -35,8 +35,8 @@ focus_borders:
     color: "#0000ff"
 
   inactive:
-    enabled: false
-    color: "#ff0000"
+    enabled: true
+    color: "#3a3a3a"
 
 bar:
   height: "28px"
@@ -123,7 +123,10 @@ window_rules:
 
   # Some applications (eg. Steam) have borders that extend past the normal border size.
   - command: "resize borders 0px -7px -7px -7px"
-    match_process_name: "steam"
+    match_process_name: "steamwebhelper"
+
+  - command: "resize borders 0px -2px 0px -2px"
+    match_process_name: "firefox"
 
   # Cakewalk
   - command: "set floating"
@@ -134,6 +137,10 @@ window_rules:
 
   - command: "ignore"
     match_process_name: "BitBridge"
+
+  - command: "ignore"
+    match_title: "/HUDNow|HUDNowTime/"
+    match_process_name: "Cakewalk"
 
 binding_modes:
   - name: "resize"
