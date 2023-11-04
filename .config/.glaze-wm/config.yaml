@@ -125,6 +125,13 @@ window_rules:
   - command: "resize borders 0px -7px -7px -7px"
     match_process_name: "steam"
 
+  # Cakewalk
+  - command: "set floating"
+    match_process_name: "Cakewalk"
+
+  - command: "set tiling"
+    match_class_name: "Cakewalk Core"
+
 binding_modes:
   - name: "resize"
     keybindings:
