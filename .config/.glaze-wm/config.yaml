@@ -132,6 +132,9 @@ window_rules:
   - command: "set tiling"
     match_class_name: "Cakewalk Core"
 
+  - command: "ignore"
+    match_process_name: "BitBridge"
+
 binding_modes:
   - name: "resize"
     keybindings:
