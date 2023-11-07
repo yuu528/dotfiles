@@ -308,5 +308,5 @@ keybindings:
     bindings: ["Alt+Shift+9"]
 
 # Explorer
-  - command: "exec alacritty -e vifm"
+  - command: "exec vifm"
     binding: "Alt+E"
