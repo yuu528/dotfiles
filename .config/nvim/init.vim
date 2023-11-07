@@ -28,24 +28,24 @@ let s:dein_repo_dir=s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
 " deinがなければclone
 if &runtimepath !~# '/dein.vim'
-    if !isdirectory(s:dein_repo_dir)
-        execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
-    endif
-    execute 'set runtimepath^=' . s:dein_repo_dir
+	if !isdirectory(s:dein_repo_dir)
+		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
+	endif
+	execute 'set runtimepath^=' . s:dein_repo_dir
 endif
 
 " プラグインインストール
 let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
 if dein#load_state(s:dein_dir)
-  call dein#begin(s:dein_dir)
-  call dein#load_toml(s:toml_file)
-  call dein#end()
-  call dein#save_state()
+	call dein#begin(s:dein_dir)
+	call dein#load_toml(s:toml_file)
+	call dein#end()
+	call dein#save_state()
 endif
 
 " プラグインの自動インストール
 if has('vim_starting') && dein#check_install()
-  call dein#install()
+	call dein#install()
 endif
 
 " GitHubのtokenを書いたファイルをsecret.tsvとして置くことで自動高速更新
@@ -129,7 +129,7 @@ set encoding=utf-8
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\▸\-
+set list listchars=tab:\\─,space:\·
 " Tab文字を半角スペースにする
 " set expandtab
 " 行頭以外のTab文字の表示幅（スペースいくつ分）
