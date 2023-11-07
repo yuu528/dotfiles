@@ -1,3 +1,4 @@
 colorscheme gruvbox
 
 set vicmd=nvim
+set dotfiles
