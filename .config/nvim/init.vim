@@ -123,9 +123,9 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " 曖昧幅文字の表示
 set encoding=utf-8
-if exists('&ambw')
-  set ambiwidth=double
-endif
+"if exists('&ambw')
+"  set ambiwidth=double
+"endif
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
