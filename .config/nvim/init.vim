@@ -153,3 +153,4 @@ set hlsearch
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=35<CR>
 let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
+let g:fern#default_hidden = 1
