@@ -3,6 +3,10 @@ colorscheme gruvbox
 set vicmd=nvim
 set dotfiles
 
+if &shell == "cmd"
+	set shell=pwsh
+endif
+
 set viewcolumns=-{name}..,8{size},19{mtime}
 set timefmt="%y/%m/%d %H:%M:%S"
 
