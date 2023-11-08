@@ -3,6 +3,12 @@ colorscheme gruvbox
 set vicmd=nvim
 set dotfiles
 
+set viewcolumns=-{name}..,8{size},19{mtime}
+set timefmt="%y/%m/%d %H:%M:%S"
+
+set statusline="  %t  [%T]%= %A %10u:%-7g %15s %20d [%a free]"
+set sizefmt=units:iec,precision:3,nospace
+
 " Ranger devicons for ViFM
 " https://github.com/cirala/vifm_devicons
 "
