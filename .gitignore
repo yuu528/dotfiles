@@ -1,3 +1,4 @@
+.config/coc/
 .config/nvim/.last_update
 .config/nvim/secret.tsv
 .config/powerline-shell/custom_segments/__pycache__/

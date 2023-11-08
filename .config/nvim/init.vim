@@ -8,6 +8,24 @@ augroup HighlightTrailingSpaces
 	autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
+" Coc.nvim
+" press tab or shift tab to select completions
+inoremap <silent><expr> <TAB>
+			\ coc#pum#visible() ? coc#pum#next(1) :
+			\ CheckBackspace() ? "\<Tab>" :
+			\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" press enter to accept selected completion
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+let g:coc_global_extensions = [
+	\'coc-clangd',
+	\'coc-java',
+	\'coc-vimlsp',
+\]
+
 command -nargs=1 Stw call SetTabWidth(<f-args>)
 function SetTabWidth(width)
 	let s:numWidth = str2nr(a:width)
