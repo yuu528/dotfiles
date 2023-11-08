@@ -147,6 +147,10 @@ window_rules:
     match_title: "/HUDNow|HUDNowTime/"
     match_process_name: "Cakewalk"
 
+  # WSLg
+  - command: "ignore"
+    match_process_name: "/msrdc|wslhost/"
+
 binding_modes:
   - name: "resize"
     keybindings:
