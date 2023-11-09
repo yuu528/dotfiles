@@ -162,6 +162,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "/msrdc|wslhost/"
 
+  # Fullscreen apps will be bound to workspace 8
+  - commands: ["move to workspace 8", "focus workspace 8"]
+    match_process_name: "eurotrucks2"
+
 binding_modes:
   - name: "resize"
     keybindings:
