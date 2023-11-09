@@ -151,6 +151,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "/msrdc|wslhost/"
 
+  # ignore for some applications
+  - command: "ignore"
+    match_process_name: "AdskAccessUIHost"
+
 binding_modes:
   - name: "resize"
     keybindings:
