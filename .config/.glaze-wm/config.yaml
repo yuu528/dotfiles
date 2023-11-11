@@ -100,6 +100,7 @@ bar:
       label_horizontal: "⮂"
       label_vertical: "⇅"
       background: "#83a598"
+      foreground: "#282828"
       margin: "0 5px"
       padding: "0 8px"
     - type: "binding mode"
