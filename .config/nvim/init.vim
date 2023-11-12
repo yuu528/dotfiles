@@ -24,6 +24,7 @@ let g:coc_global_extensions = [
 	\'coc-clangd',
 	\'coc-java',
 	\'coc-vimlsp',
+	\'coc-lua',
 \]
 
 command -nargs=1 Stw call SetTabWidth(<f-args>)
