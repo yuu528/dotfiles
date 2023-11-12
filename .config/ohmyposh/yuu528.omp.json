@@ -190,7 +190,7 @@
           "trailing_diamond": "\ue0b4 ",
           "foreground": "p:light0",
           "background": "p:faded_aqua",
-          "template": "{{ if eq .Type \"wifi\" }}\udb82\udd28{{ .SSID }}{{ else if eq .Type \"ethernet\" }}\udb80\ude01{{ end }}"
+          "template": "{{ if eq .Type \"wifi\" }}\udb82\udd28{{ .SSID }}{{ else if eq .Type \"ethernet\" }}\udb84\udc87{{ end }}"
         },
         {
           "type": "sysinfo",
