@@ -2,7 +2,7 @@
 repo = 'morhetz/gruvbox'
 hook_add = '''
 	set background=dark
-	let g:gruvbox_contrast_dark='hard'
+	let g:gruvbox_contrast_dark='medium'
 	au MyAutoCmd VimEnter * nested colorscheme gruvbox
 '''
 

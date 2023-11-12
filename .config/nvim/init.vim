@@ -24,6 +24,7 @@ let g:coc_global_extensions = [
 	\'coc-clangd',
 	\'coc-java',
 	\'coc-vimlsp',
+	\'coc-lua',
 \]
 
 command -nargs=1 Stw call SetTabWidth(<f-args>)
@@ -136,7 +137,7 @@ nnoremap k gk
 " シンタックスハイライトの有効化
 syntax enable
 " vim-airline
-let g:airline_theme = 'base16'
+let g:airline_theme = 'base16_gruvbox_dark_medium'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 " 曖昧幅文字の表示
@@ -144,6 +145,8 @@ set encoding=utf-8
 "if exists('&ambw')
 "  set ambiwidth=double
 "endif
+" color
+set termguicolors
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
