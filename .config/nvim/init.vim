@@ -145,6 +145,8 @@ set encoding=utf-8
 "if exists('&ambw')
 "  set ambiwidth=double
 "endif
+" color
+set termguicolors
 
 " Tab系
 " 不可視文字を可視化(タブが「▸-」と表示される)
