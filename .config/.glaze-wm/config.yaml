@@ -52,9 +52,15 @@ bar:
   border_radius: "0"
   components_left:
     - type: "workspaces"
-      focused_workspace_background: "#ebdbb2"
-      focused_workspace_foreground: "#282828"
-      displayed_workspace_background: "#3c3836"
+      focused_workspace_background: "transparent"
+      displayed_workspace_background: "transparent"
+      default_workspace_background: "transparent"
+      focused_workspace_border_width: "0 0 2px 0"
+      displayed_workspace_border_width: "0 0 2px 0"
+      default_workspace_border_width: "0 0 2px 0"
+      focused_workspace_border_color: "#fe8019"
+      displayed_workspace_border_color: "#ebdbb2"
+      default_workspace_border_color: "transparent"
   components_center:
     - type: "window title"
   components_right:
