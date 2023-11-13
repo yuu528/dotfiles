@@ -3,14 +3,14 @@ general:
   focus_follows_cursor: true
 
   # Whether to jump the cursor between windows focused by the WM.
-  cursor_follow_focus: true
+  cursor_follows_focus: false
 
   # Whether to switch back and forth between the previously focused workspace
   # when focusing the current workspace.
   toggle_workspace_on_refocus: true
 
   # Whether to show floating windows as always on top.
-  show_floating_on_top: false
+  show_floating_on_top: true
 
   # Amount to move floating windows by (eg. when using `alt+<hjkl>` on a floating window)
   floating_window_move_amount: "5%"
