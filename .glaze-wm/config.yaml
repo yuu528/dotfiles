@@ -130,6 +130,7 @@ bar:
 
 workspaces:
   - name: "1"
+    keep_alive: true
   - name: "2"
   - name: "3"
   - name: "4"
