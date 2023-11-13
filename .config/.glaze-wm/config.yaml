@@ -185,6 +185,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "EXCEL"
 
+  # Overwolf
+  - command: "ignore"
+    match_process_name: "Overwolf"
+
   # WSLg
   - command: "ignore"
     match_process_name: "/msrdc|wslhost/"
