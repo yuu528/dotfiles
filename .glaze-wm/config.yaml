@@ -180,7 +180,7 @@ window_rules:
     match_process_name: "Overwolf"
 
   # PowerToys
-  - command: "set floating"
+  - command: "ignore"
     match_process_name: "PowerToys.Peek.UI"
 
   # WSLg
