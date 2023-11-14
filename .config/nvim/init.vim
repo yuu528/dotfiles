@@ -122,6 +122,8 @@ set showcmd
 " マウス無効化
 set mouse=
 
+set signcolumn=yes
+
 " 見た目系
 " 行番号を表示
 set number
