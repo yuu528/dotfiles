@@ -337,5 +337,5 @@ keybindings:
     bindings: ["Alt+Shift+9"]
 
 # Explorer
-  - command: "exec vifm"
+  - command: "exec wezterm-gui -e vifm"
     binding: "Alt+E"
