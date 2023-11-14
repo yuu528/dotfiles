@@ -95,6 +95,16 @@ if getftype(s:secretFilePath) != ''
 	endif
 endif
 
+" leader
+nnoremap <SPACE> <Nop>
+let mapleader = ' '
+
+" telescope.nvim
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 " python
 let g:python3_host_prog = 'python'
 "文字コードをUTF-8に設定
