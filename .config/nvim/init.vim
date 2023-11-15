@@ -100,6 +100,26 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:python3_host_prog = 'python'
 
+" nvim-treesitter
+lua <<EOF
+require 'nvim-treesitter.install'.prefer_git = false
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = {
+		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
+		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
+		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
+		'lua', 'make', 'markdown', 'python', 'regex', 'toml', 'tsv',
+		'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+	},
+	highlight = {
+		enable = true
+	},
+	indent = {
+		enable = true
+	}
+}
+EOF
+
 " Coc.nvim
 " press tab or shift tab to select completions
 inoremap <silent><expr> <TAB>

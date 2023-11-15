@@ -33,6 +33,10 @@ rev = '0.1.x'
 depends = [ 'plenary.nvim' ]
 
 [[plugins]]
+repo = 'nvim-treesitter/nvim-treesitter'
+hook_post_update = 'TSUpdate'
+
+[[plugins]]
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
