@@ -37,6 +37,9 @@ repo = 'nvim-treesitter/nvim-treesitter'
 hook_post_update = 'TSUpdate'
 
 [[plugins]]
+repo = 'lewis6991/gitsigns.nvim'
+
+[[plugins]]
 repo = 'mattn/emmet-vim'
 
 [[plugins]]
