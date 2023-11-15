@@ -2,31 +2,14 @@ augroup MyAutoCmd
 	autocmd!
 augroup END
 
+" Space highlighting
 augroup HighlightTrailingSpaces
 	autocmd!
 	autocmd VimEnter,WinEnter,ColorScheme * highlight TrailingSpaces term=underline guibg=Red ctermbg=Red
 	autocmd VimEnter,WinEnter * match TrailingSpaces /\s\+$/
 augroup END
 
-" Coc.nvim
-" press tab or shift tab to select completions
-inoremap <silent><expr> <TAB>
-			\ coc#pum#visible() ? coc#pum#next(1) :
-			\ CheckBackspace() ? "\<Tab>" :
-			\ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" press enter to accept selected completion
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-let g:coc_global_extensions = [
-	\'coc-clangd',
-	\'coc-java',
-	\'coc-vimlsp',
-	\'coc-lua',
-\]
-
+" User commands
 command -nargs=1 Stw call SetTabWidth(<f-args>)
 function SetTabWidth(width)
 	let s:numWidth = str2nr(a:width)
@@ -41,11 +24,11 @@ function SetTabSpaceWidth(width)
 	set et
 endfunction
 
-" deinディレクトリ設定
+" dein directory
 let s:dein_dir=expand('~/.cache/dein')
 let s:dein_repo_dir=s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-" deinがなければclone
+" clone dein if dein is not installed
 if &runtimepath !~# '/dein.vim'
 	if !isdirectory(s:dein_repo_dir)
 		execute '!git clone https://github.com/Shougo/dein.vim' s:dein_repo_dir
@@ -53,7 +36,7 @@ if &runtimepath !~# '/dein.vim'
 	execute 'set runtimepath^=' . s:dein_repo_dir
 endif
 
-" プラグインインストール
+" load plugins from toml
 let s:toml_file = fnamemodify(expand('<sfile>'), ':h').'/dein.toml'
 if dein#load_state(s:dein_dir)
 	call dein#begin(s:dein_dir)
@@ -62,7 +45,7 @@ if dein#load_state(s:dein_dir)
 	call dein#save_state()
 endif
 
-" プラグインの自動インストール
+" install plugins
 if has('vim_starting') && dein#check_install()
 	call dein#install()
 endif
@@ -95,83 +78,111 @@ if getftype(s:secretFilePath) != ''
 	endif
 endif
 
-" python
-let g:python3_host_prog = 'python'
-"文字コードをUTF-8に設定
-set fenc=utf-8
-" バックアップファイルを作らない
-set nobackup
-" スワップファイルを作らない
-set noswapfile
-" 編集中のファイルが変更されたら自動で読み直す
-set autoread
-" バッファが編集中でもその他のファイルを開けるように
-set hidden
-" 入力中のコマンドをステータスに表示する
-set showcmd
-" マウス無効化
-set mouse=
+" set leader key to <SPACE>
+nnoremap <SPACE> <Nop>
+let mapleader = ' '
 
-" 見た目系
-" 行番号を表示
-set number
-" 現在の行を強調表示
-set cursorline
-" 現在の行を強調表示（縦）
-"set cursorcolumn
-" 行末の1文字先までカーソルを移動できるように
-set virtualedit=onemore
-" インデントはスマートインデント
-set smartindent
-" ビープ音を可視化
-set visualbell
-" 括弧入力時の対応する括弧を表示
-set showmatch
-" ステータスラインを常に表示
-set laststatus=2
-" コマンドラインの補完
-set wildmode=list:longest
-" 折り返し時に表示行単位での移動できるようにする
-nnoremap j gj
-nnoremap k gk
-" シンタックスハイライトの有効化
-syntax enable
-" vim-airline
-let g:airline_theme = 'base16_gruvbox_dark_medium'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-" 曖昧幅文字の表示
-set encoding=utf-8
-"if exists('&ambw')
-"  set ambiwidth=double
-"endif
-" color
-set termguicolors
-
-" Tab系
-" 不可視文字を可視化(タブが「▸-」と表示される)
-set list listchars=tab:\\─,space:\·
-" Tab文字を半角スペースにする
-" set expandtab
-" 行頭以外のTab文字の表示幅（スペースいくつ分）
-set tabstop=4
-" 行頭でのTab文字の表示幅
-set shiftwidth=4
-
-" 検索系
-" 検索文字列が小文字の場合は大文字小文字を区別なく検索する
-set ignorecase
-" 検索文字列に大文字が含まれている場合は区別して検索する
-set smartcase
-" 検索文字列入力時に順次対象文字列にヒットさせる
-set incsearch
-" 検索時に最後まで行ったら最初に戻る
-set wrapscan
-" 検索語をハイライト表示
-set hlsearch
+" telescope.nvim
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " fern
 nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=35<CR>
 let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
 let g:fern#default_hidden = 1
+
+" vim airline
+let g:airline_theme = 'base16_gruvbox_dark_medium'
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:python3_host_prog = 'python'
+
+" nvim-treesitter
+lua <<EOF
+require 'nvim-treesitter.install'.prefer_git = false
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = {
+		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
+		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
+		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
+		'lua', 'make', 'markdown', 'python', 'regex', 'toml', 'tsv',
+		'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+	},
+	highlight = {
+		enable = true
+	},
+	indent = {
+		enable = true
+	}
+}
+EOF
+
+" Coc.nvim
+" press tab or shift tab to select completions
+inoremap <silent><expr> <TAB>
+			\ coc#pum#visible() ? coc#pum#next(1) :
+			\ CheckBackspace() ? "\<Tab>" :
+			\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" press enter to accept selected completion
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+let g:coc_global_extensions = [
+	\'coc-clangd',
+	\'coc-java',
+	\'coc-vimlsp',
+	\'coc-lua',
+\]
+
+set fenc=utf-8
+set nobackup
+set noswapfile
+set autoread			" auto reloading the file that changed
+set hidden				" enable hidden buffer
+set showcmd
+set mouse=				" disable mouse
+set signcolumn=yes		" always show signcolumn
+
+set number				" show line number
+set cursorline			" highlight current line
+set virtualedit=onemore	" allow cursor to move last of line
+set smartindent
+set visualbell
+set showmatch
+set laststatus=2		" always show status line
+set wildmode=list:longest	" auto completion for command line
+
+" replace j k
+nnoremap j gj
+nnoremap k gk
+
+syntax enable
+
+" truecolor
+set termguicolors
+
+" ambiwidth settings
+set encoding=utf-8
+"if exists('&ambw')
+"  set ambiwidth=double
+"endif
+
+set list listchars=tab:\\─,space:\·	" tab and space visualising
+
+" tab width
+set tabstop=4
+set shiftwidth=4
+
+" ignore case when the query text not contain capital letter
+" or else, dont ignore case
+set ignorecase
+set smartcase
+
+set incsearch
+set wrapscan			" return last search position to first position
+set hlsearch			" search text highlighting
