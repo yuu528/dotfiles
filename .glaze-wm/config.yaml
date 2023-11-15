@@ -189,7 +189,7 @@ window_rules:
 
   # ignore for some applications
   - command: "ignore"
-    match_process_name: "AdskAccessUIHost"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher/"
 
 binding_modes:
   - name: "resize"
