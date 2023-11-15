@@ -185,6 +185,23 @@ require'gitsigns'.setup {
 }
 EOF
 
+" gruvbox.nvim
+lua <<EOF
+# signcolumn color
+require("gruvbox").setup({
+	overrides = {
+		SignColumn = { link = 'Normal' },
+		GruvboxGreenSign = { bg = '' },
+		GruvboxOrangeSign = { bg = '' },
+		GruvboxPurpleSign = { bg = '' },
+		GruvboxYellowSign = { bg = '' },
+		GruvboxRedSign = { bg = '' },
+		GruvboxBlueSign = { bg = '' },
+		GruvboxAquaSign = { bg = '' },
+	},
+})
+EOF
+
 set fenc=utf-8
 set nobackup
 set noswapfile
