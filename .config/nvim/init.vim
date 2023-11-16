@@ -108,7 +108,7 @@ require'nvim-treesitter.configs'.setup {
 		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
 		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
 		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-		'lua', 'make', 'markdown', 'python', 'regex', 'toml', 'tsv',
+		'lua', 'make', 'markdown', 'python', 'regex', 'sql', 'toml', 'tsv',
 		'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
 	},
 	highlight = {
