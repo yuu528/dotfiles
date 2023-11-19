@@ -121,7 +121,6 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " Coc.nvim
-
 " press tab or shift tab to select completions
 inoremap <silent><expr> <TAB>
 			\ coc#pum#visible() ? coc#pum#next(1) :
@@ -130,21 +129,8 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " press enter to accept selected completion
-" avoid <CR> overriding by lexima.vim
-" https://zenn.dev/ph3nac/scraps/e585150febb064
-call lexima#init()
-inoremap <silent><expr> <CR> coc#pum#visible() ? <nop> : <nop>
-
-function! s:coc_pum_lexima_enter() abort
-let key = lexima#expand('<CR>', 'i')
-call coc#on_enter()
-return "<C-g>u" . key
-endfunction
-
-augroup coc-pum-enter
-au!
-au InsertEnter * inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : <SID>coc_pum_lexima_enter()
-augroup END
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 let g:coc_global_extensions = [
 	\'coc-clangd',
