@@ -49,6 +49,9 @@ repo = 'posva/vim-vue'
 repo = 'machakann/vim-sandwich'
 
 [[plugins]]
+repo = 'lervag/vimtex'
+
+[[plugins]]
 repo = 'lambdalisue/fern.vim'
 
 [[plugins]]

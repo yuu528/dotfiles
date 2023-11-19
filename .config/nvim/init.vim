@@ -108,8 +108,8 @@ require'nvim-treesitter.configs'.setup {
 		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
 		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
 		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-		'lua', 'make', 'markdown', 'python', 'regex', 'sql', 'toml', 'tsv',
-		'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+		'latex', 'lua', 'make', 'markdown', 'python', 'regex', 'sql',
+		'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
 	},
 	highlight = {
 		enable = true
@@ -136,8 +136,15 @@ let g:coc_global_extensions = [
 	\'coc-clangd',
 	\'coc-java',
 	\'coc-vimlsp',
+	\'coc-vimtex',
 	\'coc-lua',
 \]
+
+" vimtex
+let g:vimtex_compiler_latexmk = { 'continuous': 0 }
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
 
 " gitsigns
 lua <<EOF
