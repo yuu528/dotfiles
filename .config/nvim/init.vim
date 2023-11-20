@@ -135,9 +135,10 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 let g:coc_global_extensions = [
 	\'coc-clangd',
 	\'coc-java',
+	\'coc-lua',
+	\'coc-pairs',
 	\'coc-vimlsp',
 	\'coc-vimtex',
-	\'coc-lua',
 \]
 
 " vimtex
