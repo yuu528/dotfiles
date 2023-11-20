@@ -205,6 +205,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "/AdskAccessUIHost|Flow.Launcher/"
 
+  # floating
+  - command: "set floating"
+    match_process_name: "mupdf"
+
 binding_modes:
   - name: "resize"
     keybindings:
