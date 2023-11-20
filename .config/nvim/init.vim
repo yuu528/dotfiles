@@ -82,6 +82,9 @@ endif
 nnoremap <SPACE> <Nop>
 let mapleader = ' '
 
+" set local leader key to ,
+let maplocalleader = ","
+
 " telescope.nvim
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -142,10 +145,7 @@ let g:coc_global_extensions = [
 \]
 
 " vimtex
-let g:vimtex_compiler_latexmk = { 'continuous': 0 }
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
+" let g:vimtex_view_method = 'mupdf'
 
 " gitsigns
 lua <<EOF
