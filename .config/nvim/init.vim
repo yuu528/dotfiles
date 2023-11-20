@@ -82,6 +82,9 @@ endif
 nnoremap <SPACE> <Nop>
 let mapleader = ' '
 
+" set local leader key to ,
+let maplocalleader = ","
+
 " telescope.nvim
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -121,7 +124,6 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " Coc.nvim
-
 " press tab or shift tab to select completions
 inoremap <silent><expr> <TAB>
 			\ coc#pum#visible() ? coc#pum#next(1) :
@@ -130,35 +132,20 @@ inoremap <silent><expr> <TAB>
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 " press enter to accept selected completion
-" avoid <CR> overriding by lexima.vim
-" https://zenn.dev/ph3nac/scraps/e585150febb064
-call lexima#init()
-inoremap <silent><expr> <CR> coc#pum#visible() ? <nop> : <nop>
-
-function! s:coc_pum_lexima_enter() abort
-let key = lexima#expand('<CR>', 'i')
-call coc#on_enter()
-return "<C-g>u" . key
-endfunction
-
-augroup coc-pum-enter
-au!
-au InsertEnter * inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm() : <SID>coc_pum_lexima_enter()
-augroup END
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+			\: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 let g:coc_global_extensions = [
 	\'coc-clangd',
 	\'coc-java',
+	\'coc-lua',
+	\'coc-pairs',
 	\'coc-vimlsp',
 	\'coc-vimtex',
-	\'coc-lua',
 \]
 
 " vimtex
-let g:vimtex_compiler_latexmk = { 'continuous': 0 }
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
+" let g:vimtex_view_method = 'mupdf'
 
 " gitsigns
 lua <<EOF

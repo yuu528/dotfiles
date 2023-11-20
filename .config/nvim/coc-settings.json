@@ -46,5 +46,6 @@
 		"javascriptreact",
 		"typescript",
 		"typescriptreact"
-	]
+  ],
+  "clangd.path": "~/git/dotfiles/.config/coc/extensions/coc-clangd-data/install/16.0.2/clangd_16.0.2/bin/clangd"
 }
