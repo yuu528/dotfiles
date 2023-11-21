@@ -145,7 +145,8 @@ let g:coc_global_extensions = [
 \]
 
 " vimtex
-" let g:vimtex_view_method = 'mupdf'
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 
 " gitsigns
 lua <<EOF
