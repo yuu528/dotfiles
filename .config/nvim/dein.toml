@@ -1,21 +1,11 @@
 [[plugins]]
 repo = 'ellisonleao/gruvbox.nvim'
-hook_add = '''
-	set background=dark
-	au MyAutoCmd VimEnter * nested colorscheme gruvbox
-'''
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'vim-airline/vim-airline'
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
-
-[[plugins]]
-repo = 'github/copilot.vim'
+repo = 'nvim-lualine/lualine.nvim'
 
 [[plugins]]
 repo = 'neoclide/coc.nvim'
@@ -58,4 +48,37 @@ repo = 'lambdalisue/nerdfont.vim'
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 
 [[plugins]]
-repo = 'pepo-le/win-ime-con.nvim'
+repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'
+
+[[plugins]]
+repo = 'akinsho/bufferline.nvim'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'
+
+[[plugins]]
+repo = 'andersevenrud/nvim_context_vt'
+
+[[plugins]]
+repo = 'kevinhwang91/nvim-hlslens'
+
+[[plugins]]
+repo = 'petertriho/nvim-scrollbar'
+
+[[plugins]]
+repo = 'yutkat/wb-only-current-line.nvim'
+
+[[plugins]]
+repo = 'RRethy/vim-illuminate'
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
+
+[[plugins]]
+repo = 'Shougo/vinarise.vim'
+
+[[plugins]]
+repo = 'jsborjesson/vim-uppercase-sql'

@@ -85,6 +85,9 @@ let mapleader = ' '
 " set local leader key to ,
 let maplocalleader = ","
 
+" truecolor
+set termguicolors
+
 " telescope.nvim
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -96,32 +99,6 @@ nnoremap <C-n> :Fern . -reveal=% -drawer -toggle -width=35<CR>
 let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
 let g:fern#default_hidden = 1
-
-" vim airline
-let g:airline_theme = 'base16_gruvbox_dark_medium'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:python3_host_prog = 'python'
-
-" nvim-treesitter
-lua <<EOF
-require 'nvim-treesitter.install'.prefer_git = false
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = {
-		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
-		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
-		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-		'latex', 'lua', 'make', 'markdown', 'python', 'regex', 'sql',
-		'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
-	},
-	highlight = {
-		enable = true
-	},
-	indent = {
-		enable = true
-	}
-}
-EOF
 
 " Coc.nvim
 " press tab or shift tab to select completions
@@ -145,10 +122,95 @@ let g:coc_global_extensions = [
 \]
 
 " vimtex
-" let g:vimtex_view_method = 'mupdf'
+let g:vimtex_view_general_viewer = 'SumatraPDF'
+let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 
-" gitsigns
+" quickhl
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+
+" lua plugin settings
 lua <<EOF
+-- gruvbox.nvim
+-- signcolumn color
+require("gruvbox").setup({
+	overrides = {
+		SignColumn = { link = 'Normal' },
+		GruvboxGreenSign = { bg = '' },
+		GruvboxOrangeSign = { bg = '' },
+		GruvboxPurpleSign = { bg = '' },
+		GruvboxYellowSign = { bg = '' },
+		GruvboxRedSign = { bg = '' },
+		GruvboxBlueSign = { bg = '' },
+		GruvboxAquaSign = { bg = '' },
+	},
+})
+vim.cmd('set background=dark')
+vim.cmd('colorscheme gruvbox')
+
+-- lualine
+require'lualine'.setup {
+	options = {
+		icons_enabled = true,
+		theme = 'gruvbox',
+		component_separators = { left = '', right = ''},
+		section_separators = { left = '', right = ''},
+		disabled_filetypes = {
+			statusline = {},
+			winbar = {},
+		},
+		ignore_focus = {},
+		always_divide_middle = true,
+		globalstatus = false,
+		refresh = {
+			statusline = 1000,
+			tabline = 1000,
+			winbar = 1000,
+		}
+	},
+	sections = {
+		lualine_a = { 'mode' },
+		lualine_b = { 'branch', 'diff', 'diagnostics' },
+		lualine_c = { 'filename' },
+		lualine_x = { 'encoding', 'fileformat', 'filetype' },
+		lualine_y = { 'progress' },
+		lualine_z = { 'location' }
+	},
+	inactive_sections = {
+		lualine_a = {},
+		lualine_b = {},
+		lualine_c = { 'filename' },
+		lualine_x = { 'location' },
+		lualine_y = {},
+		lualine_z = {}
+	},
+	tabline = {},
+	winbar = {},
+	inactive_winbar = {},
+	extensions = {}
+}
+
+-- nvim-treesitter
+require'nvim-treesitter.install'.prefer_git = false
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = {
+		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
+		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
+		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
+		'lua', 'make', 'markdown', 'python', 'regex', 'sql',
+		'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+	},
+	highlight = {
+		enable = true
+	},
+	indent = {
+		enable = true
+	}
+}
+
+-- gitsigns
 require'gitsigns'.setup {
 	signs = {
 		add          = { text = '│' },
@@ -191,23 +253,56 @@ require'gitsigns'.setup {
 		enable = false
 	},
 }
-EOF
 
-" gruvbox.nvim
-lua <<EOF
-# signcolumn color
-require("gruvbox").setup({
-	overrides = {
-		SignColumn = { link = 'Normal' },
-		GruvboxGreenSign = { bg = '' },
-		GruvboxOrangeSign = { bg = '' },
-		GruvboxPurpleSign = { bg = '' },
-		GruvboxYellowSign = { bg = '' },
-		GruvboxRedSign = { bg = '' },
-		GruvboxBlueSign = { bg = '' },
-		GruvboxAquaSign = { bg = '' },
-	},
-})
+-- nvim-colorizer
+require'colorizer'.setup {
+	'*';
+}
+
+-- bufferline.nvim
+require'bufferline'.setup {
+	options = {
+		color_icons = true,
+		diagnostics = 'coc',
+		separator_style = 'slant'
+	}
+}
+
+-- nvim_context_vt
+require'nvim_context_vt'.setup {
+	enabled = true,
+	prefix = '',
+	disable_virtual_lines = true
+}
+
+-- nvim-scrollbar
+require'scrollbar'.setup()
+require'scrollbar.handlers.gitsigns'.setup()
+require'scrollbar.handlers.search'.setup()
+
+-- nvim-hlslens
+local kopts = {noremap = true, silent = true}
+
+vim.api.nvim_set_keymap('n', 'n',
+[[<Cmd>execute('normal! ' . v:count1 . 'n')<CR><Cmd>lua require('hlslens').start()<CR>]],
+kopts)
+vim.api.nvim_set_keymap('n', 'N',
+[[<Cmd>execute('normal! ' . v:count1 . 'N')<CR><Cmd>lua require('hlslens').start()<CR>]],
+kopts)
+vim.api.nvim_set_keymap('n', '*', [[*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
+vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
+
+-- vim-illuminate
+require'illuminate'.configure {
+	providers = {
+		'lsp',
+		'treesitter',
+		'regex'
+	}
+}
 EOF
 
 set fenc=utf-8
@@ -232,10 +327,14 @@ set wildmode=list:longest	" auto completion for command line
 nnoremap j gj
 nnoremap k gk
 
-syntax enable
+" buffer control by <C-j>, <C-k>
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
 
-" truecolor
-set termguicolors
+" :noh by <localleader><Space>
+nnoremap <silent> <localleader><Space> :noh<CR>
+
+syntax enable
 
 " ambiwidth settings
 set encoding=utf-8
