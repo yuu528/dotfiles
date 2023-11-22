@@ -294,6 +294,15 @@ vim.api.nvim_set_keymap('n', '#', [[#<Cmd>lua require('hlslens').start()<CR>]], 
 vim.api.nvim_set_keymap('n', 'g*', [[g*<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap('n', 'g#', [[g#<Cmd>lua require('hlslens').start()<CR>]], kopts)
 vim.api.nvim_set_keymap('n', '<Leader>l', '<Cmd>noh<CR>', kopts)
+
+-- vim-illuminate
+require'illuminate'.configure {
+	providers = {
+		'lsp',
+		'treesitter',
+		'regex'
+	}
+}
 EOF
 
 set fenc=utf-8

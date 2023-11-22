@@ -70,3 +70,6 @@ repo = 'petertriho/nvim-scrollbar'
 
 [[plugins]]
 repo = 'yutkat/wb-only-current-line.nvim'
+
+[[plugins]]
+repo = 'RRethy/vim-illuminate'
