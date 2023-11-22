@@ -97,15 +97,18 @@ let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
 let g:fern#default_hidden = 1
 
-" vim airline
-let g:airline_theme = 'base16_gruvbox_dark_medium'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:python3_host_prog = 'python'
+" lualine
+lua <<EOF
+require'lualine'.setup {
+	options = {
+		theme = 'gruvbox'
+	}
+}
+EOF
 
 " nvim-treesitter
 lua <<EOF
-require 'nvim-treesitter.install'.prefer_git = false
+require'nvim-treesitter.install'.prefer_git = false
 require'nvim-treesitter.configs'.setup {
 	ensure_installed = {
 		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',

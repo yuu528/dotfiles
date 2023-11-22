@@ -9,10 +9,7 @@ hook_add = '''
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
-repo = 'vim-airline/vim-airline'
-
-[[plugins]]
-repo = 'vim-airline/vim-airline-themes'
+repo = 'nvim-lualine/lualine.nvim'
 
 [[plugins]]
 repo = 'github/copilot.vim'
