@@ -97,35 +97,6 @@ let g:fern#renderer = 'nerdfont'
 let g:fern#renderer#nerdfont#indent_markers = 1
 let g:fern#default_hidden = 1
 
-" lualine
-lua <<EOF
-require'lualine'.setup {
-	options = {
-		theme = 'gruvbox'
-	}
-}
-EOF
-
-" nvim-treesitter
-lua <<EOF
-require'nvim-treesitter.install'.prefer_git = false
-require'nvim-treesitter.configs'.setup {
-	ensure_installed = {
-		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
-		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
-		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-		'lua', 'make', 'markdown', 'python', 'regex', 'sql',
-		'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
-	},
-	highlight = {
-		enable = true
-	},
-	indent = {
-		enable = true
-	}
-}
-EOF
-
 " Coc.nvim
 " press tab or shift tab to select completions
 inoremap <silent><expr> <TAB>
@@ -151,8 +122,49 @@ let g:coc_global_extensions = [
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 
-" gitsigns
+" lua plugin settings
 lua <<EOF
+-- gruvbox.nvim
+-- signcolumn color
+require("gruvbox").setup({
+	overrides = {
+		SignColumn = { link = 'Normal' },
+		GruvboxGreenSign = { bg = '' },
+		GruvboxOrangeSign = { bg = '' },
+		GruvboxPurpleSign = { bg = '' },
+		GruvboxYellowSign = { bg = '' },
+		GruvboxRedSign = { bg = '' },
+		GruvboxBlueSign = { bg = '' },
+		GruvboxAquaSign = { bg = '' },
+	},
+})
+
+-- lualine
+require'lualine'.setup {
+	options = {
+		theme = 'gruvbox'
+	}
+}
+
+-- nvim-treesitter
+require'nvim-treesitter.install'.prefer_git = false
+require'nvim-treesitter.configs'.setup {
+	ensure_installed = {
+		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
+		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
+		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
+		'lua', 'make', 'markdown', 'python', 'regex', 'sql',
+		'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+	},
+	highlight = {
+		enable = true
+	},
+	indent = {
+		enable = true
+	}
+}
+
+-- gitsigns
 require'gitsigns'.setup {
 	signs = {
 		add          = { text = '│' },
@@ -195,23 +207,6 @@ require'gitsigns'.setup {
 		enable = false
 	},
 }
-EOF
-
-" gruvbox.nvim
-lua <<EOF
-# signcolumn color
-require("gruvbox").setup({
-	overrides = {
-		SignColumn = { link = 'Normal' },
-		GruvboxGreenSign = { bg = '' },
-		GruvboxOrangeSign = { bg = '' },
-		GruvboxPurpleSign = { bg = '' },
-		GruvboxYellowSign = { bg = '' },
-		GruvboxRedSign = { bg = '' },
-		GruvboxBlueSign = { bg = '' },
-		GruvboxAquaSign = { bg = '' },
-	},
-})
 EOF
 
 set fenc=utf-8
