@@ -12,9 +12,6 @@ repo = 'Shougo/dein.vim'
 repo = 'nvim-lualine/lualine.nvim'
 
 [[plugins]]
-repo = 'github/copilot.vim'
-
-[[plugins]]
 repo = 'neoclide/coc.nvim'
 rev = "release"
 
@@ -53,6 +50,3 @@ repo = 'lambdalisue/nerdfont.vim'
 
 [[plugins]]
 repo = 'lambdalisue/fern-renderer-nerdfont.vim'
-
-[[plugins]]
-repo = 'pepo-le/win-ime-con.nvim'
