@@ -331,6 +331,9 @@ nnoremap k gk
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 
+" :noh by <localleader><Space>
+nnoremap <silent> <localleader><Space> :noh<CR>
+
 syntax enable
 
 " ambiwidth settings
