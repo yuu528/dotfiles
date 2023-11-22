@@ -55,3 +55,6 @@ repo = 'norcalli/nvim-colorizer.lua'
 
 [[plugins]]
 repo = 'akinsho/bufferline.nvim'
+
+[[plugins]]
+repo = 't9md/vim-quickhl'

@@ -125,6 +125,12 @@ let g:coc_global_extensions = [
 let g:vimtex_view_general_viewer = 'SumatraPDF'
 let g:vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
 
+" quickhl
+nmap <Space>m <Plug>(quickhl-manual-this)
+xmap <Space>m <Plug>(quickhl-manual-this)
+nmap <Space>M <Plug>(quickhl-manual-reset)
+xmap <Space>M <Plug>(quickhl-manual-reset)
+
 " lua plugin settings
 lua <<EOF
 -- gruvbox.nvim
