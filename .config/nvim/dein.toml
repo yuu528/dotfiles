@@ -53,3 +53,6 @@ repo = 'lambdalisue/fern-renderer-nerdfont.vim'
 
 [[plugins]]
 repo = 'kyazdani42/nvim-web-devicons'
+
+[[plugins]]
+repo = 'norcalli/nvim-colorizer.lua'

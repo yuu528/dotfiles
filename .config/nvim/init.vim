@@ -85,6 +85,9 @@ let mapleader = ' '
 " set local leader key to ,
 let maplocalleader = ","
 
+" truecolor
+set termguicolors
+
 " telescope.nvim
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -242,6 +245,11 @@ require'gitsigns'.setup {
 		enable = false
 	},
 }
+
+-- nvim-colorizer
+require'colorizer'.setup {
+	'*';
+}
 EOF
 
 set fenc=utf-8
@@ -267,9 +275,6 @@ nnoremap j gj
 nnoremap k gk
 
 syntax enable
-
-" truecolor
-set termguicolors
 
 " ambiwidth settings
 set encoding=utf-8
