@@ -1,9 +1,5 @@
 [[plugins]]
 repo = 'ellisonleao/gruvbox.nvim'
-hook_add = '''
-	set background=dark
-	au MyAutoCmd VimEnter * nested colorscheme gruvbox
-'''
 
 [[plugins]]
 repo = 'Shougo/dein.vim'
@@ -56,3 +52,6 @@ repo = 'kyazdani42/nvim-web-devicons'
 
 [[plugins]]
 repo = 'norcalli/nvim-colorizer.lua'
+
+[[plugins]]
+repo = 'akinsho/bufferline.nvim'

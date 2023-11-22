@@ -141,6 +141,8 @@ require("gruvbox").setup({
 		GruvboxAquaSign = { bg = '' },
 	},
 })
+vim.cmd('set background=dark')
+vim.cmd('colorscheme gruvbox')
 
 -- lualine
 require'lualine'.setup {
@@ -249,6 +251,15 @@ require'gitsigns'.setup {
 -- nvim-colorizer
 require'colorizer'.setup {
 	'*';
+}
+
+-- bufferline.nvim
+require'bufferline'.setup {
+	options = {
+		color_icons = true,
+		diagnostics = 'coc',
+		separator_style = 'slant'
+	}
 }
 EOF
 
