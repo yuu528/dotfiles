@@ -58,3 +58,6 @@ repo = 'akinsho/bufferline.nvim'
 
 [[plugins]]
 repo = 't9md/vim-quickhl'
+
+[[plugins]]
+repo = 'andersevenrud/nvim_context_vt'

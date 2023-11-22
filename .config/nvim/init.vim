@@ -267,6 +267,13 @@ require'bufferline'.setup {
 		separator_style = 'slant'
 	}
 }
+
+-- nvim_context_vt
+require'nvim_context_vt'.setup {
+	enabled = true,
+	prefix = '',
+	disable_virtual_lines = true
+}
 EOF
 
 set fenc=utf-8
