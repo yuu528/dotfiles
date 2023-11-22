@@ -291,6 +291,10 @@ set wildmode=list:longest	" auto completion for command line
 nnoremap j gj
 nnoremap k gk
 
+" buffer control by <C-j>, <C-k>
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+
 syntax enable
 
 " ambiwidth settings
