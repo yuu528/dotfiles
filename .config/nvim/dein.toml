@@ -61,3 +61,6 @@ repo = 't9md/vim-quickhl'
 
 [[plugins]]
 repo = 'andersevenrud/nvim_context_vt'
+
+[[plugins]]
+repo = 'petertriho/nvim-scrollbar'

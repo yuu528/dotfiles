@@ -274,6 +274,10 @@ require'nvim_context_vt'.setup {
 	prefix = '',
 	disable_virtual_lines = true
 }
+
+-- nvim-scrollbar
+require'scrollbar'.setup()
+require'scrollbar.handlers.gitsigns'.setup()
 EOF
 
 set fenc=utf-8
