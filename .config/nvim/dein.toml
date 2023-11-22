@@ -67,3 +67,6 @@ repo = 'kevinhwang91/nvim-hlslens'
 
 [[plugins]]
 repo = 'petertriho/nvim-scrollbar'
+
+[[plugins]]
+repo = 'yutkat/wb-only-current-line.nvim'
