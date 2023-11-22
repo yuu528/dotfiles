@@ -79,3 +79,6 @@ repo = 'folke/which-key.nvim'
 
 [[plugins]]
 repo = 'Shougo/vinarise.vim'
+
+[[plugins]]
+repo = 'jsborjesson/vim-uppercase-sql'
