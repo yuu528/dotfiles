@@ -117,6 +117,7 @@ let g:coc_global_extensions = [
 	\'coc-java',
 	\'coc-lua',
 	\'coc-pairs',
+	\'coc-snippets',
 	\'coc-vimlsp',
 	\'coc-vimtex',
 \]
