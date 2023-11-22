@@ -73,3 +73,6 @@ repo = 'yutkat/wb-only-current-line.nvim'
 
 [[plugins]]
 repo = 'RRethy/vim-illuminate'
+
+[[plugins]]
+repo = 'folke/which-key.nvim'
