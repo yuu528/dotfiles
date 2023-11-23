@@ -101,6 +101,11 @@ let g:fern#renderer#nerdfont#indent_markers = 1
 let g:fern#default_hidden = 1
 
 " Coc.nvim
+function! CheckBackspace() abort
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 " press tab or shift tab to select completions
 inoremap <silent><expr> <TAB>
 			\ coc#pum#visible() ? coc#pum#next(1) :
@@ -117,6 +122,7 @@ let g:coc_global_extensions = [
 	\'coc-java',
 	\'coc-lua',
 	\'coc-pairs',
+	\'coc-snippets',
 	\'coc-vimlsp',
 	\'coc-vimtex',
 \]
