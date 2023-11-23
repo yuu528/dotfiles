@@ -1,0 +1,15 @@
+snippet docreport "jlreq 25mm margin for report"
+\documentclass[head_space=25mm, foot_space=25mm, gutter=25mm, fore-edge=25mm, fleqn]{jlreq}
+
+\begin{document}
+	\begin{center}
+		\textbf{\large{${1:Title}}}
+	\end{center}
+	\begin{flushright}
+		${2:Name}
+	\end{flushright}
+
+	\section{${3:Section1}}
+	${4:Body1}
+\end{document}
+endsnippet
