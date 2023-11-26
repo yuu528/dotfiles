@@ -270,9 +270,11 @@ require'bufferline'.setup {
 	options = {
 		color_icons = true,
 		diagnostics = 'coc',
-		separator_style = 'slant'
+		separator_style = 'slant',
+		numbers = 'buffer_id'
 	}
 }
+
 
 -- nvim_context_vt
 require'nvim_context_vt'.setup {
@@ -333,9 +335,13 @@ set wildmode=list:longest	" auto completion for command line
 nnoremap j gj
 nnoremap k gk
 
-" buffer control by <C-j>, <C-k>
+" switching buffer by <C-j>, <C-k>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
+
+" moving buffer by <C-h>, <C-l>
+nnoremap <silent><C-h> :BufferLineMovePrev<CR>
+nnoremap <silent><C-l> :BufferLineMoveNext<CR>
 
 " :noh by <localleader><Space>
 nnoremap <silent> <localleader><Space> :noh<CR>
