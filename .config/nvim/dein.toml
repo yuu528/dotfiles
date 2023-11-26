@@ -78,6 +78,9 @@ repo = 'RRethy/vim-illuminate'
 repo = 'folke/which-key.nvim'
 
 [[plugins]]
+repo = 'equalsraf/neovim-gui-shim'
+
+[[plugins]]
 repo = 'Shougo/vinarise.vim'
 
 [[plugins]]

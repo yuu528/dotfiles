@@ -137,6 +137,9 @@ xmap <Space>m <Plug>(quickhl-manual-this)
 nmap <Space>M <Plug>(quickhl-manual-reset)
 xmap <Space>M <Plug>(quickhl-manual-reset)
 
+" vinarise
+let g:vinarise_guifont = 'PlemolJP Console NF:h10'
+
 " lua plugin settings
 lua <<EOF
 -- gruvbox.nvim
