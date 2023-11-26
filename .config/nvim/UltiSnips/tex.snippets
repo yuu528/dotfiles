@@ -14,3 +14,29 @@ snippet docreport "jlreq 25mm margin for report"
 	${4:Body1}
 \end{document}
 endsnippet
+
+snippet figure "figure"
+\begin{figure}[htpb]
+	\centering
+	\includegraphics[height=${1:Height}]{${2:Filename}}
+	\caption{${3:Caption}}
+	\label{fig:${4:ID}}
+\end{figure}
+endsnippet
+
+snippet figure-two "two figures by minipage"
+\begin{figure}[htpb]
+	\begin{minipage}[b]{0.48\linewidth}
+		\centering
+		\includegraphics[height=${1:Height1}]{${2:Filename1}}
+		\caption{${3:Caption1}}
+		\label{fig:${4:ID1}}
+	\end{minipage}
+	\begin{minipage}[b]{0.48\linewidth}
+		\centering
+		\includegraphics[height=${1:Height2}]{${2:Filename2}}
+		\caption{${3:Caption2}}
+		\label{fig:${4:ID2}}
+	\end{minipage}
+\end{figure}
+endsnippet
