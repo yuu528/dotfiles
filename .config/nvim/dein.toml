@@ -85,3 +85,6 @@ repo = 'Shougo/vinarise.vim'
 
 [[plugins]]
 repo = 'jsborjesson/vim-uppercase-sql'
+
+[[plugins]]
+repo = 'yutkat/confirm-quit.nvim'

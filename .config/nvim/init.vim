@@ -314,6 +314,9 @@ require'illuminate'.configure {
 		'regex'
 	}
 }
+
+-- confirm-quit.nvim
+require 'confirm-quit'.setup()
 EOF
 
 set fenc=utf-8
