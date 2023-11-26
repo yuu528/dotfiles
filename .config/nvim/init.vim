@@ -342,8 +342,8 @@ nnoremap j gj
 nnoremap k gk
 
 " switching buffer by <C-j>, <C-k>
-nnoremap <silent> <C-j> :bprev<CR>
-nnoremap <silent> <C-k> :bnext<CR>
+nnoremap <silent> <C-j> :BufferLineCyclePrev<CR>
+nnoremap <silent> <C-k> :BufferLineCycleNext<CR>
 
 " moving buffer by <C-h>, <C-l>
 nnoremap <silent><C-h> :BufferLineMovePrev<CR>
