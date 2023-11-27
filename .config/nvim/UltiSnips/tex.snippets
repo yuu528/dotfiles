@@ -42,3 +42,18 @@ snippet figure-two "two figures by minipage"
 	\end{minipage}
 \end{figure}
 endsnippet
+
+snippet tab "table"
+\begin{table}[!htpb]
+	\caption{${1:Caption}}
+	\label{table:${2:ID}}
+	\centering
+	\begin{tabular}{cccccc}
+		\hline
+		${3:Header1} & ${4:Header2} \\
+		\hline
+		${5:Body1} & ${6:Body2} \\
+		\hline
+	\end{tabular}
+\end{table}
+endsnippet
