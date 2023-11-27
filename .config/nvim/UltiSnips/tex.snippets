@@ -2,6 +2,9 @@ snippet tmplt "jlreq 25mm margin for report"
 \documentclass[head_space=25mm, foot_space=25mm, gutter=25mm, fore-edge=25mm, fleqn]{jlreq}
 
 \usepackage{graphicx}
+\usepackage{makecell}
+\usepackage{enumerate}
+\usepackage{hyperref}
 
 \begin{document}
 	\begin{center}
@@ -42,3 +45,32 @@ snippet figure-two "two figures by minipage"
 	\end{minipage}
 \end{figure}
 endsnippet
+
+snippet table "table"
+\begin{table}[!htpb]
+	\caption{${1:Caption}}
+	\label{table:${2:ID}}
+	\centering
+	\begin{tabular}{cc}
+		\hline
+		${3:Header1} & ${4:Header2} \\\\
+		\hline
+		${5:Body1} & ${6:Body2} \\\\
+		\hline
+	\end{tabular}
+\end{table}
+endsnippet
+
+snippet item "itemize"
+\begin{itemize}
+	\item ${1:Item}
+\end{itemize}
+endsnippet
+
+snippet enum "enumerate"
+\begin{enumerate}[${1:Style}]
+	\item ${1:Item}
+\end{enumerate}
+
+snippet it "item"
+\item ${1:Item}
