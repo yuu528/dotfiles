@@ -212,6 +212,11 @@ vim.g.coc_global_extensions = {
 -- confirm-quit.nvim
 require 'confirm-quit'.setup()
 
+-- fern.nvim
+vim.g['fern#renderer'] = 'nerdfont'
+vim.g['fern#renderer#nerdfont#indent_markers'] = 1
+vim.g['fern#default_hidden'] = 1
+
 -- gitsigns
 require 'gitsigns'.setup()
 
