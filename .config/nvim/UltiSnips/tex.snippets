@@ -2,6 +2,8 @@ snippet tmplt "jlreq 25mm margin for report"
 \documentclass[head_space=25mm, foot_space=25mm, gutter=25mm, fore-edge=25mm, fleqn]{jlreq}
 
 \usepackage{graphicx}
+\usepackage{makecell}
+\usepackage{enumerate}
 
 \begin{document}
 	\begin{center}
@@ -43,7 +45,7 @@ snippet figure-two "two figures by minipage"
 \end{figure}
 endsnippet
 
-snippet tab "table"
+snippet table "table"
 \begin{table}[!htpb]
 	\caption{${1:Caption}}
 	\label{table:${2:ID}}
@@ -57,3 +59,17 @@ snippet tab "table"
 	\end{tabular}
 \end{table}
 endsnippet
+
+snippet item "itemize"
+\begin{itemize}
+	\item ${1:Item}
+\end{itemize}
+endsnippet
+
+snippet enum "enumerate"
+\begin{enumerate}[${1:Style}]
+	\item ${1:Item}
+\end{enumerate}
+
+snippet it "item"
+\item ${1:Item}
