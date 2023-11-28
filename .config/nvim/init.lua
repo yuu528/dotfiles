@@ -235,16 +235,7 @@ require 'lazy'.setup({
 			'lewis6991/gitsigns.nvim',
 			'kevinhwang91/nvim-hlslens'
 		},
-		event = {
-			'BufWinEnter',
-			'CmdwinLeave',
-			'TabEnter',
-			'TermEnter',
-			'TextChanged',
-			'VimResized',
-			'WinEnter',
-			'WinScrolled',
-		},
+		event = {'VeryLazy'},
 		config = function()
 			require 'scrollbar'.setup()
 			require 'scrollbar.handlers.gitsigns'.setup()
