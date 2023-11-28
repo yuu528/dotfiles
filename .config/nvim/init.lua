@@ -235,7 +235,7 @@ require 'lazy'.setup({
 			vim.keymap.set('n', 'g#', [[g#<CMD>lua require('hlslens').start()<CR>]],
 				{noremap = true, silent = true, desc = 'Reverse search the word under the cursor and jump'}
 			)
-			vim.keymap.set('n', '<LEADER><SPACE>', '<CMD>noh<CR>',
+			vim.keymap.set('n', '<LOCALLEADER><SPACE>', '<CMD>noh<CR>',
 				{noremap = true, silent = true, desc = 'Clear highlights'}
 			)
 		end
