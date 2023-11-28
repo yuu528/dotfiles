@@ -92,11 +92,11 @@ require 'lazy'.setup({
 					numbers = 'buffer_id'
 				}
 			}
-			local opts = {silent = true}
-			vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>', opts)
-			vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>', opts)
-			vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', opts)
-			vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', opts)
+
+			vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>', {silent = true, desc = 'Switch to previous buffer'})
+			vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>', {silent = true, desc = 'Switch to next buffer'})
+			vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', {silent = true, desc = 'Move buffer to next'})
+			vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', {silent = true, desc = 'Move buffer to previous'})
 		end
 	},
 	{
@@ -114,15 +114,16 @@ require 'lazy'.setup({
 				'coc-vimtex',
 			}
 
-			local opts = {silent = true, expr = true}
 			vim.keymap.set('i', '<TAB>',
 				'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
-				opts
+				{silent = true, expr = true, desc = 'Navigate completion'}
 			)
-			vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
+			vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
+				{silent = true, expr = true, desc = 'Navigate completion'}
+			)
 			vim.keymap.set('i', '<CR>',
 				[[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
-				opts
+				{silent = true, expr = true, desc = 'Accept completion'}
 			)
 		end
 	},
@@ -214,20 +215,29 @@ require 'lazy'.setup({
 		'kevinhwang91/nvim-hlslens',
 		event = 'CmdlineEnter',
 		config = function()
-			local opts = {noremap = true, silent = true}
 			vim.keymap.set('n', 'n',
 				[[<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>]],
-				opts
+				{noremap = true, silent = true, desc = 'Search next'}
 			)
 			vim.keymap.set('n', 'N',
 				[[<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua require('hlslens').start()<CR>]],
-				opts
+				{noremap = true, silent = true, desc = 'Search previous'}
 			)
-			vim.keymap.set('n', '*', [[*<CMD>lua require('hlslens').start()<CR>]], opts)
-			vim.keymap.set('n', '#', [[#<CMD>lua require('hlslens').start()<CR>]], opts)
-			vim.keymap.set('n', 'g*', [[g*<CMD>lua require('hlslens').start()<CR>]], opts)
-			vim.keymap.set('n', 'g#', [[g#<CMD>lua require('hlslens').start()<CR>]], opts)
-			vim.keymap.set('n', '<LEADER>l', '<CMD>noh<CR>', opts)
+			vim.keymap.set('n', '*', [[*<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Search the word under the cursor'}
+			)
+			vim.keymap.set('n', '#', [[#<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Reverse search the word under the cursor'}
+			)
+			vim.keymap.set('n', 'g*', [[g*<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Search the word under the cursor and jump'}
+			)
+			vim.keymap.set('n', 'g#', [[g#<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Reverse search the word under the cursor and jump'}
+			)
+			vim.keymap.set('n', '<LEADER><SPACE>', '<CMD>noh<CR>',
+				{noremap = true, silent = true, desc = 'Clear highlights'}
+			)
 		end
 	},
 	{
@@ -279,10 +289,10 @@ require 'lazy'.setup({
 			'nvim-lua/plenary.nvim'
 		},
 		keys = {
-			{'<LEADER>ff', '<CMD>Telescope find_files<CR>'},
-			{'<LEADER>fg', '<CMD>Telescope live_grep<CR>'},
-			{'<LEADER>fb', '<CMD>Telescope buffers<CR>'},
-			{'<LEADER>fh', '<CMD>Telescope help_tags<CR>'}
+			{'<LEADER>ff', '<CMD>Telescope find_files<CR>', desc = 'Open file finder'},
+			{'<LEADER>fg', '<CMD>Telescope live_grep<CR>', desc = 'Open live grep'},
+			{'<LEADER>fb', '<CMD>Telescope buffers<CR>', desc = 'Open buffer finder'},
+			{'<LEADER>fh', '<CMD>Telescope help_tags<CR>', desc = 'Open help finder'}
 		}
 	},
 	{
@@ -321,10 +331,10 @@ require 'lazy'.setup({
 	{
 		't9md/vim-quickhl',
 		keys = {
-			{'<SPACE>m', '<Plug>(quickhl-manual-this)', remap = true},
-			{'<SPACE>m', '<Plug>(quickhl-manual-this)', remap = true, mode = 'x'},
-			{'<SPACE>M', '<Plug>(quickhl-manual-reset)', remap = true},
-			{'<SPACE>M', '<Plug>(quickhl-manual-reset)', remap = true, mode = 'x'},
+			{'<SPACE>m', '<Plug>(quickhl-manual-this)', desc = 'Highlight words under the cursor', remap = true},
+			{'<SPACE>m', '<Plug>(quickhl-manual-this)', desc = 'Highlight words under the cursor', remap = true, mode = 'x'},
+			{'<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights', remap = true},
+			{'<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights', remap = true, mode = 'x'},
 		}
 	},
 	{
