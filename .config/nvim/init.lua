@@ -328,6 +328,10 @@ require 'lazy'.setup({
 		}
 	},
 	{
+		'ntpeters/vim-better-whitespace',
+		event = {'BufRead', 'BufNewFile'}
+	},
+	{
 		'yutkat/wb-only-current-line.nvim',
 		event = {'BufRead', 'BufNewFile'},
 	},
