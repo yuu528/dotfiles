@@ -31,6 +31,7 @@ vim.o.virtualedit = 'onemore'
 vim.o.smartindent = true
 vim.o.showmatch = true
 vim.o.cursorline = true
+vim.o.list = true
 vim.opt.listchars = {tab = '─', space = '·'}
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
@@ -41,6 +42,18 @@ vim.o.smartcase = true
 vim.o.incsearch = true
 vim.o.wrapscan = true
 vim.o.hlsearch = true
+
+
+-- mapping
+-- leader
+vim.keymap.set('n', ' ', '<NOP>')
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ','
+
+-- line moving
+vim.keymap.set('n', 'j', 'gj')
+vim.keymap.set('n', 'k', 'gk')
+
 
 -- functions
 -- for coc.nvim mapping
@@ -69,19 +82,27 @@ require 'lazy'.setup({
 		'akinsho/bufferline.nvim',
 		version = '*',
 		dependencies = 'nvim-tree/nvim-web-devicons',
-		config = true,
-		opts = {
-			options = {
-				color_icons = true,
-				diagnostics = 'coc',
-				separator_style = 'slant',
-				numbers = 'buffer_id'
+		event = 'VimEnter',
+		config = function()
+			require 'bufferline'.setup {
+				options = {
+					color_icons = true,
+					diagnostics = 'coc',
+					separator_style = 'slant',
+					numbers = 'buffer_id'
+				}
 			}
-		}
+
+			vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>', {silent = true, desc = 'Switch to previous buffer'})
+			vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>', {silent = true, desc = 'Switch to next buffer'})
+			vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', {silent = true, desc = 'Move buffer to next'})
+			vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', {silent = true, desc = 'Move buffer to previous'})
+		end
 	},
 	{
 		'neoclide/coc.nvim',
 		branch = 'release',
+		event = {'InsertEnter', 'CmdlineEnter'},
 		config = function()
 			vim.g.coc_global_extensions = {
 				'coc-clangd',
@@ -92,19 +113,36 @@ require 'lazy'.setup({
 				'coc-vimlsp',
 				'coc-vimtex',
 			}
+
+			vim.keymap.set('i', '<TAB>',
+				'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
+				{silent = true, expr = true, desc = 'Navigate completion'}
+			)
+			vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
+				{silent = true, expr = true, desc = 'Navigate completion'}
+			)
+			vim.keymap.set('i', '<CR>',
+				[[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
+				{silent = true, expr = true, desc = 'Accept completion'}
+			)
 		end
 	},
 	{
 		'yutkat/confirm-quit.nvim',
+		event = 'CmdlineEnter',
 		config = true
 	},
 	{
-		'mattn/emmet-vim'
+		'mattn/emmet-vim',
+		ft = {'html', 'css'}
 	},
 	{
 		'lambdalisue/fern.vim',
 		dependencies = {
 			'lambdalisue/fern-renderer-nerdfont.vim'
+		},
+		keys = {
+			{'<C-n>', ':Fern . -reveal=% -drawer -toggle -width=35<CR>', desc = 'Toggle Fern', silent = true}
 		},
 		config = function()
 			vim.g['fern#renderer'] = 'nerdfont'
@@ -114,11 +152,13 @@ require 'lazy'.setup({
 	},
 	{
 		'lewis6991/gitsigns.nvim',
+		event = {'BufRead', 'BufNewFile'},
 		config = true
 	},
 	{
 		'ellisonleao/gruvbox.nvim',
 		priority = 1000,
+		lazy = false,
 		config = function()
 			require 'gruvbox'.setup({
 				overrides = {
@@ -141,6 +181,7 @@ require 'lazy'.setup({
 		dependencies = {
 			'nvim-tree/nvim-web-devicons'
 		},
+		event = 'VimEnter',
 		config = true
 	},
 	{
@@ -150,10 +191,11 @@ require 'lazy'.setup({
 		}
 	},
 	{
-		'equalsraf/neovim-gui-shim'
+		'equalsraf/neovim-gui-shim',
 	},
 	{
 		'norcalli/nvim-colorizer.lua',
+		event = 'VeryLazy',
 		config = true,
 		opts = {
 			'*'
@@ -161,6 +203,7 @@ require 'lazy'.setup({
 	},
 	{
 		'andersevenrud/nvim_context_vt',
+		event = 'BufReadPost',
 		config = true,
 		opts = {
 			enabled = true,
@@ -169,7 +212,33 @@ require 'lazy'.setup({
 		}
 	},
 	{
-		'kevinhwang91/nvim-hlslens'
+		'kevinhwang91/nvim-hlslens',
+		event = 'CmdlineEnter',
+		config = function()
+			vim.keymap.set('n', 'n',
+				[[<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Search next'}
+			)
+			vim.keymap.set('n', 'N',
+				[[<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Search previous'}
+			)
+			vim.keymap.set('n', '*', [[*<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Search the word under the cursor'}
+			)
+			vim.keymap.set('n', '#', [[#<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Reverse search the word under the cursor'}
+			)
+			vim.keymap.set('n', 'g*', [[g*<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Search the word under the cursor and jump'}
+			)
+			vim.keymap.set('n', 'g#', [[g#<CMD>lua require('hlslens').start()<CR>]],
+				{noremap = true, silent = true, desc = 'Reverse search the word under the cursor and jump'}
+			)
+			vim.keymap.set('n', '<LOCALLEADER><SPACE>', '<CMD>noh<CR>',
+				{noremap = true, silent = true, desc = 'Clear highlights'}
+			)
+		end
 	},
 	{
 		'petertriho/nvim-scrollbar',
@@ -177,6 +246,7 @@ require 'lazy'.setup({
 			'lewis6991/gitsigns.nvim',
 			'kevinhwang91/nvim-hlslens'
 		},
+		event = {'VeryLazy'},
 		config = function()
 			require 'scrollbar'.setup()
 			require 'scrollbar.handlers.gitsigns'.setup()
@@ -186,6 +256,7 @@ require 'lazy'.setup({
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate',
+		event = {'BufRead', 'BufNewFile'},
 		config = function()
 			require 'nvim-treesitter.install'.prefer_git = false
 			require 'nvim-treesitter.configs'.setup {
@@ -216,10 +287,17 @@ require 'lazy'.setup({
 		tag = '0.1.4',
 		dependencies = {
 			'nvim-lua/plenary.nvim'
+		},
+		keys = {
+			{'<LEADER>ff', '<CMD>Telescope find_files<CR>', desc = 'Open file finder'},
+			{'<LEADER>fg', '<CMD>Telescope live_grep<CR>', desc = 'Open live grep'},
+			{'<LEADER>fb', '<CMD>Telescope buffers<CR>', desc = 'Open buffer finder'},
+			{'<LEADER>fh', '<CMD>Telescope help_tags<CR>', desc = 'Open help finder'}
 		}
 	},
 	{
 		'lervag/vimtex',
+		ft = {'tex', 'ltx'},
 		config = function()
 			vim.g.vimtex_view_general_viewer = 'SumatraPDF'
 			vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
@@ -227,6 +305,7 @@ require 'lazy'.setup({
 	},
 	{
 		'RRethy/vim-illuminate',
+		event = {'BufRead', 'BufNewFile'},
 		config = function()
 			require 'illuminate'.configure {
 				providers = {
@@ -238,19 +317,33 @@ require 'lazy'.setup({
 		end
 	},
 	{
-		'machakann/vim-sandwich'
+		'machakann/vim-sandwich',
+		event = {'BufRead', 'BufNewFile'}
 	},
 	{
-		'jsborjesson/vim-uppercase-sql'
+		'jsborjesson/vim-uppercase-sql',
+		ft = 'sql'
 	},
 	{
-		'Shougo/vinarise.vim'
+		'Shougo/vinarise.vim',
+		cmd = 'Vinarise'
 	},
 	{
-		't9md/vim-quickhl'
+		't9md/vim-quickhl',
+		keys = {
+			{'<SPACE>m', '<Plug>(quickhl-manual-this)', desc = 'Highlight words under the cursor', remap = true},
+			{'<SPACE>m', '<Plug>(quickhl-manual-this)', desc = 'Highlight words under the cursor', remap = true, mode = 'x'},
+			{'<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights', remap = true},
+			{'<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights', remap = true, mode = 'x'},
+		}
 	},
 	{
-		'yutkat/wb-only-current-line.nvim'
+		'ntpeters/vim-better-whitespace',
+		event = {'BufRead', 'BufNewFile'}
+	},
+	{
+		'yutkat/wb-only-current-line.nvim',
+		event = {'BufRead', 'BufNewFile'},
 	},
 	{
 		'folke/which-key.nvim',
@@ -261,59 +354,8 @@ require 'lazy'.setup({
 		end,
 		opts = {}
 	},
+}, {
+	defaults = {
+		lazy = true
+	}
 })
-
-
--- mapping
--- leader
-vim.keymap.set('n', ' ', '<NOP>')
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ','
-
--- line moving
-vim.keymap.set('n', 'j', 'gj')
-vim.keymap.set('n', 'k', 'gk')
-
--- plugin control
--- bufferline.nvim
-local opts = {silent = true}
-vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>')
-vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>')
-vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>')
-vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>')
-
--- coc.nvim
-opts = {silent = true, expr = true}
-vim.keymap.set('i', '<TAB>', 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
-vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
-vim.keymap.set('i', '<CR>', [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
-
--- fern.vim
-vim.keymap.set('n', '<C-n>', ':Fern . -reveal=% -drawer -toggle -width=35<CR>')
-
--- nvim-hlslens
-opts = {noremap = true, silent = true}
-vim.api.nvim_set_keymap('n', 'n',
-	[[<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>]],
-	opts)
-vim.api.nvim_set_keymap('n', 'N',
-	[[<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua require('hlslens').start()<CR>]],
-	opts)
-vim.api.nvim_set_keymap('n', '*', [[*<CMD>lua require('hlslens').start()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '#', [[#<CMD>lua require('hlslens').start()<CR>]], opts)
-vim.api.nvim_set_keymap('n', 'g*', [[g*<CMD>lua require('hlslens').start()<CR>]], opts)
-vim.api.nvim_set_keymap('n', 'g#', [[g#<CMD>lua require('hlslens').start()<CR>]], opts)
-vim.api.nvim_set_keymap('n', '<LEADER>l', '<CMD>noh<CR>', opts)
-
--- quickhl
-opts = {remap = true}
-vim.keymap.set('n', '<SPACE>m', '<Plug>(quickhl-manual-this)', opts)
-vim.keymap.set('x', '<SPACE>m', '<Plug>(quickhl-manual-this)', opts)
-vim.keymap.set('n', '<SPACE>M', '<Plug>(quickhl-manual-reset)', opts)
-vim.keymap.set('x', '<SPACE>M', '<Plug>(quickhl-manual-reset)', opts)
-
--- telescope.nvim
-vim.keymap.set('n', '<LEADER>ff', '<CMD>Telescope find_files<CR>')
-vim.keymap.set('n', '<LEADER>fg', '<CMD>Telescope live_grep<CR>')
-vim.keymap.set('n', '<LEADER>fb', '<CMD>Telescope buffers<CR>')
-vim.keymap.set('n', '<LEADER>fh', '<CMD>Telescope help_tags<CR>')
