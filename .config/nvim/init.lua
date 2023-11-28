@@ -31,6 +31,7 @@ vim.o.virtualedit = 'onemore'
 vim.o.smartindent = true
 vim.o.showmatch = true
 vim.o.cursorline = true
+vim.o.list = true
 vim.opt.listchars = {tab = '─', space = '·'}
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
