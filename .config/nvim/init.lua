@@ -68,14 +68,35 @@ require 'lazy'.setup({
 	{
 		'akinsho/bufferline.nvim',
 		version = '*',
-		dependencies = 'nvim-tree/nvim-web-devicons'
+		dependencies = 'nvim-tree/nvim-web-devicons',
+		config = true,
+		opts = {
+			options = {
+				color_icons = true,
+				diagnostics = 'coc',
+				separator_style = 'slant',
+				numbers = 'buffer_id'
+			}
+		}
 	},
 	{
 		'neoclide/coc.nvim',
-		branch = 'release'
+		branch = 'release',
+		config = function()
+			vim.g.coc_global_extensions = {
+				'coc-clangd',
+				'coc-java',
+				'coc-lua',
+				'coc-pairs',
+				'coc-snippets',
+				'coc-vimlsp',
+				'coc-vimtex',
+			}
+		end
 	},
 	{
-		'yutkat/confirm-quit.nvim'
+		'yutkat/confirm-quit.nvim',
+		config = true
 	},
 	{
 		'mattn/emmet-vim'
@@ -84,21 +105,43 @@ require 'lazy'.setup({
 		'lambdalisue/fern.vim',
 		dependencies = {
 			'lambdalisue/fern-renderer-nerdfont.vim'
-		}
+		},
+		config = function()
+			vim.g['fern#renderer'] = 'nerdfont'
+			vim.g['fern#renderer#nerdfont#indent_markers'] = 1
+			vim.g['fern#default_hidden'] = 1
+		end
 	},
 	{
-		'lewis6991/gitsigns.nvim'
+		'lewis6991/gitsigns.nvim',
+		config = true
 	},
 	{
 		'ellisonleao/gruvbox.nvim',
 		priority = 1000,
-		config = true
+		config = function()
+			require 'gruvbox'.setup({
+				overrides = {
+					SignColumn = { link = 'Normal' },
+					GruvboxGreenSign = { bg = '' },
+					GruvboxOrangeSign = { bg = '' },
+					GruvboxPurpleSign = { bg = '' },
+					GruvboxYellowSign = { bg = '' },
+					GruvboxRedSign = { bg = '' },
+					GruvboxBlueSign = { bg = '' },
+					GruvboxAquaSign = { bg = '' },
+				},
+			})
+			vim.o.background = 'dark'
+			vim.cmd('colorscheme gruvbox')
+		end
 	},
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = {
 			'nvim-tree/nvim-web-devicons'
-		}
+		},
+		config = true
 	},
 	{
 		'lambdalisue/fern-renderer-nerdfont.vim',
@@ -110,20 +153,57 @@ require 'lazy'.setup({
 		'equalsraf/neovim-gui-shim'
 	},
 	{
-		'norcalli/nvim-colorizer.lua'
+		'norcalli/nvim-colorizer.lua',
+		config = true,
+		opts = {
+			'*'
+		}
 	},
 	{
-		'andersevenrud/nvim_context_vt'
+		'andersevenrud/nvim_context_vt',
+		config = true,
+		opts = {
+			enabled = true,
+			prefix = '',
+			disable_virtual_lines = true
+		}
 	},
 	{
 		'kevinhwang91/nvim-hlslens'
 	},
 	{
-		'petertriho/nvim-scrollbar'
+		'petertriho/nvim-scrollbar',
+		dependencies = {
+			'lewis6991/gitsigns.nvim',
+			'kevinhwang91/nvim-hlslens'
+		},
+		config = function()
+			require 'scrollbar'.setup()
+			require 'scrollbar.handlers.gitsigns'.setup()
+			require 'scrollbar.handlers.search'.setup()
+		end
 	},
 	{
 		'nvim-treesitter/nvim-treesitter',
-		build = ':TSUpdate'
+		build = ':TSUpdate',
+		config = function()
+			require 'nvim-treesitter.install'.prefer_git = false
+			require 'nvim-treesitter.configs'.setup {
+				ensure_installed = {
+					'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
+					'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
+					'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
+					'lua', 'make', 'markdown', 'python', 'regex', 'sql',
+					'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+				},
+				highlight = {
+					enable = true
+				},
+				indent = {
+					enable = true
+				}
+			}
+		end
 	},
 	{
 		'nvim-tree/nvim-web-devicons'
@@ -139,10 +219,23 @@ require 'lazy'.setup({
 		}
 	},
 	{
-		'lervag/vimtex'
+		'lervag/vimtex',
+		config = function()
+			vim.g.vimtex_view_general_viewer = 'SumatraPDF'
+			vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+		end
 	},
 	{
-		'RRethy/vim-illuminate'
+		'RRethy/vim-illuminate',
+		config = function()
+			require 'illuminate'.configure {
+				providers = {
+					'lsp',
+					'treesitter',
+					'regex'
+				}
+			}
+		end
 	},
 	{
 		'machakann/vim-sandwich'
@@ -170,106 +263,6 @@ require 'lazy'.setup({
 	},
 })
 
--- plugin settings
--- gruvbox.nvim
--- settings for gruvbox.nvim must be run first
-require 'gruvbox'.setup({
-	overrides = {
-		SignColumn = { link = 'Normal' },
-		GruvboxGreenSign = { bg = '' },
-		GruvboxOrangeSign = { bg = '' },
-		GruvboxPurpleSign = { bg = '' },
-		GruvboxYellowSign = { bg = '' },
-		GruvboxRedSign = { bg = '' },
-		GruvboxBlueSign = { bg = '' },
-		GruvboxAquaSign = { bg = '' },
-	},
-})
-vim.o.background = 'dark'
-vim.cmd('colorscheme gruvbox')
-
--- bufferline.nvim
-require 'bufferline'.setup {
-	options = {
-		color_icons = true,
-		diagnostics = 'coc',
-		separator_style = 'slant',
-		numbers = 'buffer_id'
-	}
-}
-
--- coc.nvim
-vim.g.coc_global_extensions = {
-	'coc-clangd',
-	'coc-java',
-	'coc-lua',
-	'coc-pairs',
-	'coc-snippets',
-	'coc-vimlsp',
-	'coc-vimtex',
-}
-
--- confirm-quit.nvim
-require 'confirm-quit'.setup()
-
--- fern.nvim
-vim.g['fern#renderer'] = 'nerdfont'
-vim.g['fern#renderer#nerdfont#indent_markers'] = 1
-vim.g['fern#default_hidden'] = 1
-
--- gitsigns
-require 'gitsigns'.setup()
-
--- lualine
-require 'lualine'.setup()
-
--- nvim-colorizer
-require 'colorizer'.setup {
-	'*';
-}
-
--- nvim_context_vt
-require 'nvim_context_vt'.setup {
-	enabled = true,
-	prefix = '',
-	disable_virtual_lines = true
-}
-
--- nvim-scrollbar
-require 'scrollbar'.setup()
-require 'scrollbar.handlers.gitsigns'.setup()
-require 'scrollbar.handlers.search'.setup()
-
--- nvim-treesitter
-require 'nvim-treesitter.install'.prefer_git = false
-require 'nvim-treesitter.configs'.setup {
-	ensure_installed = {
-		'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
-		'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
-		'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-		'lua', 'make', 'markdown', 'python', 'regex', 'sql',
-		'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
-	},
-	highlight = {
-		enable = true
-	},
-	indent = {
-		enable = true
-	}
-}
-
--- vimtex
-vim.g.vimtex_view_general_viewer = 'SumatraPDF'
-vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
-
--- vim-illuminate
-require 'illuminate'.configure {
-	providers = {
-		'lsp',
-		'treesitter',
-		'regex'
-	}
-}
 
 -- mapping
 -- leader
