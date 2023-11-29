@@ -56,6 +56,26 @@ vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
 
+-- autocmds
+-- filetype indent settings
+vim.api.nvim_create_augroup('indent', {clear = true})
+vim.api.nvim_create_autocmd(
+	{ 'FileType' },
+	{
+		pattern = 'c',
+		group = 'indent',
+		command = 'setlocal ts=2 et'
+	}
+)
+vim.api.nvim_create_autocmd(
+	{ 'FileType' },
+	{
+		pattern = 'lua',
+		group = 'indent',
+		command = 'setlocal ts=4 et'
+	}
+)
+
 -- functions
 -- for coc.nvim mapping
 function _G.check_back_space()
