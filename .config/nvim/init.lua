@@ -34,7 +34,8 @@ vim.o.cursorline = true
 vim.o.list = true
 vim.opt.listchars = {tab = '─', space = '·'}
 vim.o.tabstop = 4
-vim.o.shiftwidth = 4
+vim.o.shiftwidth = 0
+vim.o.softtabstop = -1
 
 -- search
 vim.o.ignorecase = true
