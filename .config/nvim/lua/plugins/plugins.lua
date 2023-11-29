@@ -21,34 +21,6 @@ return {
         end
     },
     {
-        'neoclide/coc.nvim',
-        branch = 'release',
-        event = {'InsertEnter', 'CmdlineEnter'},
-        config = function()
-            vim.g.coc_global_extensions = {
-                'coc-clangd',
-                'coc-java',
-                'coc-lua',
-                'coc-pairs',
-                'coc-snippets',
-                'coc-vimlsp',
-                'coc-vimtex',
-            }
-
-            vim.keymap.set('i', '<TAB>',
-                'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()',
-                {silent = true, expr = true, desc = 'Navigate completion'}
-            )
-            vim.keymap.set('i', '<S-TAB>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]],
-                {silent = true, expr = true, desc = 'Navigate completion'}
-            )
-            vim.keymap.set('i', '<CR>',
-                [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
-                {silent = true, expr = true, desc = 'Accept completion'}
-            )
-        end
-    },
-    {
         'yutkat/confirm-quit.nvim',
         event = 'CmdlineEnter',
         config = true
@@ -113,6 +85,24 @@ return {
     },
     {
         'equalsraf/neovim-gui-shim',
+    },
+    {
+        'windwp/nvim-autopairs',
+        dependencies = {
+            'hrsh7th/nvim-cmp'
+        },
+        event = 'InsertEnter',
+        config = function()
+            require 'nvim-autopairs'.setup {
+                disable_filetype = {'TelescopePrompt'}
+            }
+            local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
+            local cmp = require 'cmp'
+            cmp.event:on(
+                'confirm_done',
+                cmp_autopairs.on_confirm_done()
+            )
+        end
     },
     {
         'norcalli/nvim-colorizer.lua',
