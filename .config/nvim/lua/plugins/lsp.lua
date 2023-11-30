@@ -61,7 +61,6 @@ return {
         opts = {
             ensure_installed = {
                 'arduino_language_server',
-                'awk_ls',
                 'bashls',
                 'clangd',
                 'cssls',
@@ -72,7 +71,6 @@ return {
                 'lemminx',
                 'lua_ls',
                 'marksman',
-                'powershell_es',
                 'pylsp',
                 'quick_lint_js',
                 'sqlls',
