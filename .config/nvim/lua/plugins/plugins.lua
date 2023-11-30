@@ -72,7 +72,8 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {
-            'nvim-tree/nvim-web-devicons'
+            'nvim-tree/nvim-web-devicons',
+            'SmiteshP/nvim-navic'
         },
         event = 'VimEnter',
         config = function()
@@ -157,6 +158,21 @@ return {
                         },
                     },
                 },
+                winbar = {
+                    lualine_b = {
+                        {
+                            'tabs'
+                        }
+                    },
+                    lualine_c = {
+                        {
+                            function() return ' ' end
+                        },
+                        {
+                            'navic'
+                        }
+                    }
+                }
             })
         end
     },
@@ -233,6 +249,19 @@ return {
                 {noremap = true, silent = true, desc = 'Clear highlights'}
             )
         end
+    },
+    {
+        'SmiteshP/nvim-navic',
+        dependencies = {
+            'neovim/nvim-lspconfig'
+        },
+        event = {'BufRead', 'BufNewFile'},
+        config = true,
+        opts = {
+            lsp = {
+                auto_attach = true
+            }
+        }
     },
     {
         'petertriho/nvim-scrollbar',
