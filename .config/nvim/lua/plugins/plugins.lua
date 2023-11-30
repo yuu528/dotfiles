@@ -206,17 +206,14 @@ return {
         }
     },
     {
-        'petertriho/nvim-scrollbar',
-        dependencies = {
-            'lewis6991/gitsigns.nvim',
-            'kevinhwang91/nvim-hlslens'
-        },
+        'dstein64/nvim-scrollview',
         event = {'VeryLazy'},
-        config = function()
-            require 'scrollbar'.setup()
-            require 'scrollbar.handlers.gitsigns'.setup()
-            require 'scrollbar.handlers.search'.setup()
-        end
+        config = true,
+        opts = {
+            signs_on_startup = {
+                'all'
+            }
+        }
     },
     {
         'nvim-treesitter/nvim-treesitter',
