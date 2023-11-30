@@ -106,72 +106,14 @@ return {
                     ),
                 },
             }
-            function diagnostics_message:init(options)
-                diagnostics_message.super:init(options)
-                self.options.colors = vim.tbl_extend("force", diagnostics_message.default.colors, self.options.colors or {})
-                self.highlights = { error = "", warn = "", info = "", hint = "" }
-                self.highlights.error = highlight.create_component_highlight_group(
-                    { fg = self.options.colors.error },
-                    "diagnostics_message_error",
-                    self.options
-                )
-                self.highlights.warn = highlight.create_component_highlight_group(
-                    { fg = self.options.colors.warn },
-                    "diagnostics_message_warn",
-                    self.options
-                )
-                self.highlights.info = highlight.create_component_highlight_group(
-                    { fg = self.options.colors.info },
-                    "diagnostics_message_info",
-                    self.options
-                )
-                self.highlights.hint = highlight.create_component_highlight_group(
-                    { fg = self.options.colors.hint },
-                    "diagnostics_message_hint",
-                    self.options
-                )
-            end
-
-            function diagnostics_message:update_status(is_focused)
-                local r, _ = unpack(vim.api.nvim_win_get_cursor(0))
-                local diagnostics = vim.diagnostic.get(0, { lnum = r - 1 })
-                if #diagnostics > 0 then
-                    local diag = diagnostics[1]
-                    for _, d in ipairs(diagnostics) do
-                        if d.severity < diag.severity then
-                            diagnostics = d
-                        end
-                    end
-                    local icons = {" ", " ", " ", " " }
-                    local hl = { self.highlights.error, self.highlights.warn, self.highlights.info, self.highlights.hint }
-                    return highlight.component_format_highlight(hl[diag.severity]) .. icons[diag.severity] .. " " .. diag.message
-                else
-                    return ""
-                end
-            end
 
             require("lualine").setup({
                 sections = {
                     lualine_c = {
                         {
-                            diagnostics_message
-                        },
-                    },
-                },
-                winbar = {
-                    lualine_b = {
-                        {
-                            'tabs'
-                        }
-                    },
-                    lualine_c = {
-                        {
-                            function() return ' ' end
-                        },
-                        {
                             'navic'
-                        }
-                    }
+                        },
+                    },
                 }
             })
         end
