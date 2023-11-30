@@ -32,6 +32,11 @@ return {
         'hrsh7th/cmp-path'
     },
     {
+        'j-hui/fidget.nvim',
+        event = {'BufRead', 'BufNewFile'},
+        config = true
+    },
+    {
         'onsails/lspkind.nvim'
     },
     {
