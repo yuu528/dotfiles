@@ -84,7 +84,6 @@ vim.api.nvim_create_autocmd(
         callback = function(ev)
             local bufopts = {silent = true, buffer = ev.buf}
             vim.keymap.set('n', 'K',  '<CMD>lua vim.lsp.buf.hover()<CR>', bufopts)
-            vim.keymap.set('n', 'gf', '<CMD>lua vim.lsp.buf.formatting()<CR>', bufopts)
             vim.keymap.set('n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>', bufopts)
             vim.keymap.set('n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', bufopts)
             vim.keymap.set('n', 'gD', '<CMD>lua vim.lsp.buf.declaration()<CR>', bufopts)
