@@ -63,5 +63,14 @@ return {
         'j-hui/fidget.nvim',
         event = {'BufReadPre', 'BufNewFile'},
         config = true
+    },
+    {
+        'dgagn/diagflow.nvim',
+        event = 'LspAttach',
+        config = true,
+        opts = {
+            padding_right = 2,
+            show_sign = true
+        }
     }
 }
