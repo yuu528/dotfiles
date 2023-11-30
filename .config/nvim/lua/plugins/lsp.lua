@@ -1,7 +1,7 @@
 return {
     {
         'neovim/nvim-lspconfig',
-        lazy = false
+        lazy = false,
     },
     {
         'williamboman/mason.nvim',
@@ -13,7 +13,7 @@ return {
         lazy = false
     },
     {
-        'hrsh7th/cmp-cmdline',
+        'L3MON4D3/LuaSnip',
         lazy = false
     },
     {
@@ -21,10 +21,6 @@ return {
         dependencies = {
             'L3MON4D3/LuaSnip'
         },
-        lazy = false
-    },
-    {
-        'L3MON4D3/LuaSnip',
         lazy = false
     },
     {
@@ -77,7 +73,27 @@ return {
             require 'mason-lspconfig'.setup_handlers {
                 function(server)
                     require('lspconfig')[server].setup {
-                        capabilities = require 'cmp_nvim_lsp'.default_capabilities()
+                        capabilities = require 'cmp_nvim_lsp'.default_capabilities(),
+                        on_attach = function(_, bufnr)
+                            local bufopts = {silent = true, buffer = bufnr}
+                            vim.keymap.set('n', 'K',  vim.lsp.buf.hover(), bufopts)
+                            vim.keymap.set('n', 'gf', vim.lsp.buf.formatting(), bufopts)
+                            vim.keymap.set('n', 'gr', vim.lsp.buf.references(), bufopts)
+                            vim.keymap.set('n', 'gd', vim.lsp.buf.definition(), bufopts)
+                            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration(), bufopts)
+                            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation(), bufopts)
+                            vim.keymap.set('n', 'gt', vim.lsp.buf.type_definition(), bufopts)
+                            vim.keymap.set('n', 'gn', vim.lsp.buf.rename(), bufopts)
+                            vim.keymap.set('n', 'ga', vim.lsp.buf.code_action(), bufopts)
+                            vim.keymap.set('n', 'ge', vim.diagnostic.open_float(), bufopts)
+                            vim.keymap.set('n', 'g]', vim.diagnostic.goto_next(), bufopts)
+                            vim.keymap.set('n', 'g[', vim.diagnostic.goto_prev(), bufopts)
+                        end,
+                        diagnostics = {
+                            virtual_text = {
+                                prefix = 'icons'
+                            }
+                        }
                     }
                 end
             }
@@ -122,7 +138,6 @@ return {
                 },
                 sources = {
                     {name = 'buffer'},
-                    {name = 'cmdline'},
                     {name = 'luasnip'},
                     {name = 'nvim_lsp'},
                     {name = 'path'}
