@@ -33,7 +33,7 @@ return {
     },
     {
         'j-hui/fidget.nvim',
-        event = {'BufRead', 'BufNewFile'},
+        event = {'BufReadPre', 'BufNewFile'},
         config = true
     },
     {
@@ -93,7 +93,7 @@ return {
             'hrsh7th/cmp-path',
             'onsails/lspkind.nvim'
         },
-        event = {'InsertEnter', 'CmdlineEnter'},
+        event = {'BufReadPre', 'BufNewFile'},
         config = function()
             local has_words_before = function()
                 unpack = unpack or table.unpack
