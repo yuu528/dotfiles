@@ -55,25 +55,6 @@ vim.g.maplocalleader = ','
 vim.keymap.set('n', 'j', 'gj')
 vim.keymap.set('n', 'k', 'gk')
 
--- builtin LSP
-vim.keymap.set('n', 'K',  '<cmd>lua vim.lsp.buf.hover()<CR>')
-vim.keymap.set('n', 'gf', '<cmd>lua vim.lsp.buf.formatting()<CR>')
-vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>')
-vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>')
-vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>')
-vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>')
-vim.keymap.set('n', 'gt', '<cmd>lua vim.lsp.buf.type_definition()<CR>')
-vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<CR>')
-vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<CR>')
-vim.keymap.set('n', 'ge', '<cmd>lua vim.diagnostic.open_float()<CR>')
-vim.keymap.set('n', 'g]', '<cmd>lua vim.diagnostic.goto_next()<CR>')
-vim.keymap.set('n', 'g[', '<cmd>lua vim.diagnostic.goto_prev()<CR>')
-
-
--- LSP Handler
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-    vim.lsp.diagnostic.on_publish_diagnostics, { virtual_text = false }
-)
 
 -- autocmds
 -- filetype indent settings
@@ -92,6 +73,28 @@ vim.api.nvim_create_autocmd(
         pattern = 'lua',
         group = 'indent',
         command = 'setlocal ts=4 et'
+    }
+)
+
+vim.api.nvim_create_augroup('UserLspConfig', {})
+vim.api.nvim_create_autocmd(
+    'LspAttach',
+    {
+        group = 'UserLspConfig',
+        callback = function(ev)
+            local bufopts = {silent = true, buffer = ev.buf}
+            vim.keymap.set('n', 'K',  '<CMD>lua vim.lsp.buf.hover()<CR>', bufopts)
+            vim.keymap.set('n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>', bufopts)
+            vim.keymap.set('n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', bufopts)
+            vim.keymap.set('n', 'gD', '<CMD>lua vim.lsp.buf.declaration()<CR>', bufopts)
+            vim.keymap.set('n', 'gi', '<CMD>lua vim.lsp.buf.implementation()<CR>', bufopts)
+            vim.keymap.set('n', 'gt', '<CMD>lua vim.lsp.buf.type_definition()<CR>', bufopts)
+            vim.keymap.set('n', 'gn', '<CMD>lua vim.lsp.buf.rename()<CR>', bufopts)
+            vim.keymap.set('n', 'ga', '<CMD>lua vim.lsp.buf.code_action()<CR>', bufopts)
+            vim.keymap.set('n', 'ge', '<CMD>lua vim.diagnostic.open_float()<CR>', bufopts)
+            vim.keymap.set('n', 'g]', '<CMD>lua vim.diagnostic.goto_next()<CR>', bufopts)
+            vim.keymap.set('n', 'g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>', bufopts)
+        end
     }
 )
 

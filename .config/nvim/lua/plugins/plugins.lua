@@ -72,10 +72,51 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {
-            'nvim-tree/nvim-web-devicons'
+            'nvim-tree/nvim-web-devicons',
+            'SmiteshP/nvim-navic'
         },
         event = 'VimEnter',
-        config = true
+        config = function()
+            local utils = require("lualine.utils.utils")
+            local highlight = require("lualine.highlight")
+
+            local diagnostics_message = require("lualine.component"):extend()
+
+            diagnostics_message.default = {
+                colors = {
+                    error = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticError", "LspDiagnosticsDefaultError", "DiffDelete" },
+                        "#e32636"
+                    ),
+                    warning = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticWarn", "LspDiagnosticsDefaultWarning", "DiffText" },
+                        "#ffa500"
+                    ),
+                    info = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticInfo", "LspDiagnosticsDefaultInformation", "DiffChange" },
+                        "#ffffff"
+                    ),
+                    hint = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticHint", "LspDiagnosticsDefaultHint", "DiffAdd" },
+                        "#273faf"
+                    ),
+                },
+            }
+
+            require("lualine").setup({
+                sections = {
+                    lualine_c = {
+                        {
+                            'navic'
+                        },
+                    },
+                }
+            })
+        end
     },
     {
         'lambdalisue/fern-renderer-nerdfont.vim',
@@ -152,17 +193,27 @@ return {
         end
     },
     {
-        'petertriho/nvim-scrollbar',
+        'SmiteshP/nvim-navic',
         dependencies = {
-            'lewis6991/gitsigns.nvim',
-            'kevinhwang91/nvim-hlslens'
+            'neovim/nvim-lspconfig'
         },
+        event = {'BufRead', 'BufNewFile'},
+        config = true,
+        opts = {
+            lsp = {
+                auto_attach = true
+            }
+        }
+    },
+    {
+        'dstein64/nvim-scrollview',
         event = {'VeryLazy'},
-        config = function()
-            require 'scrollbar'.setup()
-            require 'scrollbar.handlers.gitsigns'.setup()
-            require 'scrollbar.handlers.search'.setup()
-        end
+        config = true,
+        opts = {
+            signs_on_startup = {
+                'all'
+            }
+        }
     },
     {
         'nvim-treesitter/nvim-treesitter',
