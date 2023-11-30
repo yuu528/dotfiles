@@ -1,15 +1,31 @@
 return {
     {
-        'hrsh7th/cmp-buffer'
+        'neovim/nvim-lspconfig',
+        lazy = false
     },
     {
-        'hrsh7th/cmp-cmdline'
+        'williamboman/mason.nvim',
+        lazy = false,
+        config = true
+    },
+    {
+        'hrsh7th/cmp-buffer',
+        lazy = false
+    },
+    {
+        'hrsh7th/cmp-cmdline',
+        lazy = false
     },
     {
         'saadparwaiz1/cmp_luasnip',
         dependencies = {
             'L3MON4D3/LuaSnip'
-        }
+        },
+        lazy = false
+    },
+    {
+        'L3MON4D3/LuaSnip',
+        lazy = false
     },
     {
         'hrsh7th/cmp-nvim-lsp',
@@ -18,7 +34,46 @@ return {
             'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim'
         },
+        lazy = false
+    },
+    {
+        'hrsh7th/cmp-path',
+        lazy = false
+    },
+    {
+        'williamboman/mason-lspconfig.nvim',
+        dependencies = {
+            'neovim/nvim-lspconfig',
+            'williamboman/mason.nvim',
+            'hrsh7th/cmp-nvim-lsp'
+        },
+        lazy = false,
         config = function()
+            require 'mason-lspconfig'.setup {
+                ensure_installed = {
+                    'arduino_language_server',
+                    'bashls',
+                    'clangd',
+                    'cssls',
+                    'dotls',
+                    'html',
+                    'jdtls',
+                    'jsonls',
+                    'lemminx',
+                    'lua_ls',
+                    'marksman',
+                    'pylsp',
+                    'quick_lint_js',
+                    'sqlls',
+                    'taplo',
+                    'texlab',
+                    'tsserver',
+                    'vimls',
+                    'vuels',
+                    'yamlls',
+                }
+
+            }
             require 'mason-lspconfig'.setup_handlers {
                 function(server)
                     require('lspconfig')[server].setup {
@@ -29,59 +84,14 @@ return {
         end
     },
     {
-        'hrsh7th/cmp-path'
+        'onsails/lspkind.nvim',
+        lazy = false,
     },
     {
         'j-hui/fidget.nvim',
         event = {'BufReadPre', 'BufNewFile'},
-        config = true
-    },
-    {
-        'onsails/lspkind.nvim'
-    },
-    {
-        'L3MON4D3/LuaSnip'
-    },
-    {
-        'williamboman/mason.nvim',
-        dependencies = {
-            'neovim/nvim-lspconfig'
-        },
         lazy = false,
         config = true
-    },
-    {
-        'williamboman/mason-lspconfig.nvim',
-        dependencies = {
-            'neovim/nvim-lspconfig',
-            'williamboman/mason.nvim'
-        },
-        lazy = false,
-        config = true,
-        opts = {
-            ensure_installed = {
-                'arduino_language_server',
-                'bashls',
-                'clangd',
-                'cssls',
-                'dotls',
-                'html',
-                'jdtls',
-                'jsonls',
-                'lemminx',
-                'lua_ls',
-                'marksman',
-                'pylsp',
-                'quick_lint_js',
-                'sqlls',
-                'taplo',
-                'texlab',
-                'tsserver',
-                'vimls',
-                'vuels',
-                'yamlls',
-            }
-        }
     },
     {
         'hrsh7th/nvim-cmp',
@@ -93,7 +103,7 @@ return {
             'hrsh7th/cmp-path',
             'onsails/lspkind.nvim'
         },
-        event = {'BufReadPre', 'BufNewFile'},
+        lazy = false,
         config = function()
             local has_words_before = function()
                 unpack = unpack or table.unpack
@@ -164,7 +174,11 @@ return {
         end
     },
     {
-        'neovim/nvim-lspconfig',
-        lazy = false
-    }
+        'folke/trouble.nvim',
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
+        lazy = false,
+        opts = {
+            use_diagnostic_signs = true
+        }
+    },
 }
