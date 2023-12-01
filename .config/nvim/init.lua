@@ -23,9 +23,6 @@ vim.o.visualbell = true
 -- command line
 vim.o.wildmode = 'list:longest'
 
--- control
-vim.o.mouse = ''
-
 -- edit
 vim.o.virtualedit = 'onemore'
 vim.o.smartindent = true
