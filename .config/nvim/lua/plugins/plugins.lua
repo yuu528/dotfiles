@@ -73,6 +73,33 @@ return {
         end
     },
     {
+        'lukas-reineke/indent-blankline.nvim',
+        dependencies = {
+            'nvim-treesitter/nvim-treesitter'
+        },
+        main = 'ibl',
+        event = {'BufRead', 'BufNewFile'},
+        config = function()
+            --[[
+            local highlight = {
+                'GruvboxRed', 'GruvboxGreen', 'GruvboxYellow', 'GruvboxBlue', 'GruvboxPurple', 'GruvboxAqua', 'GruvboxOrange'
+            }
+            ]]
+
+            require 'ibl'.setup {
+                indent = {
+                    char = '▏',
+                    tab_char = '▏',
+                    --highlight = highlight
+                },
+                scope = {
+                    show_start = false,
+                    show_end = false
+                }
+            }
+        end
+    },
+    {
         'nvim-lualine/lualine.nvim',
         dependencies = {
             'nvim-tree/nvim-web-devicons',
@@ -126,6 +153,17 @@ return {
         dependencies = {
             'lambdalisue/nerdfont.vim'
         }
+    },
+    {
+        'NeogitOrg/neogit',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim'
+        },
+        keys = {
+            {'<LEADER>t', '<CMD>Neogit<CR>'}
+        },
+        config = true
     },
     {
         'equalsraf/neovim-gui-shim',
