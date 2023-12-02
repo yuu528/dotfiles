@@ -2,15 +2,16 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            'onsails/lspkind.nvim',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-cmdline',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-path'
+            'L3MON4D3/LuaSnip'
         },
         event = {'InsertEnter'},
         config = function()
+            local lsp_zero = require 'lsp-zero'
+            lsp_zero.extend_cmp()
+
+            local cmp = require 'cmp'
+            local cmp_action = lsp_zero.cmp_action()
+
             local has_words_before = function()
                 unpack = unpack or table.unpack
                 local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -19,7 +20,6 @@ return {
 
             local lspkind = require 'lspkind'
             local luasnip = require 'luasnip'
-            local cmp = require 'cmp'
 
             cmp.setup {
                 snippet = {

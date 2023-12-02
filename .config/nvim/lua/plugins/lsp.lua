@@ -1,13 +1,31 @@
 return {
     {
+        'VonHeikemen/lsp-zero.nvim',
+        branch = 'v3.x',
+        config = false,
+        init = function()
+            vim.g.lsp_zero_extend_cmp = 0
+            vim.g.lsp_zero_extend_lspconfig = 0
+        end
+    },
+    {
         'neovim/nvim-lspconfig',
+        cmd = {'LspInfo', 'LspInstall', 'LspStart'},
         event = {'BufReadPre', 'BufNewFile'},
         dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
             'williamboman/mason-lspconfig.nvim',
             'folke/neodev.nvim'
         },
         config = function()
             require 'neodev'.setup()
+
+            local lsp_zero = require 'lsp-zero'
+            lsp_zero.extend_lspconfig()
+
+            lsp_zero.on_attach(function(client, bufnr)
+                lsp_zero.default_keymaps({buffer = bufnr})
+            end)
 
             require 'mason-lspconfig'.setup {
                 ensure_installed = {
@@ -33,11 +51,7 @@ return {
                     'yamlls',
                 },
                 handlers = {
-                    function(server)
-                        require('lspconfig')[server].setup {
-                            capabilities = require 'cmp_nvim_lsp'.default_capabilities()
-                        }
-                    end
+                    lsp_zero.default_setup
                 }
             }
 
@@ -54,8 +68,7 @@ return {
     },
     {
         'williamboman/mason.nvim',
-        build = ':MasonUpdate',
-        cmd = 'Mason',
+        lazy = false,
         config = true
     },
     {
