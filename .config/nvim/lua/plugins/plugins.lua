@@ -155,6 +155,17 @@ return {
         }
     },
     {
+        'NeogitOrg/neogit',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim'
+        },
+        keys = {
+            {'<LEADER>t', '<CMD>Neogit<CR>'}
+        },
+        config = true
+    },
+    {
         'equalsraf/neovim-gui-shim',
     },
     {
