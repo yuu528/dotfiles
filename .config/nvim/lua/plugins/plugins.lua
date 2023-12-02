@@ -2,7 +2,10 @@ return {
     {
         'akinsho/bufferline.nvim',
         version = '*',
-        dependencies = 'nvim-tree/nvim-web-devicons',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'ellisonleao/gruvbox.nvim'
+        },
         event = 'VimEnter',
         config = function()
             require 'bufferline'.setup {
