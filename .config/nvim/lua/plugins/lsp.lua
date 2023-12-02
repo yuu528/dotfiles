@@ -93,5 +93,14 @@ return {
             padding_right = 2,
             show_sign = true
         }
+    },
+    {
+        'folke/trouble.nvim',
+        keys = {
+            {'<LEADER>xx', '<CMD>TroubleToggle<CR>', desc = 'Toggle trouble.nvim'}
+        },
+        dependencies = {
+            'nvim-tree/nvim-web-devicons'
+        }
     }
 }
