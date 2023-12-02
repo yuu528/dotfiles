@@ -2,7 +2,10 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            'L3MON4D3/LuaSnip'
+            'hrsh7th/cmp-buffer',
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-path'
         },
         event = {'InsertEnter'},
         config = function()
@@ -83,7 +86,10 @@ return {
         'hrsh7th/cmp-buffer'
     },
     {
-        'saadparwaiz1/cmp_luasnip'
+        'saadparwaiz1/cmp_luasnip',
+        dependencies = {
+            'L3MON4D3/LuaSnip'
+        },
     },
     {
         'hrsh7th/cmp-nvim-lsp'
@@ -92,12 +98,19 @@ return {
         'hrsh7th/cmp-path'
     },
     {
+        'rafamadriz/friendly-snippets'
+    },
+    {
         'onsails/lspkind.nvim'
     },
     {
         'L3MON4D3/LuaSnip',
         dependencies = {
-            'saadparwaiz1/cmp_luasnip'
-        }
+            'rafamadriz/friendly-snippets'
+        },
+        config = function()
+            require 'luasnip.loaders/from_vscode'.lazy_load()
+            require 'snippets.tex'
+        end
     }
 }
