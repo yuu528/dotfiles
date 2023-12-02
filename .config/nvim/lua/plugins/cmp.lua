@@ -9,7 +9,7 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path'
         },
-        event = {'VeryLazy'},
+        event = {'InsertEnter'},
         config = function()
             local has_words_before = function()
                 unpack = unpack or table.unpack

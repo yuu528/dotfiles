@@ -3,9 +3,12 @@ return {
         'neovim/nvim-lspconfig',
         event = {'BufReadPre', 'BufNewFile'},
         dependencies = {
-            'williamboman/mason-lspconfig.nvim'
+            'williamboman/mason-lspconfig.nvim',
+            'folke/neodev.nvim'
         },
         config = function()
+            require 'neodev'.setup()
+
             require 'mason-lspconfig'.setup {
                 ensure_installed = {
                     'arduino_language_server',
@@ -58,6 +61,9 @@ return {
         dependencies = {
             'williamboman/mason.nvim',
         }
+    },
+    {
+        'folke/neodev.nvim'
     },
     {
         'j-hui/fidget.nvim',

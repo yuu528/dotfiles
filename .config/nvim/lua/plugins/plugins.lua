@@ -167,6 +167,8 @@ return {
         'kevinhwang91/nvim-hlslens',
         event = 'CmdlineEnter',
         config = function()
+            require 'hlslens'.setup()
+
             vim.keymap.set('n', 'n',
                 [[<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>]],
                 {noremap = true, silent = true, desc = 'Search next'}
