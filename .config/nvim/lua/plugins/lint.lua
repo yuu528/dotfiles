@@ -20,8 +20,30 @@ return {
                 html = { 'tidy' },
                 lua = { 'luacheck' },
                 markdown = { 'markdownlint' },
-                c = { 'clangtidy' }
+                c = { 'clangtidy' },
+                tex = { 'chktex' },
+                latex = { 'chktex' }
             }
         end
+    },
+    {
+        'rshkarin/mason-nvim-lint',
+        dependencies = {
+            'williamboman/mason.nvim',
+            'mfussenegger/nvim-lint'
+        },
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = true,
+        opts = {
+            ensure_installed = {
+                'eslint_d',
+                'pylint',
+                'markdownlint',
+                'clang-format',
+                'clangd'
+            },
+            automatic_installation = false
+        }
     }
 }
+
