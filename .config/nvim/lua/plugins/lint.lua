@@ -23,20 +23,5 @@ return {
                 c = { 'clangtidy' }
             }
         end
-    },
-    {
-        'rshkarin/mason-nvim-lint',
-        dependencies = {
-            'williamboman/mason.nvim',
-            'mfussenegger/nvim-lint'
-        },
-        event = { 'BufReadPre', 'BufNewFile' },
-        config = true,
-        opts = {
-            ensure_installed = {
-                'eslint_d', 'pylint', 'tidy', 'luacheck', 'markdownlint', 'clangtidy'
-            }
-        }
     }
 }
-
