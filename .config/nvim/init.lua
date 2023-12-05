@@ -95,13 +95,6 @@ vim.api.nvim_create_autocmd(
     }
 )
 
--- functions
--- for coc.nvim mapping
-function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
-
 -- load lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
