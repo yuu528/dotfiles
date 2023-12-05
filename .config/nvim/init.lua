@@ -29,7 +29,7 @@ vim.o.smartindent = true
 vim.o.showmatch = true
 vim.o.cursorline = true
 vim.o.list = true
-vim.opt.listchars = {tab = '──', space = '·'}
+vim.opt.listchars = { tab = '──', space = '·' }
 vim.o.tabstop = 4
 vim.o.shiftwidth = 0
 vim.o.softtabstop = -1
@@ -55,7 +55,7 @@ vim.keymap.set('n', 'k', 'gk')
 
 -- autocmds
 -- filetype indent settings
-vim.api.nvim_create_augroup('indent', {clear = true})
+vim.api.nvim_create_augroup('indent', { clear = true })
 vim.api.nvim_create_autocmd(
     { 'FileType' },
     {
@@ -79,8 +79,8 @@ vim.api.nvim_create_autocmd(
     {
         group = 'UserLspConfig',
         callback = function(ev)
-            local bufopts = {silent = true, buffer = ev.buf}
-            vim.keymap.set('n', 'K',  '<CMD>lua vim.lsp.buf.hover()<CR>', bufopts)
+            local bufopts = { silent = true, buffer = ev.buf }
+            vim.keymap.set('n', 'K', '<CMD>lua vim.lsp.buf.hover()<CR>', bufopts)
             vim.keymap.set('n', 'gr', '<CMD>lua vim.lsp.buf.references()<CR>', bufopts)
             vim.keymap.set('n', 'gd', '<CMD>lua vim.lsp.buf.definition()<CR>', bufopts)
             vim.keymap.set('n', 'gD', '<CMD>lua vim.lsp.buf.declaration()<CR>', bufopts)
@@ -94,14 +94,6 @@ vim.api.nvim_create_autocmd(
         end
     }
 )
-
--- functions
--- for coc.nvim mapping
-function _G.check_back_space()
-    local col = vim.fn.col('.') - 1
-    return col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') ~= nil
-end
-
 
 -- load lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
