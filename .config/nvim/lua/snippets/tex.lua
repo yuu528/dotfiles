@@ -13,7 +13,7 @@ ls.add_snippets('tex', {
     s('tmplt-rp',
         fmt(
             [[
-\documentclass[head_space=25mm, foot_space=25mm, gutter=25mm, fore-edge=25mm, a4paper, report, fleqn]{jlreq}
+\documentclass[head_space=25mm, foot_space=25mm, gutter=25mm, fore-edge=25mm, a4paper, fleqn]{jlreq}
 
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -41,7 +41,7 @@ ls.add_snippets('tex', {
                 i(3, 'Section'),
                 i(0, 'Body')
             },
-            {delimiters = '<>'}
+            { delimiters = '<>' }
         )
     ),
     s('fig',
@@ -60,7 +60,7 @@ ls.add_snippets('tex', {
                 i(3, 'Caption'),
                 i(0, 'ID')
             },
-            {delimiters = '<>'}
+            { delimiters = '<>' }
         )
     ),
     s('fig-double',
@@ -91,7 +91,7 @@ ls.add_snippets('tex', {
                 i(7, 'Caption2'),
                 i(0, 'ID2')
             },
-            {delimiters = '<>'}
+            { delimiters = '<>' }
         )
     ),
     s('table',
@@ -118,7 +118,8 @@ ls.add_snippets('tex', {
                 i(5, 'Cell1'),
                 i(0, 'Cell2')
             },
-            {delimiters = '<>'}
+            { delimiters = '<>' }
         )
     )
 })
+
