@@ -21,8 +21,8 @@ return {
                 lua = { 'luacheck' },
                 markdown = { 'markdownlint' },
                 c = { 'clangtidy' },
-                tex = { 'chktex' },
-                latex = { 'chktex' }
+                tex = { 'lacheck' },
+                latex = { 'lacheck' }
             }
         end
     },
