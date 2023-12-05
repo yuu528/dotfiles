@@ -21,18 +21,21 @@ ls.add_snippets('tex', {
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{makecell}
+\usepackage{multicol}
+
+\newcommand{\ctext}[1]{\textcircled{\scriptsize{#1}}}
 
 \begin{document}
-	\begin{center}
-		\textbf{\large{<>}}
-	\end{center}
-	\begin{flushright}
-		<>
-	\end{flushright}
-	\vspace{\baselineskip}
+\begin{center}
+    \textbf{\large{<>}}
+\end{center}
+\begin{flushright}
+    <>
+\end{flushright}
+\vspace{\baselineskip}
 
-	\section{<>}
-	<>
+\section{<>}
+<>
 \end{document}
 ]],
             {
