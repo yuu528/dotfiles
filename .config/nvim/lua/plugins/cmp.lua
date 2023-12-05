@@ -7,7 +7,7 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             'hrsh7th/cmp-path'
         },
-        event = {'InsertEnter'},
+        event = { 'InsertEnter' },
         config = function()
             local lsp_zero = require 'lsp-zero'
             lsp_zero.extend_cmp()
@@ -25,10 +25,10 @@ return {
                     end
                 },
                 sources = {
-                    {name = 'buffer'},
-                    {name = 'luasnip'},
-                    {name = 'nvim_lsp'},
-                    {name = 'path'}
+                    { name = 'buffer' },
+                    { name = 'luasnip' },
+                    { name = 'nvim_lsp' },
+                    { name = 'path' }
                 },
                 mapping = cmp.mapping.preset.insert {
                     ['<TAB>'] = cmp.mapping(function(fallback)
@@ -39,7 +39,7 @@ return {
                         else
                             fallback()
                         end
-                    end, {'i', 's'}),
+                    end, { 'i', 's' }),
                     ['<S-Tab>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
@@ -87,6 +87,12 @@ return {
         'hrsh7th/cmp-nvim-lsp'
     },
     {
+        'hrsh7th/cmp-nvim-lsp-document-symbol'
+    },
+    {
+        'hrsh7th/cmp-nvim-lsp-signature-help'
+    },
+    {
         'hrsh7th/cmp-path'
     },
     {
@@ -106,3 +112,4 @@ return {
         end
     }
 }
+
