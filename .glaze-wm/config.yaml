@@ -197,6 +197,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "/msrdc|wslhost/"
 
+  # Zoom
+  - command: "ignore"
+    match_process_name: "Zoom"
+
   # Fullscreen apps/games will be bound to workspace 8
   - commands: ["move to workspace 8", "focus workspace 8"]
     match_process_name: "/amtrucks|eurotrucks2|hl2|gmod/"
