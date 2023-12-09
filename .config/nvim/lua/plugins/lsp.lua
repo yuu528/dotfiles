@@ -10,10 +10,11 @@ return {
     },
     {
         'neovim/nvim-lspconfig',
-        cmd = {'LspInfo', 'LspInstall', 'LspStart'},
-        event = {'BufReadPre', 'BufNewFile'},
+        cmd = { 'LspInfo', 'LspInstall', 'LspStart' },
+        event = { 'BufReadPre', 'BufNewFile' },
         dependencies = {
             'hrsh7th/cmp-nvim-lsp',
+            'williamboman/mason.nvim',
             'williamboman/mason-lspconfig.nvim',
             'folke/neodev.nvim'
         },
@@ -24,7 +25,7 @@ return {
             lsp_zero.extend_lspconfig()
 
             lsp_zero.on_attach(function(client, bufnr)
-                lsp_zero.default_keymaps({buffer = bufnr})
+                lsp_zero.default_keymaps({ buffer = bufnr })
             end)
 
             require 'mason-lspconfig'.setup {
@@ -51,12 +52,13 @@ return {
                     'yamlls',
                 },
                 handlers = {
-                    lsp_zero.default_setup
+                    lsp_zero.default_setup,
+                    jdtls = lsp_zero.noop
                 }
             }
 
             local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }
-                for type, icon in pairs(signs) do
+            for type, icon in pairs(signs) do
                 local hl = "DiagnosticSign" .. type
                 vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
             end
@@ -81,8 +83,15 @@ return {
         'folke/neodev.nvim'
     },
     {
+        'mfussenegger/nvim-jdtls',
+        dependencies = {
+            'neovim/nvim-lspconfig'
+        },
+        event = { 'BufReadPre', 'BufNewFile' },
+    },
+    {
         'j-hui/fidget.nvim',
-        event = {'BufReadPre', 'BufNewFile'},
+        event = { 'BufReadPre', 'BufNewFile' },
         config = true
     },
     {
@@ -97,7 +106,7 @@ return {
     {
         'folke/trouble.nvim',
         keys = {
-            {'<LEADER>xx', '<CMD>TroubleToggle<CR>', desc = 'Toggle trouble.nvim'}
+            { '<LEADER>xx', '<CMD>TroubleToggle<CR>', desc = 'Toggle trouble.nvim' }
         },
         dependencies = {
             'nvim-tree/nvim-web-devicons'
