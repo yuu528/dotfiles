@@ -280,12 +280,28 @@ return {
     {
         'dstein64/nvim-scrollview',
         event = { 'VeryLazy' },
-        config = true,
-        opts = {
-            signs_on_startup = {
-                'all'
+        config = function()
+            vim.api.nvim_create_augroup('InsertScrollView', { clear = true })
+            vim.api.nvim_create_autocmd(
+                { 'InsertEnter' },
+                {
+                    group = 'InsertScrollView',
+                    command = 'ScrollViewDisable'
+                }
+            )
+            vim.api.nvim_create_autocmd(
+                { 'InsertLeave' },
+                {
+                    group = 'InsertScrollView',
+                    command = 'ScrollViewEnable'
+                }
+            )
+            require 'scrollview'.setup {
+                signs_on_startup = {
+                    'all'
+                }
             }
-        }
+        end
     },
     {
         'nvim-treesitter/nvim-treesitter',

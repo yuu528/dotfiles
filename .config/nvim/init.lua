@@ -59,14 +59,6 @@ vim.api.nvim_create_augroup('indent', { clear = true })
 vim.api.nvim_create_autocmd(
     { 'FileType' },
     {
-        pattern = 'c',
-        group = 'indent',
-        command = 'setlocal ts=2 et'
-    }
-)
-vim.api.nvim_create_autocmd(
-    { 'FileType' },
-    {
         pattern = 'lua',
         group = 'indent',
         command = 'setlocal ts=4 et'
