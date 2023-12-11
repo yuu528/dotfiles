@@ -186,7 +186,9 @@ return {
     {
         'iamcco/markdown-preview.nvim',
         ft = { 'markdown', 'md' },
-        keys = { '<LOCALLEADER>kk', '<Plug>MarkdownPreviewToggle' },
+        keys = {
+            { '<LOCALLEADER>mm', '<Plug>MarkdownPreviewToggle', desc = 'Markdown preview' }
+        },
         build = function()
             vim.fn['mkdp#util#install']()
         end,
