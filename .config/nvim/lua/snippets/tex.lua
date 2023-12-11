@@ -19,7 +19,7 @@ ls.add_snippets('tex', {
 \usepackage{amssymb}
 \usepackage{enumerate}
 \usepackage{graphicx}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{makecell}
 \usepackage{multicol}
 
@@ -106,9 +106,9 @@ ls.add_snippets('tex', {
 	\centering
 	\begin{tabular}{cc}
 		\hline
-		<> & <> \\\\
+		<> & <> \\
 		\hline
-		<> & <> \\\\
+		<> & <> \\
 		\hline
 	\end{tabular}
 \end{table}
