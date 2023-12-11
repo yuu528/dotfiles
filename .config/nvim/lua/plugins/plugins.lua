@@ -184,6 +184,17 @@ return {
         end
     },
     {
+        'iamcco/markdown-preview.nvim',
+        ft = { 'markdown', 'md' },
+        keys = { '<LOCALLEADER>kk', '<Plug>MarkdownPreviewToggle' },
+        build = function()
+            vim.fn['mkdp#util#install']()
+        end,
+        config = function()
+            vim.g.mkdp_browser = 'falkon'
+        end
+    },
+    {
         'NeogitOrg/neogit',
         dependencies = {
             'nvim-lua/plenary.nvim',
