@@ -2,9 +2,9 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            'hrsh7th/cmp-buffer',
-            'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path'
         },
         event = { 'InsertEnter' },
@@ -107,8 +107,8 @@ return {
             'rafamadriz/friendly-snippets'
         },
         config = function()
-            require 'luasnip.loaders/from_vscode'.lazy_load()
             require 'snippets.tex'
+            require 'luasnip.loaders/from_vscode'.lazy_load()
         end
     }
 }
