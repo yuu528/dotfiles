@@ -59,7 +59,21 @@ return {
                         end,
                         s = cmp.mapping.confirm({ select = true }),
                         c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-                    }
+                    },
+                    ['<C-j>'] = cmp.mapping(function(fallback)
+                        if luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+                    ['<C-k>'] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' })
                 },
                 formatting = {
                     format = lspkind.cmp_format {
