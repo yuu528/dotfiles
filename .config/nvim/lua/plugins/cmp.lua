@@ -2,9 +2,9 @@ return {
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            'hrsh7th/cmp-buffer',
-            'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-nvim-lsp',
+            'saadparwaiz1/cmp_luasnip',
+            'hrsh7th/cmp-buffer',
             'hrsh7th/cmp-path'
         },
         event = { 'InsertEnter' },
@@ -59,7 +59,21 @@ return {
                         end,
                         s = cmp.mapping.confirm({ select = true }),
                         c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-                    }
+                    },
+                    ['<C-j>'] = cmp.mapping(function(fallback)
+                        if luasnip.expand_or_jumpable() then
+                            luasnip.expand_or_jump()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' }),
+                    ['<C-k>'] = cmp.mapping(function(fallback)
+                        if luasnip.jumpable(-1) then
+                            luasnip.jump(-1)
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 's' })
                 },
                 formatting = {
                     format = lspkind.cmp_format {
@@ -107,8 +121,8 @@ return {
             'rafamadriz/friendly-snippets'
         },
         config = function()
-            require 'luasnip.loaders/from_vscode'.lazy_load()
             require 'snippets.tex'
+            require 'luasnip.loaders/from_vscode'.lazy_load()
         end
     }
 }

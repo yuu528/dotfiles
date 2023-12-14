@@ -20,8 +20,10 @@ ls.add_snippets('tex', {
 \usepackage{enumerate}
 \usepackage{graphicx}
 \usepackage[hidelinks]{hyperref}
+\usepackage{listings, jvlisting}
 \usepackage{makecell}
 \usepackage{multicol}
+\usepackage{multirow}
 
 \newcommand{\ctext}[1]{\textcircled{\scriptsize{#1}}}
 
@@ -42,6 +44,44 @@ ls.add_snippets('tex', {
                 i(1, 'Title'),
                 i(2, 'Author'),
                 i(3, 'Section'),
+                i(0, 'Body')
+            },
+            { delimiters = '<>' }
+        )
+    ),
+    s('tmplt-rp-titlepage',
+        fmt(
+            [[
+\documentclass[head_space=25mm, foot_space=25mm, gutter=25mm, fore-edge=25mm, a4paper, fleqn, titlepage]{jlreq}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage[hidelinks]{hyperref}
+\usepackage{listings, jvlisting}
+\usepackage{makecell}
+\usepackage{multicol}
+\usepackage{multirow}
+
+\newcommand{\ctext}[1]{\textcircled{\scriptsize{#1}}}
+
+\title{<>}
+\author{<>}
+\date{<>}
+
+\begin{document}
+\maketitle
+
+\section{<>}
+<>
+\end{document}
+]],
+            {
+                i(1, 'Title'),
+                i(2, 'Author'),
+                i(3, 'Date'),
+                i(4, 'Section'),
                 i(0, 'Body')
             },
             { delimiters = '<>' }
@@ -104,7 +144,7 @@ ls.add_snippets('tex', {
 	\caption{<>}
 	\label{table:<>}
 	\centering
-	\begin{tabular}{cc}
+	\begin{tabular}{<>}
 		\hline
 		<> & <> \\
 		\hline
@@ -116,10 +156,24 @@ ls.add_snippets('tex', {
             {
                 i(1, 'Caption'),
                 i(2, 'ID'),
-                i(3, 'Header1'),
-                i(4, 'Header2'),
-                i(5, 'Cell1'),
+                i(3, 'Column: <clrp|>'),
+                i(4, 'Header1'),
+                i(5, 'Header2'),
+                i(6, 'Cell1'),
                 i(0, 'Cell2')
+            },
+            { delimiters = '<>' }
+        )
+    ),
+    s('lst',
+        fmt(
+            [[
+\begin{lstlisting}[basicstyle={\ttfamily}, tabsize=4]
+<>
+\end{lstlisting}
+]],
+            {
+                i(0, 'Body')
             },
             { delimiters = '<>' }
         )
