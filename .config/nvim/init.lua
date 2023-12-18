@@ -17,6 +17,7 @@ vim.o.termguicolors = true
 vim.o.showcmd = true
 vim.o.laststatus = 2
 vim.o.number = true
+vim.o.relativenumber = true
 vim.o.signcolumn = 'yes'
 vim.o.visualbell = true
 
@@ -65,6 +66,7 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- LSP config
 vim.api.nvim_create_augroup('UserLspConfig', {})
 vim.api.nvim_create_autocmd(
     'LspAttach',
@@ -84,6 +86,23 @@ vim.api.nvim_create_autocmd(
             vim.keymap.set('n', 'g]', '<CMD>lua vim.diagnostic.goto_next()<CR>', bufopts)
             vim.keymap.set('n', 'g[', '<CMD>lua vim.diagnostic.goto_prev()<CR>', bufopts)
         end
+    }
+)
+
+-- Change line number mode
+vim.api.nvim_create_augroup('LineNumberMode', { clear = true })
+vim.api.nvim_create_autocmd(
+    'InsertEnter',
+    {
+        group = 'LineNumberMode',
+        command = 'set norelativenumber'
+    }
+)
+vim.api.nvim_create_autocmd(
+    'InsertLeave',
+    {
+        group = 'LineNumberMode',
+        command = 'set relativenumber'
     }
 )
 
