@@ -48,7 +48,6 @@ return {
                     'texlab',
                     'tsserver',
                     'vimls',
-                    'vuels',
                     'yamlls',
                 },
                 handlers = {
@@ -113,3 +112,4 @@ return {
         }
     }
 }
+
