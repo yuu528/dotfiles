@@ -8,22 +8,23 @@ return {
             {
                 'gf',
                 function()
-                    require 'conform'.format({async = true, lsp_fallback = true})
+                    require 'conform'.format({ async = true, lsp_fallback = true })
                 end,
                 desc = 'Format buffer'
             }
         },
         opts = {
             formatters_by_ft = {
-                lua = {'stylua'},
-                c = {'astyle'},
-                java = {'astyle'},
-                bash = {'beautysh'},
-                javascript = {'eslint_d'},
-                typescript = {'eslint_d'},
-                markdown = {'markdownlint'},
-                latex = {'latexindent'},
-                tex = {'latexindent'}
+                lua = { 'stylua' },
+                c = { 'astyle' },
+                java = { 'astyle' },
+                bash = { 'beautysh' },
+                javascript = { 'eslint_d' },
+                typescript = { 'eslint_d' },
+                markdown = { 'markdownlint' },
+                latex = { 'latexindent' },
+                tex = { 'latexindent' },
+                vue = { 'prettier' }
             },
             format_on_save = {
                 timeout_ms = 500,
@@ -35,3 +36,4 @@ return {
         end
     }
 }
+
