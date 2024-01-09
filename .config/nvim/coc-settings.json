@@ -1,10 +1,36 @@
 {
 	"suggest.triggerAfterInsertEnter": true,
-	"suggest.noselect": false,
+	"suggest.noselect": true,
 	"suggest.minTriggerInputLength": 2,
 	"suggest.acceptSuggestionOnCommitCharacter": true,
 	"suggest.snippetIndicator": " ►",
 	"suggest.enablePreview": true,
+	"suggest.completionItemKindLabels": {
+		"function": "\udb80\ude95",
+		"method":"\uea8c",
+		"variable": "\uea88",
+		"constant": "\uf8ff",
+		"struct": "\uea91",
+		"class": "\ueb5b",
+		"interface": "\ueb61",
+		"text": "\uea93",
+		"enum": "\uea95",
+		"enumMember": "\ueb5e",
+		"color": "\ueb5c",
+		"property": "\ueb65",
+		"field": "\ueb5f",
+		"unit": "\uea7b",
+		"file": "\ueb60",
+		"value": "\uf4f7",
+		"event": "\uea86",
+		"folder": "\uea83",
+		"keyword": "\ueb62",
+		"snippet": "\ueb66",
+		"operator": "\ueb64",
+		"reference": "\ueb36",
+		"typeParameter": "\uea92",
+		"default": "\ueb63"
+	},
 	"coc.preferences.hoverTarget": "float",
 	"coc.preferences.formatOnType": true,
 	"coc.preferences.formatOnSaveFiletypes": [
@@ -20,5 +46,7 @@
 		"javascriptreact",
 		"typescript",
 		"typescriptreact"
-	]
+	],
+	"clangd.path": "~/git/dotfiles/.config/coc/extensions/coc-clangd-data/install/16.0.2/clangd_16.0.2/bin/clangd",
+	"snippets.ultisnips.directories": [ "~/git/dotfiles/.config/nvim/UltiSnips/" ]
 }

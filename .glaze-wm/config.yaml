@@ -1,0 +1,345 @@
+general:
+  # Whether to automatically focus windows underneath the cursor.
+  focus_follows_cursor: false
+
+  # Whether to jump the cursor between windows focused by the WM.
+  cursor_follows_focus: false
+
+  # Whether to switch back and forth between the previously focused workspace
+  # when focusing the current workspace.
+  toggle_workspace_on_refocus: true
+
+  # Whether to show floating windows as always on top.
+  show_floating_on_top: true
+
+  # Amount to move floating windows by (eg. when using `alt+<hjkl>` on a floating window)
+  floating_window_move_amount: "5%"
+
+  # *Strongly* recommended to set to 'false'. Whether to globally enable/disable
+  # window transition animations (on minimize, close, etc). Set to 'unchanged'
+  # to make no setting changes.
+  window_animations: "unchanged"
+
+gaps:
+  # Gap between adjacent windows.
+  inner_gap: "16px"
+
+  # Gap between windows and the screen edge.
+  outer_gap: "16px"
+
+# Highlight active/inactive windows with a colored border.
+# ** Exclusive to Windows 11 due to API limitations.
+focus_borders:
+  active:
+    enabled: true
+    color: "#83a598"
+
+  inactive:
+    enabled: true
+    color: "#3c3836"
+
+bar:
+  height: "28px"
+  position: "top"
+  opacity: 1.0
+  background: "#282828"
+  foreground: "#ebdbb2"
+  font_family: "IBM Plex Sans JP"
+  font_size: "12px"
+  padding: "4px 6px"
+  offset_x: "0"
+  offset_y: "0"
+  border_radius: "0"
+  components_left:
+    - type: "workspaces"
+      focused_workspace_background: "transparent"
+      displayed_workspace_background: "transparent"
+      default_workspace_background: "transparent"
+      focused_workspace_border_width: "0 0 2px 0"
+      displayed_workspace_border_width: "0 0 2px 0"
+      default_workspace_border_width: "0 0 2px 0"
+      focused_workspace_border_color: "#fe8019"
+      displayed_workspace_border_color: "#ebdbb2"
+      default_workspace_border_color: "transparent"
+  components_center:
+    - type: "window title"
+  components_right:
+#    - type: "system tray"
+#      margin: "0 4px"
+    - type: "cpu"
+      label: "<attr ff='PlemolJP Console NF'> </attr>{percent_usage}%"
+      padding: "0 5px"
+      background: "#3c3836"
+    - type: "gpu"
+      label: "<attr ff='PlemolJP Console NF'>󰢮 </attr>{percent_usage}%"
+      padding: "0 5px"
+      refresh_interval_ms: 5000
+      background: "#3c3836"
+    - type: "memory"
+      label: "<attr ff='PlemolJP Console NF'>󰘚 </attr>{percent_usage}%"
+      padding: "0 5px"
+      background: "#3c3836"
+    - type: "network"
+      label_no_internet: "<attr ff='PlemolJP Console NF'>󰣽</attr> No Conn."
+      label_ethernet: "<attr ff='PlemolJP Console NF'>󱂇</attr> Ethernet"
+      label_wifi_strength_0: "<attr ff='PlemolJP Console NF'>󰤯</attr> WLAN"
+      label_wifi_strength_25: "<attr ff='PlemolJP Console NF'>󰤟</attr> WLAN"
+      label_wifi_strength_50: "<attr ff='PlemolJP Console NF'>󰤢</attr> WLAN"
+      label_wifi_strength_75: "<attr ff='PlemolJP Console NF'>󰤥</attr> WLAN"
+      label_wifi_strength_100: "<attr ff='PlemolJP Console NF'>󰤨</attr> WLAN"
+      padding: "0 5px 0 5px"
+      background: "#3c3836"
+    - type: "battery"
+      label_draining: "<attr ff='PlemolJP Console NF'>󰁹</attr> {battery_level}%"
+      label_power_saver: "<attr ff='PlemolJP Console NF'>󰂃</attr> {battery_level}%"
+      label_charging: "<attr ff='PlemolJP Console NF'>󰂄</attr> {battery_level}%"
+      padding: "0 5px 0 5px"
+      background: "#3c3836"
+    - type: "volume"
+      label_low: "<attr ff='PlemolJP Console NF'>󰕿</attr> {volume_level}%"
+      label_medium: "<attr ff='PlemolJP Console NF'>󰖀</attr> {volume_level}%"
+      label_high: "<attr ff='PlemolJP Console NF'>󰕾</attr> {volume_level}%"
+      label_mute: "<attr ff='PlemolJP Console NF'>󰖁</attr> {volume_level}%"
+      padding: "0 5px"
+      background: "#3c3836"
+    - type: "tiling direction"
+      label_horizontal: "⮂"
+      label_vertical: "⇅"
+      background: "#83a598"
+      foreground: "#282828"
+      margin: "0 5px"
+      padding: "0 8px"
+    - type: "binding mode"
+      background: "#d3869b"
+      foreground: "#282828"
+      margin: "0 4px 0 0"
+      padding: "0 8px"
+    - type: "clock"
+      # Documentation on formatting date/time string:
+      # https://learn.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings
+      time_formatting: "ddd MM/dd"
+      background: "#a89984"
+      foreground: "#282828"
+      padding: "0 5px"
+      margin: "0 5px 0 0"
+    - type: "clock"
+      time_formatting: "HH:mm:ss"
+      background: "#8ec07c"
+      foreground: "#282828"
+      padding: "0 5px"
+
+workspaces:
+  - name: "1"
+    keep_alive: true
+  - name: "2"
+  - name: "3"
+  - name: "4"
+  - name: "5"
+  - name: "6"
+  - name: "7"
+  - name: "8"
+  - name: "9"
+
+window_rules:
+  # Task Manager requires admin privileges to manage and should be ignored unless running
+  # the WM as admin.
+  - command: "ignore"
+    match_process_name: "/Taskmgr|ScreenClippingHost/"
+
+  # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
+  - command: "set floating"
+    match_class_name: "#32770"
+
+  # Some applications (eg. Steam) have borders that extend past the normal border size.
+  - command: "resize borders 0px -7px -7px -7px"
+    match_process_name: "steamwebhelper"
+
+  - command: "resize borders 0px -2px 0px -2px"
+    match_process_name: "firefox"
+
+  # Cakewalk
+  - command: "set floating"
+    match_process_name: "Cakewalk"
+
+  - command: "set tiling"
+    match_class_name: "Cakewalk Core"
+
+  - command: "ignore"
+    match_process_name: "BitBridge"
+
+  - command: "ignore"
+    match_title: "/HUDNow|HUDNowTime/"
+    match_process_name: "Cakewalk"
+
+  # Excel
+  - command: "ignore"
+    match_process_name: "EXCEL"
+
+  # Overwolf
+  - command: "ignore"
+    match_process_name: "Overwolf"
+
+  # PowerToys
+  - command: "ignore"
+    match_process_name: "PowerToys.Peek.UI"
+
+  # WSLg
+  - command: "ignore"
+    match_process_name: "/msrdc|wslhost/"
+
+  # ignore for some applications
+  - command: "ignore"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher/"
+
+binding_modes:
+  - name: "resize"
+    keybindings:
+      # Resize focused window by a percentage or pixel amount.
+      - command: "resize width -2%"
+        bindings: ["H", "Left"]
+      - command: "resize width +2%"
+        bindings: ["L", "Right"]
+      - command: "resize height +2%"
+        bindings: ["K", "Up"]
+      - command: "resize height -2%"
+        bindings: ["J", "Down"]
+      # Press enter/escape to return to default keybindings.
+      - command: "binding mode none"
+        bindings: ["Escape", "Enter"]
+
+keybindings:
+  # Shift focus in a given direction.
+  - command: "focus left"
+    bindings: ["Alt+H", "Alt+Left"]
+  - command: "focus right"
+    bindings: ["Alt+L", "Alt+Right"]
+  - command: "focus up"
+    bindings: ["Alt+K", "Alt+Up"]
+  - command: "focus down"
+    bindings: ["Alt+J", "Alt+Down"]
+
+  # Move focused window in a given direction.
+  - command: "move left"
+    bindings: ["Alt+Shift+H", "Alt+Shift+Left"]
+  - command: "move right"
+    bindings: ["Alt+Shift+L", "Alt+Shift+Right"]
+  - command: "move up"
+    bindings: ["Alt+Shift+K", "Alt+Shift+Up"]
+  - command: "move down"
+    bindings: ["Alt+Shift+J", "Alt+Shift+Down"]
+
+  # Resize focused window by a percentage or pixel amount.
+  - command: "resize width -2%"
+    binding: "Alt+U"
+  - command: "resize width +2%"
+    binding: "Alt+P"
+  - command: "resize height +2%"
+    binding: "Alt+O"
+  - command: "resize height -2%"
+    binding: "Alt+I"
+
+  # As an alternative to the resize keybindings above, resize mode enables resizing via
+  # HJKL or arrow keys. The binding mode is defined above with the name "resize".
+  - command: "binding mode resize"
+    binding: "Alt+R"
+
+  # Change tiling direction. This determines where new tiling windows will be inserted.
+  - command: "tiling direction toggle"
+    binding: "Alt+V"
+
+  # Change focus between floating / tiling windows.
+  - command: "focus mode toggle"
+    binding: "Alt+Space"
+
+  # Change the focused window to be floating / tiling.
+  - command: "toggle floating"
+    binding: "Alt+Shift+Space"
+
+  # Change the focused window to be maximized / unmaximized.
+  - command: "toggle maximized"
+    binding: "Alt+X"
+
+  # Minimize focused window.
+  - command: "set minimized"
+    binding: "Alt+M"
+
+  # Close focused window.
+  - command: "close"
+    binding: "Alt+Shift+Q"
+
+  # Kill GlazeWM process safely.
+  - command: "exit wm"
+    binding: "Alt+Shift+E"
+
+  # Re-evaluate configuration file.
+  - command: "reload config"
+    binding: "Alt+Shift+R"
+
+  # Launch CMD terminal (alternatively `exec wt` or `exec %ProgramFiles%/Git/git-bash.exe`
+  # to start Windows Terminal and Git Bash respectively.
+  - command: "exec wezterm-gui"
+    binding: "Alt+Enter"
+
+  # Focus the workspace that last had focus.
+  - command: "focus workspace recent"
+    binding: "Alt+Y"
+
+  # Focus the next/previous workspace defined in `workspaces` config.
+  - command: "focus workspace next"
+    binding: "Alt+T"
+  - command: "focus workspace prev"
+    binding: "Alt+Shift+T"
+
+  # Change focus to a workspace defined in `workspaces` config.
+  - command: "focus workspace 1"
+    binding: "Alt+1"
+  - command: "focus workspace 2"
+    binding: "Alt+2"
+  - command: "focus workspace 3"
+    binding: "Alt+3"
+  - command: "focus workspace 4"
+    binding: "Alt+4"
+  - command: "focus workspace 5"
+    binding: "Alt+5"
+  - command: "focus workspace 6"
+    binding: "Alt+6"
+  - command: "focus workspace 7"
+    binding: "Alt+7"
+  - command: "focus workspace 8"
+    binding: "Alt+8"
+  - command: "focus workspace 9"
+    binding: "Alt+9"
+
+  # Move focused workspace to a monitor in a given direction.
+  #- command: "move workspace left"
+  #  binding: "Alt+A"
+  #- command: "move workspace right"
+  #  binding: "Alt+F"
+  #- command: "move workspace up"
+  #  binding: "Alt+D"
+  #- command: "move workspace down"
+  #  binding: "Alt+S"
+
+  # Move focused window to a workspace defined in `workspaces` config.
+  - commands: ["move to workspace 1", "focus workspace 1"]
+    binding: "Alt+Shift+1"
+  - commands: ["move to workspace 2", "focus workspace 2"]
+    binding: "Alt+Shift+2"
+  - commands: ["move to workspace 3", "focus workspace 3"]
+    binding: "Alt+Shift+3"
+  - commands: ["move to workspace 4", "focus workspace 4"]
+    binding: "Alt+Shift+4"
+  - commands: ["move to workspace 5", "focus workspace 5"]
+    binding: "Alt+Shift+5"
+  - commands: ["move to workspace 6", "focus workspace 6"]
+    binding: "Alt+Shift+6"
+  - commands: ["move to workspace 7", "focus workspace 7"]
+    binding: "Alt+Shift+7"
+  - commands: ["move to workspace 8", "focus workspace 8"]
+    binding: "Alt+Shift+8"
+  - commands: ["move to workspace 9", "focus workspace 9"]
+    bindings: ["Alt+Shift+9"]
+
+# Explorer
+  - command: "exec wezterm-gui -e vifm"
+    binding: "Alt+E"

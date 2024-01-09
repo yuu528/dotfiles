@@ -1,4 +1,7 @@
+.config/coc/
 .config/nvim/.last_update
 .config/nvim/secret.tsv
+.config/nvim/lazy-lock.json
 .config/powerline-shell/custom_segments/__pycache__/
+.vifm/vifminfo.json
 **node_modules
