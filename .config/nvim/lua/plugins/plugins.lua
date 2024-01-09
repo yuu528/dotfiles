@@ -2,7 +2,10 @@ return {
     {
         'akinsho/bufferline.nvim',
         version = '*',
-        dependencies = 'nvim-tree/nvim-web-devicons',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'ellisonleao/gruvbox.nvim'
+        },
         event = 'VimEnter',
         config = function()
             require 'bufferline'.setup {
@@ -14,10 +17,11 @@ return {
                 }
             }
 
-            vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>', {silent = true, desc = 'Switch to previous buffer'})
-            vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>', {silent = true, desc = 'Switch to next buffer'})
-            vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', {silent = true, desc = 'Move buffer to next'})
-            vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', {silent = true, desc = 'Move buffer to previous'})
+            vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>',
+                { silent = true, desc = 'Switch to previous buffer' })
+            vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Switch to next buffer' })
+            vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', { silent = true, desc = 'Move buffer to next' })
+            vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', { silent = true, desc = 'Move buffer to previous' })
         end
     },
     {
@@ -27,25 +31,59 @@ return {
     },
     {
         'mattn/emmet-vim',
-        ft = {'html', 'css'}
+        ft = { 'html', 'css' }
     },
     {
-        'lambdalisue/fern.vim',
+        'nvim-tree/nvim-tree.lua',
         dependencies = {
-            'lambdalisue/fern-renderer-nerdfont.vim'
+            'nvim-tree/nvim-web-devicons'
         },
         keys = {
-            {'<C-n>', ':Fern . -reveal=% -drawer -toggle -width=35<CR>', desc = 'Toggle Fern', silent = true}
+            { '<C-n>', '<CMD>NvimTreeToggle<CR>', desc = 'Toggle file explorer', silent = true }
         },
         config = function()
-            vim.g['fern#renderer'] = 'nerdfont'
-            vim.g['fern#renderer#nerdfont#indent_markers'] = 1
-            vim.g['fern#default_hidden'] = 1
+            vim.g.loaded_netrw = 1
+            vim.g.loaded_netrwPlugin = 1
+            require 'nvim-tree'.setup {
+                view = {
+                    width = 35
+                },
+                renderer = {
+                    group_empty = true,
+                    icons = {
+                        glyphs = {
+                            folder = {
+                                arrow_closed = '',
+                                arrow_open = '',
+                                default = '',
+                                open = '',
+                                empty = '',
+                                empty_open = '',
+                                symlink = '',
+                                symlink_open = '',
+
+                            },
+                            git = {
+                                unstaged = '',
+                                staged = '',
+                                unmerged = '',
+                                renamed = '',
+                                untracked = '',
+                                deleted = '',
+                                ignored = ''
+                            }
+                        }
+                    }
+                },
+                filters = {
+                    dotfiles = false
+                }
+            }
         end
     },
     {
         'lewis6991/gitsigns.nvim',
-        event = {'BufRead', 'BufNewFile'},
+        event = { 'BufRead', 'BufNewFile' },
         config = true
     },
     {
@@ -70,18 +108,104 @@ return {
         end
     },
     {
-        'nvim-lualine/lualine.nvim',
+        'lukas-reineke/indent-blankline.nvim',
         dependencies = {
-            'nvim-tree/nvim-web-devicons'
+            'nvim-treesitter/nvim-treesitter'
         },
-        event = 'VimEnter',
-        config = true
+        main = 'ibl',
+        event = { 'BufRead', 'BufNewFile' },
+        config = function()
+            --[[
+            local highlight = {
+                'GruvboxRed', 'GruvboxGreen', 'GruvboxYellow', 'GruvboxBlue', 'GruvboxPurple', 'GruvboxAqua', 'GruvboxOrange'
+            }
+            ]]
+
+            require 'ibl'.setup {
+                indent = {
+                    char = '▏',
+                    tab_char = '▏',
+                    --highlight = highlight
+                },
+                scope = {
+                    show_start = false,
+                    show_end = false
+                }
+            }
+        end
     },
     {
-        'lambdalisue/fern-renderer-nerdfont.vim',
+        'nvim-lualine/lualine.nvim',
         dependencies = {
-            'lambdalisue/nerdfont.vim'
-        }
+            'nvim-tree/nvim-web-devicons',
+            'SmiteshP/nvim-navic'
+        },
+        event = 'VimEnter',
+        config = function()
+            local utils = require("lualine.utils.utils")
+            local highlight = require("lualine.highlight")
+
+            local diagnostics_message = require("lualine.component"):extend()
+
+            diagnostics_message.default = {
+                colors = {
+                    error = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticError", "LspDiagnosticsDefaultError", "DiffDelete" },
+                        "#e32636"
+                    ),
+                    warning = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticWarn", "LspDiagnosticsDefaultWarning", "DiffText" },
+                        "#ffa500"
+                    ),
+                    info = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticInfo", "LspDiagnosticsDefaultInformation", "DiffChange" },
+                        "#ffffff"
+                    ),
+                    hint = utils.extract_color_from_hllist(
+                        { "fg", "sp" },
+                        { "DiagnosticHint", "LspDiagnosticsDefaultHint", "DiffAdd" },
+                        "#273faf"
+                    ),
+                },
+            }
+
+            require("lualine").setup({
+                sections = {
+                    lualine_c = {
+                        {
+                            'navic'
+                        },
+                    },
+                }
+            })
+        end
+    },
+    {
+        'iamcco/markdown-preview.nvim',
+        ft = { 'markdown', 'md' },
+        keys = {
+            { '<LOCALLEADER>mm', '<Plug>MarkdownPreviewToggle', desc = 'Markdown preview' }
+        },
+        build = function()
+            vim.fn['mkdp#util#install']()
+        end,
+        config = function()
+            vim.g.mkdp_browser = 'falkon'
+        end
+    },
+    {
+        'NeogitOrg/neogit',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-telescope/telescope.nvim'
+        },
+        keys = {
+            { '<LEADER>t', '<CMD>Neogit<CR>' }
+        },
+        config = true
     },
     {
         'equalsraf/neovim-gui-shim',
@@ -94,7 +218,7 @@ return {
         event = 'InsertEnter',
         config = function()
             require 'nvim-autopairs'.setup {
-                disable_filetype = {'TelescopePrompt'}
+                disable_filetype = { 'TelescopePrompt' }
             }
             local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
             local cmp = require 'cmp'
@@ -126,48 +250,76 @@ return {
         'kevinhwang91/nvim-hlslens',
         event = 'CmdlineEnter',
         config = function()
+            require 'hlslens'.setup()
+
             vim.keymap.set('n', 'n',
                 [[<CMD>execute('normal! ' . v:count1 . 'n')<CR><CMD>lua require('hlslens').start()<CR>]],
-                {noremap = true, silent = true, desc = 'Search next'}
+                { noremap = true, silent = true, desc = 'Search next' }
             )
             vim.keymap.set('n', 'N',
                 [[<CMD>execute('normal! ' . v:count1 . 'N')<CR><CMD>lua require('hlslens').start()<CR>]],
-                {noremap = true, silent = true, desc = 'Search previous'}
+                { noremap = true, silent = true, desc = 'Search previous' }
             )
             vim.keymap.set('n', '*', [[*<CMD>lua require('hlslens').start()<CR>]],
-                {noremap = true, silent = true, desc = 'Search the word under the cursor'}
+                { noremap = true, silent = true, desc = 'Search the word under the cursor' }
             )
             vim.keymap.set('n', '#', [[#<CMD>lua require('hlslens').start()<CR>]],
-                {noremap = true, silent = true, desc = 'Reverse search the word under the cursor'}
+                { noremap = true, silent = true, desc = 'Reverse search the word under the cursor' }
             )
             vim.keymap.set('n', 'g*', [[g*<CMD>lua require('hlslens').start()<CR>]],
-                {noremap = true, silent = true, desc = 'Search the word under the cursor and jump'}
+                { noremap = true, silent = true, desc = 'Search the word under the cursor and jump' }
             )
             vim.keymap.set('n', 'g#', [[g#<CMD>lua require('hlslens').start()<CR>]],
-                {noremap = true, silent = true, desc = 'Reverse search the word under the cursor and jump'}
+                { noremap = true, silent = true, desc = 'Reverse search the word under the cursor and jump' }
             )
             vim.keymap.set('n', '<LOCALLEADER><SPACE>', '<CMD>noh<CR>',
-                {noremap = true, silent = true, desc = 'Clear highlights'}
+                { noremap = true, silent = true, desc = 'Clear highlights' }
             )
         end
     },
     {
-        'petertriho/nvim-scrollbar',
+        'SmiteshP/nvim-navic',
         dependencies = {
-            'lewis6991/gitsigns.nvim',
-            'kevinhwang91/nvim-hlslens'
+            'neovim/nvim-lspconfig'
         },
-        event = {'VeryLazy'},
+        event = { 'BufRead', 'BufNewFile' },
+        config = true,
+        opts = {
+            lsp = {
+                auto_attach = true
+            }
+        }
+    },
+    {
+        'dstein64/nvim-scrollview',
+        event = { 'VeryLazy' },
         config = function()
-            require 'scrollbar'.setup()
-            require 'scrollbar.handlers.gitsigns'.setup()
-            require 'scrollbar.handlers.search'.setup()
+            vim.api.nvim_create_augroup('InsertScrollView', { clear = true })
+            vim.api.nvim_create_autocmd(
+                { 'InsertEnter' },
+                {
+                    group = 'InsertScrollView',
+                    command = 'ScrollViewDisable'
+                }
+            )
+            vim.api.nvim_create_autocmd(
+                { 'InsertLeave' },
+                {
+                    group = 'InsertScrollView',
+                    command = 'ScrollViewEnable'
+                }
+            )
+            require 'scrollview'.setup {
+                signs_on_startup = {
+                    'all'
+                }
+            }
         end
     },
     {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
-        event = {'BufRead', 'BufNewFile'},
+        event = { 'BufRead', 'BufNewFile' },
         config = function()
             require 'nvim-treesitter.install'.prefer_git = false
             require 'nvim-treesitter.configs'.setup {
@@ -176,7 +328,7 @@ return {
                     'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
                     'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
                     'lua', 'make', 'markdown', 'python', 'regex', 'sql',
-                    'toml', 'tsv','typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
+                    'toml', 'tsv', 'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
                 },
                 highlight = {
                     enable = true
@@ -200,15 +352,15 @@ return {
             'nvim-lua/plenary.nvim'
         },
         keys = {
-            {'<LEADER>ff', '<CMD>Telescope find_files hidden=true<CR>', desc = 'Open file finder'},
-            {'<LEADER>fg', '<CMD>Telescope live_grep<CR>', desc = 'Open live grep'},
-            {'<LEADER>fb', '<CMD>Telescope buffers<CR>', desc = 'Open buffer finder'},
-            {'<LEADER>fh', '<CMD>Telescope help_tags<CR>', desc = 'Open help finder'}
+            { '<LEADER>ff', '<CMD>Telescope find_files hidden=true<CR>', desc = 'Open file finder' },
+            { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',              desc = 'Open live grep' },
+            { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                desc = 'Open buffer finder' },
+            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',              desc = 'Open help finder' }
         }
     },
     {
         'lervag/vimtex',
-        ft = {'tex', 'ltx'},
+        ft = { 'tex', 'ltx' },
         config = function()
             vim.g.vimtex_view_general_viewer = 'SumatraPDF'
             vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
@@ -216,7 +368,7 @@ return {
     },
     {
         'RRethy/vim-illuminate',
-        event = {'BufRead', 'BufNewFile'},
+        event = { 'BufRead', 'BufNewFile' },
         config = function()
             require 'illuminate'.configure {
                 providers = {
@@ -229,7 +381,7 @@ return {
     },
     {
         'machakann/vim-sandwich',
-        event = {'BufRead', 'BufNewFile'}
+        event = { 'BufRead', 'BufNewFile' }
     },
     {
         'jsborjesson/vim-uppercase-sql',
@@ -242,19 +394,19 @@ return {
     {
         't9md/vim-quickhl',
         keys = {
-            {'<SPACE>m', '<Plug>(quickhl-manual-this)', desc = 'Highlight words under the cursor', remap = true},
-            {'<SPACE>m', '<Plug>(quickhl-manual-this)', desc = 'Highlight words under the cursor', remap = true, mode = 'x'},
-            {'<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights', remap = true},
-            {'<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights', remap = true, mode = 'x'},
+            { '<SPACE>m', '<Plug>(quickhl-manual-this)',  desc = 'Highlight words under the cursor', remap = true },
+            { '<SPACE>m', '<Plug>(quickhl-manual-this)',  desc = 'Highlight words under the cursor', remap = true, mode = 'x' },
+            { '<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights',         remap = true },
+            { '<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights',         remap = true, mode = 'x' },
         }
     },
     {
         'ntpeters/vim-better-whitespace',
-        event = {'BufRead', 'BufNewFile'}
+        event = { 'BufRead', 'BufNewFile' }
     },
     {
         'yutkat/wb-only-current-line.nvim',
-        event = {'BufRead', 'BufNewFile'},
+        event = { 'BufRead', 'BufNewFile' },
     },
     {
         'folke/which-key.nvim',
@@ -266,3 +418,4 @@ return {
         opts = {}
     },
 }
+

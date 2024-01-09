@@ -22,10 +22,10 @@ general:
 
 gaps:
   # Gap between adjacent windows.
-  inner_gap: "16px"
+  inner_gap: "10px"
 
   # Gap between windows and the screen edge.
-  outer_gap: "16px"
+  outer_gap: "10px"
 
 # Highlight active/inactive windows with a colored border.
 # ** Exclusive to Windows 11 due to API limitations.
@@ -103,12 +103,12 @@ bar:
       padding: "0 5px"
       background: "#3c3836"
     - type: "tiling direction"
-      label_horizontal: "⮂"
-      label_vertical: "⇅"
+      label_horizontal: "<attr ff='PlemolJP Console NF'></attr>"
+      label_vertical: "<attr ff='PlemolJP Console NF'></attr>"
       background: "#83a598"
       foreground: "#282828"
       margin: "0 5px"
-      padding: "0 8px"
+      padding: "0 10px 0 8px"
     - type: "binding mode"
       background: "#d3869b"
       foreground: "#282828"
@@ -186,6 +186,10 @@ window_rules:
   # WSLg
   - command: "ignore"
     match_process_name: "/msrdc|wslhost/"
+
+  # Zoom
+  - command: "ignore"
+    match_process_name: "Zoom"
 
   # ignore for some applications
   - command: "ignore"
