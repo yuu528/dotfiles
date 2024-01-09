@@ -1,5 +1,9 @@
 # .bashrc
 
+function _update_ps1() {
+	PS1=$(powerline-shell $?)
+}
+
 function mkcd() {
 	mkdir $1 && cd $1
 }
@@ -43,6 +47,9 @@ fi
 # カラー対応端末ならプロンプトもカラーに
 case "$TERM" in
     xterm-color|*-256color)
+		if [[ ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+			PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+		fi
 		# GCCをカラーに
 		export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 		# grepをカラーに
@@ -86,6 +93,3 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-
-# ohmyposh
-eval "$(oh-my-posh init bash --config '~/.config/ohmyposh/yuu528.omp.json')"
