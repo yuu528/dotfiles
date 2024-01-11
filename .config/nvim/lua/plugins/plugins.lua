@@ -108,6 +108,14 @@ return {
         end
     },
     {
+        'NMAC427/guess-indent.nvim',
+        event = { 'BufRead', 'BufNewFile' },
+        config = true,
+        opts = {
+            auto_cmd = true,
+        }
+    },
+    {
         'lukas-reineke/indent-blankline.nvim',
         dependencies = {
             'nvim-treesitter/nvim-treesitter'
