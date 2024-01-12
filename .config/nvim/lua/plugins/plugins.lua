@@ -108,6 +108,14 @@ return {
         end
     },
     {
+        'NMAC427/guess-indent.nvim',
+        event = { 'BufRead', 'BufNewFile' },
+        config = true,
+        opts = {
+            auto_cmd = true,
+        }
+    },
+    {
         'lukas-reineke/indent-blankline.nvim',
         dependencies = {
             'nvim-treesitter/nvim-treesitter'
@@ -320,6 +328,9 @@ return {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         event = { 'BufRead', 'BufNewFile' },
+        dependencies = {
+            'windwp/nvim-ts-autotag'
+        },
         config = function()
             require 'nvim-treesitter.install'.prefer_git = false
             require 'nvim-treesitter.configs'.setup {
@@ -335,9 +346,15 @@ return {
                 },
                 indent = {
                     enable = true
+                },
+                autotag = {
+                    enable = true
                 }
             }
         end
+    },
+    {
+        'windwp/nvim-ts-autotag',
     },
     {
         'nvim-tree/nvim-web-devicons'
