@@ -5,7 +5,8 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path'
+            'hrsh7th/cmp-path',
+            'zbirenbaum/copilot-cmp'
         },
         event = { 'InsertEnter' },
         config = function()
@@ -27,6 +28,7 @@ return {
                 sources = {
                     { name = 'buffer' },
                     { name = 'luasnip' },
+                    { name = 'copilot' },
                     { name = 'nvim_lsp' },
                     { name = 'path' }
                 },
@@ -76,6 +78,9 @@ return {
                         mode = 'symbol',
                         maxwidth = 50,
                         ellipsis_char = '...',
+                        symbol_map = {
+                            Copilot = ''
+                        },
                         before = function(entry, vim_item)
                             return vim_item
                         end
@@ -104,6 +109,13 @@ return {
     },
     {
         'hrsh7th/cmp-path'
+    },
+    {
+        'zbirenbaum/copilot-cmp',
+        dependencies = {
+            'zbirenbaum/copilot.lua'
+        },
+        config = true
     },
     {
         'rafamadriz/friendly-snippets'
