@@ -193,7 +193,7 @@ window_rules:
 
   # ignore for some applications
   - command: "ignore"
-    match_process_name: "/AdskAccessUIHost|Flow.Launcher/"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions/"
 
 binding_modes:
   - name: "resize"
