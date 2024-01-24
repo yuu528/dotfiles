@@ -58,7 +58,7 @@ return {
                         s = cmp.mapping.confirm({ select = true }),
                         c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                     },
-                    ['<ESC>'] = cmp.mapping(function(fallback)
+                    ['<C-e>'] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.abort()
                         else
