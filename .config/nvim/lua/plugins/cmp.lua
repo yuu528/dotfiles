@@ -58,6 +58,13 @@ return {
                         s = cmp.mapping.confirm({ select = true }),
                         c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                     },
+                    ['<ESC>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.abort()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 'c' }),
                     ['<C-j>'] = cmp.mapping(function(fallback)
                         if luasnip.expand_or_jumpable() then
                             luasnip.expand_or_jump()
