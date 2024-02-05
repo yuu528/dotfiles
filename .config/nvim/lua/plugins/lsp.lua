@@ -52,7 +52,12 @@ return {
                 },
                 handlers = {
                     lsp_zero.default_setup,
-                    jdtls = lsp_zero.noop
+                    jdtls = lsp_zero.noop,
+                    clangd = function()
+                        require 'lspconfig'.clangd.setup {
+                            cmd = { 'clangd', '--offset-encoding=utf-16' },
+                        }
+                    end
                 }
             }
 
@@ -112,4 +117,3 @@ return {
         }
     }
 }
-
