@@ -61,11 +61,12 @@ bar:
       focused_workspace_border_color: "#fe8019"
       displayed_workspace_border_color: "#ebdbb2"
       default_workspace_border_color: "transparent"
-  components_center:
     - type: "window title"
+      margin: "0 0 0 20px"
   components_right:
-#    - type: "system tray"
-#      margin: "0 4px"
+    - type: "system tray"
+      expanded: false # Requires PR #543
+      margin: "0 4px"
     - type: "cpu"
       label: "<attr ff='PlemolJP Console NF'> </attr>{percent_usage}%"
       padding: "0 5px"
