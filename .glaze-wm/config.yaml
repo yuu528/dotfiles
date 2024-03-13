@@ -208,7 +208,7 @@ window_rules:
 
   # ignore for some applications
   - command: "ignore"
-    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl/"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl|LGSTrayGUI/"
 
   # Remove titlebar (Requires PR #528)
   - command: "set no_title"
