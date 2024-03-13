@@ -195,6 +195,10 @@ window_rules:
   - command: "ignore"
     match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl/"
 
+  # Remove titlebar (Requires PR #528)
+  - command: "set no_title"
+    match_class_name: "/MCLWindow/"
+
 binding_modes:
   - name: "resize"
     keybindings:
