@@ -1,1 +1,1 @@
-GuiFont! PlemolJP Console NF:h10
+Guifont PlemolJP Console NF:h10

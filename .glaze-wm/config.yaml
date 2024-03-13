@@ -154,7 +154,7 @@ window_rules:
   # Task Manager requires admin privileges to manage and should be ignored unless running
   # the WM as admin.
   - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost/"
+    match_process_name: "/Taskmgr|ScreenClippingHost|mmc/"
 
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: "set floating"
@@ -208,6 +208,11 @@ window_rules:
   # ignore for some applications
   - command: "ignore"
     match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl/"
+
+  # Remove titlebar (Requires PR #528)
+  - command: "set no_title"
+    # Minecraft Launcher, nvim-qt
+    match_class_name: "/MCLWindow|Qt5152QWindowIcon/"
 
 binding_modes:
   - name: "resize"

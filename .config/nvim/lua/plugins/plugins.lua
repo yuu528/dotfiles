@@ -229,6 +229,7 @@ return {
     },
     {
         'equalsraf/neovim-gui-shim',
+        lazy = false
     },
     {
         'windwp/nvim-autopairs',
