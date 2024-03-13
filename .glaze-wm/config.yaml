@@ -197,7 +197,8 @@ window_rules:
 
   # Remove titlebar (Requires PR #528)
   - command: "set no_title"
-    match_class_name: "/MCLWindow/"
+    # Minecraft Launcher, nvim-qt
+    match_class_name: "/MCLWindow|Qt5152QWindowIcon/"
 
 binding_modes:
   - name: "resize"
