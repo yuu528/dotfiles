@@ -152,11 +152,6 @@ workspaces:
     bind_to_monitor: 1
 
 window_rules:
-  # Task Manager requires admin privileges to manage and should be ignored unless running
-  # the WM as admin.
-  - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost|mmc|LatMon/"
-
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: "set floating"
     match_class_name: "#32770"
@@ -182,33 +177,9 @@ window_rules:
     match_title: "/HUDNow|HUDNowTime/"
     match_process_name: "Cakewalk"
 
-  # Excel
+  # ignore some applications
   - command: "ignore"
-    match_process_name: "EXCEL"
-
-  # Overwolf
-  - command: "ignore"
-    match_process_name: "Overwolf"
-
-  # PowerToys
-  - command: "ignore"
-    match_process_name: "PowerToys.Peek.UI"
-
-  # WSLg
-  - command: "ignore"
-    match_process_name: "/msrdc|wslhost/"
-
-  # Zoom
-  - command: "ignore"
-    match_process_name: "Zoom"
-
-  # Fullscreen apps/games will be bound to workspace 8
-  - commands: ["move to workspace 8", "focus workspace 8"]
-    match_process_name: "/amtrucks|eurotrucks2|hl2|gmod/"
-
-  # ignore for some applications
-  - command: "ignore"
-    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl|LGSTrayGUI|voicemeeter.*|osu!|OCCT/"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl|LGSTrayGUI|voicemeeter.*|osu!|OCCT|Zoom|msrdc|wslhost|PowerToys.Peek.UI|Overwolf|EXCEL|Taskmgr|ScreenClippingHost|mmc|LatMon|regedit/"
 
   # Remove titlebar (Requires PR #528)
   - command: "set no_title"
