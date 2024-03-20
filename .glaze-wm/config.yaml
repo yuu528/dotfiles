@@ -169,7 +169,7 @@ window_rules:
 
   # ignore some applications
   - command: "ignore"
-    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl|LGSTrayGUI|voicemeeter.*|osu!|OCCT|Zoom|msrdc|wslhost|PowerToys.Peek.UI|Overwolf|EXCEL|Taskmgr|ScreenClippingHost|mmc|LatMon|regedit|gfxbench|GoInterruptPolicy/"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl|LGSTrayGUI|voicemeeter.*|osu!|OCCT|Zoom|msrdc|wslhost|PowerToys.Peek.UI|Overwolf|EXCEL|Taskmgr|ScreenClippingHost|mmc|LatMon|regedit|gfxbench|GoInterruptPolicy|HWMonitor/"
 
   # Remove titlebar (Requires PR #528)
   - command: "set no_title"
