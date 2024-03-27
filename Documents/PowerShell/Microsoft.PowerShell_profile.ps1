@@ -9,6 +9,4 @@ if (Test-Path($ChocolateyProfile)) {
 	Import-Module "$ChocolateyProfile"
 }
 
-if (executable('scoop-search')) {
-	Invoke-Expression (&scoop-search --hook)
-}
+Invoke-Expression (&scoop-search --hook)
