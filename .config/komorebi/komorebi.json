@@ -22,15 +22,7 @@
           "layout": "BSP"
         },
         {
-          "name": "2",
-          "layout": "BSP"
-        },
-        {
           "name": "3",
-          "layout": "BSP"
-        },
-        {
-          "name": "4",
           "layout": "BSP"
         },
         {
@@ -38,11 +30,27 @@
           "layout": "BSP"
         },
         {
-          "name": "6",
+          "name": "7",
           "layout": "BSP"
         },
         {
-          "name": "7",
+          "name": "9",
+          "layout": "BSP"
+        }
+      ]
+    },
+    {
+      "workspaces": [
+        {
+          "name": "2",
+          "layout": "BSP"
+        },
+        {
+          "name": "4",
+          "layout": "BSP"
+        },
+        {
+          "name": "6",
           "layout": "BSP"
         },
         {
@@ -50,7 +58,7 @@
           "layout": "BSP"
         },
         {
-          "name": "9",
+          "name": "0",
           "layout": "BSP"
         }
       ]
