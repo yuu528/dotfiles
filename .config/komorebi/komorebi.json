@@ -7,6 +7,7 @@
   "default_container_padding": 5,
   "border_padding": 0,
   "border_offset": -1,
+  "border_width": 4,
   "active_window_border": true,
   "active_window_border_colours": {
     "single": "#83a598",
