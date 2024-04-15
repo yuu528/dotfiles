@@ -38,7 +38,9 @@
   margin-left: 5px;
 }
 .active-window-widget .label {
-  padding: 0 0 2px 0;
+  padding: 0 0 1px 0;
+  font-family: "IBM Plex Sans JP";
+  font-size: 12px;
 }
 
 /* right */
