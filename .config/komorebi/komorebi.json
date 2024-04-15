@@ -57,13 +57,13 @@
     }
   ],
   "stackbar": {
-    "height": 40,
+    "height": 28,
     "mode": "OnStack",
     "tabs": {
-      "width": 300,
-      "focused_text": "#00a542",
-      "unfocused_text": "#b3b3b3",
-      "background": "#141414"
+      "width": 250,
+      "focused_text": "#8ec07c",
+      "unfocused_text": "#928374",
+      "background": "#282828"
     }
   }
 }
