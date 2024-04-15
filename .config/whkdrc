@@ -46,7 +46,7 @@ alt + shift + space     : komorebic toggle-float
 alt + shift + f         : komorebic toggle-monocle
 
 # Window manager options
-alt + y                 : komorebic retile
+alt + shift + y                 : komorebic retile
 # alt + p                 : komorebic toggle-pause
 
 # Layouts
@@ -80,3 +80,4 @@ alt + shift + 8         : komorebic move-to-named-workspace 8
 alt + shift + 9         : komorebic move-to-named-workspace 9
 
 alt + shift + q         : komorebic close
+alt + m                 :
