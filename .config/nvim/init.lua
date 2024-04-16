@@ -131,7 +131,7 @@ end, {
 local os = 'unknown'
 local arch = 'unknown'
 
-if vim.fn.has('win32') == '1' or vim.fn.has('win64') == '1' then
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
     os = 'win'
 elseif vim.fn.executable('uname') then
     arch = vim.fn.system('uname -m')
