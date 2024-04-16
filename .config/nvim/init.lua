@@ -152,7 +152,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- load plugins(small) instead of full plugins for poor systems(like rpi)
-if os == 'win' or arch == 'x86_64' then
+if os == 'win' or string.find(arch, 'x86_64') then
     require 'lazy'.setup('plugins', {
         defaults = {
             lazy = true
