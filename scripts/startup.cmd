@@ -2,5 +2,5 @@
 
 komorebic start --whkd
 
-cd "%USERPROFILE%\git\da-rth\yasb"
+cd "%USERPROFILE%\git\yuu528\yasb"
 python src/main.py

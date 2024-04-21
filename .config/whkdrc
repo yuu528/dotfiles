@@ -46,7 +46,7 @@ alt + shift + space     : komorebic toggle-float
 alt + shift + f         : komorebic toggle-monocle
 
 # Window manager options
-alt + y                 : komorebic retile
+alt + shift + y                 : komorebic retile
 # alt + p                 : komorebic toggle-pause
 
 # Layouts
@@ -68,15 +68,15 @@ alt + 8                 : komorebic focus-named-workspace 8
 alt + 9                 : komorebic focus-named-workspace 9
 
 # Move windows across workspaces
-alt + shift + 0         : komorebic move-to-named-workspace 0
-alt + shift + 1         : komorebic move-to-named-workspace 1
-alt + shift + 2         : komorebic move-to-named-workspace 2
-alt + shift + 3         : komorebic move-to-named-workspace 3
-alt + shift + 4         : komorebic move-to-named-workspace 4
-alt + shift + 5         : komorebic move-to-named-workspace 5
-alt + shift + 6         : komorebic move-to-named-workspace 6
-alt + shift + 7         : komorebic move-to-named-workspace 7
-alt + shift + 8         : komorebic move-to-named-workspace 8
-alt + shift + 9         : komorebic move-to-named-workspace 9
+alt + shift + 0         : komorebic move-to-named-workspace 0; komorebic focus-named-workspace 0
+alt + shift + 1         : komorebic move-to-named-workspace 1; komorebic focus-named-workspace 1
+alt + shift + 2         : komorebic move-to-named-workspace 2; komorebic focus-named-workspace 2
+alt + shift + 3         : komorebic move-to-named-workspace 3; komorebic focus-named-workspace 3
+alt + shift + 4         : komorebic move-to-named-workspace 4; komorebic focus-named-workspace 4
+alt + shift + 5         : komorebic move-to-named-workspace 5; komorebic focus-named-workspace 5
+alt + shift + 6         : komorebic move-to-named-workspace 6; komorebic focus-named-workspace 6
+alt + shift + 7         : komorebic move-to-named-workspace 7; komorebic focus-named-workspace 7
+alt + shift + 8         : komorebic move-to-named-workspace 8; komorebic focus-named-workspace 8
+alt + shift + 9         : komorebic move-to-named-workspace 9; komorebic focus-named-workspace 9
 
 alt + shift + q         : komorebic close
