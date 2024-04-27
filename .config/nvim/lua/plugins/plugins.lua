@@ -1,7 +1,7 @@
 return {
     {
         'famiu/bufdelete.nvim',
-        cmd = { 'Bdelete', 'Bwipeout' },
+        cmd = { 'Bdelete', 'Bwipeout' }
     },
     {
         'akinsho/bufferline.nvim',
@@ -433,6 +433,13 @@ return {
             { '<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights',         remap = true },
             { '<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights',         remap = true, mode = 'x' },
         }
+    },
+    {
+        'kana/vim-altercmd',
+        event = { 'BufRead', 'BufNewFile' },
+        config = function()
+            vim.cmd 'AlterCommand bd Bdelete'
+        end
     },
     {
         'ntpeters/vim-better-whitespace',
