@@ -137,6 +137,17 @@ elseif vim.fn.executable('uname') then
     arch = vim.fn.system('uname -m')
 end
 
+
+-- paths
+if os == 'win' then
+    local pyenv_python = vim.fn.expand('~\\.pyenv\\pyenv-win\\shims\\python.bat')
+
+    if vim.fn.executable(pyenv_python) then
+        vim.g.python3_host_prog = pyenv_python
+    end
+end
+
+
 -- load lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
