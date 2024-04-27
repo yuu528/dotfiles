@@ -1,5 +1,9 @@
 return {
     {
+        'famiu/bufdelete.nvim',
+        cmd = { 'Bdelete', 'Bwipeout' },
+    },
+    {
         'akinsho/bufferline.nvim',
         version = '*',
         dependencies = {
