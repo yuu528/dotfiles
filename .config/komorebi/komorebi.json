@@ -73,5 +73,12 @@
       "unfocused_text": "#928374",
       "background": "#282828"
     }
-  }
+  },
+  "float_rules": [
+    {
+      "kind": "Exe",
+      "id": "Zebar.exe",
+      "matching_strategy": "Equals"
+    }
+  ]
 }
