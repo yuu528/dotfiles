@@ -6,6 +6,9 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+-- Renderer
+config.front_end = 'WebGpu'
+
 -- Font
 config.font = wezterm.font('PlemolJP Console NF', { weight = 'Medium' })
 config.font_size = 10
