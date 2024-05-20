@@ -106,6 +106,48 @@ vim.api.nvim_create_autocmd(
     }
 )
 
+-- format toggle commands for Conform.nvim
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+    if args.bang then
+        vim.b.disable_autoformat = true
+    else
+        vim.g.disable_autoformat = true
+    end
+end, {
+        desc = "Disable autoformat-on-save",
+        bang = true,
+    }
+)
+
+vim.api.nvim_create_user_command("FormatEnable", function()
+    vim.b.disable_autoformat = false
+    vim.g.disable_autoformat = false
+end, {
+        desc = "Re-enable autoformat-on-save",
+    }
+)
+
+-- get os
+local os = 'unknown'
+local arch = 'unknown'
+
+if vim.fn.has('win32') == 1 or vim.fn.has('win64') == 1 then
+    os = 'win'
+elseif vim.fn.executable('uname') then
+    arch = vim.fn.system('uname -m')
+end
+
+
+-- paths
+if os == 'win' then
+    local pyenv_python = vim.fn.expand('~\\.pyenv\\pyenv-win\\shims\\python.bat')
+
+    if vim.fn.executable(pyenv_python) then
+        vim.g.python3_host_prog = pyenv_python
+    end
+end
+
+
 -- load lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -120,9 +162,17 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require 'lazy'.setup('plugins', {
-    defaults = {
-        lazy = true
-    }
-})
-
+-- load plugins(small) instead of full plugins for poor systems(like rpi)
+if os == 'win' or string.find(arch, 'x86_64') then
+    require 'lazy'.setup('plugins', {
+        defaults = {
+            lazy = true
+        }
+    })
+else
+    require 'lazy'.setup('plugins_small', {
+        defaults = {
+            lazy = true
+        }
+    })
+end

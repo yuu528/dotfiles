@@ -1,5 +1,9 @@
 return {
     {
+        'famiu/bufdelete.nvim',
+        cmd = { 'Bdelete', 'Bwipeout' }
+    },
+    {
         'akinsho/bufferline.nvim',
         version = '*',
         dependencies = {
@@ -28,6 +32,18 @@ return {
         'yutkat/confirm-quit.nvim',
         event = 'CmdlineEnter',
         config = true
+    },
+    {
+        'zbirenbaum/copilot.lua',
+        cmd = 'Copilot',
+        event = {
+            'InsertEnter'
+        },
+        config = true,
+        opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false }
+        }
     },
     {
         'mattn/emmet-vim',
@@ -106,6 +122,14 @@ return {
             vim.o.background = 'dark'
             vim.cmd('colorscheme gruvbox')
         end
+    },
+    {
+        'NMAC427/guess-indent.nvim',
+        event = { 'BufRead', 'BufNewFile' },
+        config = true,
+        opts = {
+            auto_cmd = true,
+        }
     },
     {
         'lukas-reineke/indent-blankline.nvim',
@@ -209,6 +233,7 @@ return {
     },
     {
         'equalsraf/neovim-gui-shim',
+        lazy = false
     },
     {
         'windwp/nvim-autopairs',
@@ -320,6 +345,9 @@ return {
         'nvim-treesitter/nvim-treesitter',
         build = ':TSUpdate',
         event = { 'BufRead', 'BufNewFile' },
+        dependencies = {
+            'windwp/nvim-ts-autotag'
+        },
         config = function()
             require 'nvim-treesitter.install'.prefer_git = false
             require 'nvim-treesitter.configs'.setup {
@@ -335,9 +363,15 @@ return {
                 },
                 indent = {
                     enable = true
+                },
+                autotag = {
+                    enable = true
                 }
             }
         end
+    },
+    {
+        'windwp/nvim-ts-autotag',
     },
     {
         'nvim-tree/nvim-web-devicons'
@@ -399,6 +433,13 @@ return {
             { '<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights',         remap = true },
             { '<SPACE>M', '<Plug>(quickhl-manual-reset)', desc = 'Clear quickhl highlights',         remap = true, mode = 'x' },
         }
+    },
+    {
+        'kana/vim-altercmd',
+        event = { 'BufRead', 'BufNewFile' },
+        config = function()
+            vim.cmd 'AlterCommand bd Bdelete'
+        end
     },
     {
         'ntpeters/vim-better-whitespace',

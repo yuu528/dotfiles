@@ -1,0 +1,76 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.24/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/.config/komorebi/applications.yaml",
+  "window_hiding_behaviour": "Cloak",
+  "cross_monitor_move_behaviour": "Insert",
+  "default_workspace_padding": 1,
+  "default_container_padding": 5,
+  "border_padding": 0,
+  "border_offset": -1,
+  "border_width": 4,
+  "active_window_border": true,
+  "active_window_border_colours": {
+    "single": "#83a598",
+    "stack": "#689d6a",
+    "monocle": "#d79921"
+  },
+  "monitors": [
+    {
+      "workspaces": [
+        {
+          "name": "1",
+          "layout": "BSP"
+        },
+        {
+          "name": "2",
+          "layout": "BSP"
+        },
+        {
+          "name": "3",
+          "layout": "BSP"
+        },
+        {
+          "name": "4",
+          "layout": "BSP"
+        },
+        {
+          "name": "5",
+          "layout": "BSP"
+        },
+        {
+          "name": "6",
+          "layout": "BSP"
+        },
+        {
+          "name": "7",
+          "layout": "BSP"
+        },
+        {
+          "name": "8",
+          "layout": "BSP"
+        },
+        {
+          "name": "9",
+          "layout": "BSP"
+        }
+      ]
+    }
+  ],
+  "stackbar": {
+    "height": 28,
+    "mode": "OnStack",
+    "tabs": {
+      "width": 250,
+      "focused_text": "#8ec07c",
+      "unfocused_text": "#928374",
+      "background": "#282828"
+    }
+  },
+  "float_rules": [
+    {
+      "kind": "Exe",
+      "id": "Zebar.exe",
+      "matching_strategy": "Equals"
+    }
+  ]
+}

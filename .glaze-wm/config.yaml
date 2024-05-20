@@ -61,11 +61,12 @@ bar:
       focused_workspace_border_color: "#fe8019"
       displayed_workspace_border_color: "#ebdbb2"
       default_workspace_border_color: "transparent"
-  components_center:
     - type: "window title"
+      margin: "0 0 0 20px"
   components_right:
-#    - type: "system tray"
-#      margin: "0 4px"
+    - type: "system tray"
+      expanded: false # Requires PR #543
+      margin: "0 4px"
     - type: "cpu"
       label: "<attr ff='PlemolJP Console NF'> </attr>{percent_usage}%"
       padding: "0 5px"
@@ -141,11 +142,6 @@ workspaces:
   - name: "9"
 
 window_rules:
-  # Task Manager requires admin privileges to manage and should be ignored unless running
-  # the WM as admin.
-  - command: "ignore"
-    match_process_name: "/Taskmgr|ScreenClippingHost/"
-
   # Launches system dialogs as floating by default (eg. File Explorer save/open dialog).
   - command: "set floating"
     match_class_name: "#32770"
@@ -171,29 +167,17 @@ window_rules:
     match_title: "/HUDNow|HUDNowTime/"
     match_process_name: "Cakewalk"
 
-  # Excel
+  # ignore some applications
   - command: "ignore"
-    match_process_name: "EXCEL"
+    match_process_name: "/AdskAccessUIHost|Flow.Launcher|LiveCaptions|aviutl|LGSTrayGUI|voicemeeter.*|osu!|OCCT|Zoom|msrdc|wslhost|PowerToys.Peek.UI|Overwolf|EXCEL|Taskmgr|ScreenClippingHost|mmc|LatMon|regedit|gfxbench|GoInterruptPolicy|HWMonitor/"
 
-  # Overwolf
   - command: "ignore"
-    match_process_name: "Overwolf"
+    match_class_name: "/UnityWndClass/"
 
-  # PowerToys
-  - command: "ignore"
-    match_process_name: "PowerToys.Peek.UI"
-
-  # WSLg
-  - command: "ignore"
-    match_process_name: "/msrdc|wslhost/"
-
-  # Zoom
-  - command: "ignore"
-    match_process_name: "Zoom"
-
-  # ignore for some applications
-  - command: "ignore"
-    match_process_name: "/AdskAccessUIHost|Flow.Launcher/"
+  # Remove titlebar (Requires PR #528)
+  - command: "set no_title"
+    # Minecraft Launcher, nvim-qt
+    match_class_name: "/MCLWindow|Qt5152QWindowIcon/"
 
 binding_modes:
   - name: "resize"

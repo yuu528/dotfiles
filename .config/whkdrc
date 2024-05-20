@@ -1,0 +1,82 @@
+.shell pwsh
+
+# Reload whkd configuration
+# alt + o                 : taskkill /f /im whkd.exe && start /b whkd # if shell is cmd
+alt + r                 : taskkill /f /im whkd.exe; Start-Process whkd -WindowStyle hidden # if shell is pwsh / powershell
+alt + shift + r         : komorebic reload-configuration
+
+# App shortcuts - these require shell to be pwsh / powershell
+# The apps will be focused if open, or launched if not open
+# alt + f                 : if ($wshell.AppActivate('Firefox') -eq $False) { start firefox }
+# alt + b                 : if ($wshell.AppActivate('Chrome') -eq $False) { start chrome }
+alt + return             : start wezterm-gui
+
+# Focus windows
+alt + h                 : komorebic focus left
+alt + j                 : komorebic focus down
+alt + k                 : komorebic focus up
+alt + l                 : komorebic focus right
+alt + shift + oem_4     : komorebic cycle-focus previous # oem_4 is [
+alt + shift + oem_6     : komorebic cycle-focus next # oem_6 is ]
+
+# Move windows
+alt + shift + h         : komorebic move left
+alt + shift + j         : komorebic move down
+alt + shift + k         : komorebic move up
+alt + shift + l         : komorebic move right
+alt + shift + return    : komorebic promote
+
+# Stack windows
+alt + left              : komorebic stack left
+alt + down              : komorebic stack down
+alt + up                : komorebic stack up
+alt + right             : komorebic stack right
+alt + oem_1             : komorebic unstack # oem_1 is ;
+alt + oem_4             : komorebic cycle-stack previous # oem_4 is [
+alt + oem_6             : komorebic cycle-stack next # oem_6 is ]
+
+# Resize
+alt + p                 : komorebic resize-axis horizontal increase
+alt + u                 : komorebic resize-axis horizontal decrease
+alt + i                 : komorebic resize-axis vertical increase
+alt + o                 : komorebic resize-axis vertical decrease
+
+# Manipulate windows
+alt + shift + space     : komorebic toggle-float
+alt + shift + f         : komorebic toggle-monocle
+
+# Window manager options
+alt + shift + y                 : komorebic retile
+# alt + p                 : komorebic toggle-pause
+
+# Layouts
+alt + x                 : komorebic flip-layout horizontal
+alt + y                 : komorebic flip-layout vertical
+alt + v                 : komorebic cycle-layout next
+alt + shift + v         : komorebic cycle-layout previous
+
+# Workspaces
+alt + 0                 : komorebic focus-named-workspace 0
+alt + 1                 : komorebic focus-named-workspace 1
+alt + 2                 : komorebic focus-named-workspace 2
+alt + 3                 : komorebic focus-named-workspace 3
+alt + 4                 : komorebic focus-named-workspace 4
+alt + 5                 : komorebic focus-named-workspace 5
+alt + 6                 : komorebic focus-named-workspace 6
+alt + 7                 : komorebic focus-named-workspace 7
+alt + 8                 : komorebic focus-named-workspace 8
+alt + 9                 : komorebic focus-named-workspace 9
+
+# Move windows across workspaces
+alt + shift + 0         : komorebic move-to-named-workspace 0; komorebic focus-named-workspace 0
+alt + shift + 1         : komorebic move-to-named-workspace 1; komorebic focus-named-workspace 1
+alt + shift + 2         : komorebic move-to-named-workspace 2; komorebic focus-named-workspace 2
+alt + shift + 3         : komorebic move-to-named-workspace 3; komorebic focus-named-workspace 3
+alt + shift + 4         : komorebic move-to-named-workspace 4; komorebic focus-named-workspace 4
+alt + shift + 5         : komorebic move-to-named-workspace 5; komorebic focus-named-workspace 5
+alt + shift + 6         : komorebic move-to-named-workspace 6; komorebic focus-named-workspace 6
+alt + shift + 7         : komorebic move-to-named-workspace 7; komorebic focus-named-workspace 7
+alt + shift + 8         : komorebic move-to-named-workspace 8; komorebic focus-named-workspace 8
+alt + shift + 9         : komorebic move-to-named-workspace 9; komorebic focus-named-workspace 9
+
+alt + shift + q         : komorebic close

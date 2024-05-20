@@ -5,7 +5,8 @@ return {
             'hrsh7th/cmp-nvim-lsp',
             'saadparwaiz1/cmp_luasnip',
             'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path'
+            'hrsh7th/cmp-path',
+            'zbirenbaum/copilot-cmp'
         },
         event = { 'InsertEnter' },
         config = function()
@@ -27,6 +28,7 @@ return {
                 sources = {
                     { name = 'buffer' },
                     { name = 'luasnip' },
+                    { name = 'copilot' },
                     { name = 'nvim_lsp' },
                     { name = 'path' }
                 },
@@ -56,6 +58,13 @@ return {
                         s = cmp.mapping.confirm({ select = true }),
                         c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
                     },
+                    ['<C-e>'] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.abort()
+                        else
+                            fallback()
+                        end
+                    end, { 'i', 'c' }),
                     ['<C-j>'] = cmp.mapping(function(fallback)
                         if luasnip.expand_or_jumpable() then
                             luasnip.expand_or_jump()
@@ -76,10 +85,16 @@ return {
                         mode = 'symbol',
                         maxwidth = 50,
                         ellipsis_char = '...',
+                        symbol_map = {
+                            Copilot = ''
+                        },
                         before = function(entry, vim_item)
                             return vim_item
                         end
                     }
+                },
+                experimental = {
+                    ghost_text = true
                 }
             }
         end
@@ -104,6 +119,13 @@ return {
     },
     {
         'hrsh7th/cmp-path'
+    },
+    {
+        'zbirenbaum/copilot-cmp',
+        dependencies = {
+            'zbirenbaum/copilot.lua'
+        },
+        config = true
     },
     {
         'rafamadriz/friendly-snippets'

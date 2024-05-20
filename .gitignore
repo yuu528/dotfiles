@@ -3,5 +3,6 @@
 .config/nvim/secret.tsv
 .config/nvim/lazy-lock.json
 .config/powerline-shell/custom_segments/__pycache__/
+.yasb/yasb.log
 .vifm/vifminfo.json
 **node_modules
