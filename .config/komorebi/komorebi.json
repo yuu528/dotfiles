@@ -10,9 +10,10 @@
   "border_width": 4,
   "active_window_border": true,
   "active_window_border_colours": {
-    "single": "#83a598",
-    "stack": "#689d6a",
-    "monocle": "#d79921"
+    "single": "#b8bb26",
+    "stack": "#83a598",
+    "monocle": "#fabd2f",
+    "unfocused": "#928374"
   },
   "monitors": [
     {
