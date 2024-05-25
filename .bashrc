@@ -89,3 +89,7 @@ fi
 
 # ohmyposh
 eval "$(oh-my-posh init bash --config '~/.config/ohmyposh/yuu528.omp.json')"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH=$BUN_INSTALL/bin:$PATH
