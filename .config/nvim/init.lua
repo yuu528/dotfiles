@@ -5,8 +5,6 @@ vim.o.encoding = 'utf-8'
 vim.o.fileencoding = 'utf-8'
 
 -- file
-vim.o.nobackup = true
-vim.o.noswapfile = true
 vim.o.autoread = true
 vim.o.hidden = true
 
