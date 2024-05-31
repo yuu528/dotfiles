@@ -1,0 +1,5 @@
+set nonumber
+set smartindent
+set autoindent
+set ignorecase
+set smartcase
