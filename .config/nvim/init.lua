@@ -5,8 +5,6 @@ vim.o.encoding = 'utf-8'
 vim.o.fileencoding = 'utf-8'
 
 -- file
-vim.o.nobackup = true
-vim.o.noswapfile = true
 vim.o.autoread = true
 vim.o.hidden = true
 
@@ -107,6 +105,9 @@ vim.api.nvim_create_autocmd(
 )
 
 -- format toggle commands for Conform.nvim
+vim.b.disable_autoformat = false
+vim.g.disable_autoformat = false
+
 vim.api.nvim_create_user_command("FormatDisable", function(args)
     if args.bang then
         vim.b.disable_autoformat = true
