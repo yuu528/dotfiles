@@ -132,6 +132,12 @@ return {
         }
     },
     {
+        'RaafatTurki/hex.nvim',
+        event = { 'BufRead' },
+        cmd = { 'HexDump', 'HexAssemble', 'HexToggle' },
+        config = true
+    },
+    {
         'lukas-reineke/indent-blankline.nvim',
         dependencies = {
             'nvim-treesitter/nvim-treesitter'
@@ -422,10 +428,6 @@ return {
         ft = 'sql'
     },
     {
-        'Shougo/vinarise.vim',
-        cmd = 'Vinarise'
-    },
-    {
         't9md/vim-quickhl',
         keys = {
             { '<SPACE>m', '<Plug>(quickhl-manual-this)',  desc = 'Highlight words under the cursor', remap = true },
@@ -459,4 +461,3 @@ return {
         opts = {}
     },
 }
-
