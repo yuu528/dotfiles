@@ -73,5 +73,10 @@
       "id": "Zebar.exe",
       "matching_strategy": "Equals"
     }
-  ]
+  ],
+  "animation": {
+    "enabled": true,
+    "duration": 200,
+    "style": "EaseInOutCirc"
+  }
 }
