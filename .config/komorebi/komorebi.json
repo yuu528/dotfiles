@@ -3,6 +3,7 @@
   "app_specific_configuration_path": "$Env:USERPROFILE/.config/komorebi/applications.yaml",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
+  "mouse_follows_focus": false,
   "default_workspace_padding": 1,
   "default_container_padding": 5,
   "border_padding": 0,
@@ -66,13 +67,15 @@
     }
   ],
   "stackbar": {
-    "height": 28,
+    "height": 18,
     "mode": "OnStack",
     "tabs": {
-      "width": 250,
+      "width": 180,
       "focused_text": "#8ec07c",
       "unfocused_text": "#928374",
-      "background": "#282828"
+      "background": "#282828",
+      "font_size": 18,
+      "fomt_family": "IBM Plex Sans JP"
     }
   },
   "float_rules": [
@@ -81,5 +84,10 @@
       "id": "Zebar.exe",
       "matching_strategy": "Equals"
     }
-  ]
+  ],
+  "animation": {
+    "enabled": true,
+    "duration": 200,
+    "style": "EaseInOutCirc"
+  }
 }
