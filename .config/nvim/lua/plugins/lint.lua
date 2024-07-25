@@ -33,17 +33,21 @@ return {
             'mfussenegger/nvim-lint'
         },
         event = { 'BufReadPre', 'BufNewFile' },
-        config = true,
-        opts = {
-            ensure_installed = {
+        config = function()
+            local ensure_installed = {
                 'eslint_d',
-                'pylint',
-                'markdownlint',
-                'clang-format',
-                'clangd'
-            },
-            automatic_installation = false
-        }
+                'markdownlint'
+            }
+
+            if vim.fn.has('unix') == 1 then
+                table.insert(ensure_installed, 'clang-format')
+                table.insert(ensure_installed, 'pylint')
+            end
+
+            require 'mason-nvim-lint'.setup {
+                ensure_installed = ensure_installed,
+                automatic_installation = false
+            }
+        end
     }
 }
-
