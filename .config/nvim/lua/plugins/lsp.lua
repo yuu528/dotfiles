@@ -28,37 +28,45 @@ return {
                 lsp_zero.default_keymaps({ buffer = bufnr })
             end)
 
+            local handlers = {
+                lsp_zero.default_setup,
+                jdtls = lsp_zero.noop,
+                clangd = function()
+                    require 'lspconfig'.clangd.setup {
+                        cmd = { 'clangd', '--offset-encoding=utf-16' },
+                    }
+                end
+            }
+
+            local ensure_installed = {
+                'arduino_language_server',
+                'bashls',
+                'clangd',
+                'cssls',
+                'dotls',
+                'html',
+                'jdtls',
+                'jsonls',
+                'lemminx',
+                'lua_ls',
+                'marksman',
+                'quick_lint_js',
+                'sqlls',
+                'taplo',
+                'texlab',
+                'tsserver',
+                'vimls',
+                'yamlls',
+            }
+
+            if vim.fn.has('unix') == 1 then
+                table.insert(ensure_installed, 'pylsp')
+            end
+
+            require 'mason'.setup({})
             require 'mason-lspconfig'.setup {
-                ensure_installed = {
-                    'arduino_language_server',
-                    'bashls',
-                    'clangd',
-                    'cssls',
-                    'dotls',
-                    'html',
-                    'jdtls',
-                    'jsonls',
-                    'lemminx',
-                    'lua_ls',
-                    'marksman',
-                    'pylsp',
-                    'quick_lint_js',
-                    'sqlls',
-                    'taplo',
-                    'texlab',
-                    'tsserver',
-                    'vimls',
-                    'yamlls',
-                },
-                handlers = {
-                    lsp_zero.default_setup,
-                    jdtls = lsp_zero.noop,
-                    clangd = function()
-                        require 'lspconfig'.clangd.setup {
-                            cmd = { 'clangd', '--offset-encoding=utf-16' },
-                        }
-                    end
-                }
+                ensure_installed = ensure_installed,
+                handlers = handlers
             }
 
             local signs = { Error = " ", Warn = " ", Hint = "󰌶 ", Info = " " }
