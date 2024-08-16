@@ -1,16 +1,8 @@
 # Yaml is white-space sensitive (use 2 spaces to indent).
 
 ###
-# Settings to apply to all windows.
-#
-# Docs regarding global: https://some-future-docs-link.com
-global:
-  # Whether to enable the browser devtools.
-  enable_devtools: true
-
-###
 # Define a new window with an id of 'bar'. This window can then be opened
-# via the Zebar cli by running 'zebar open bar'.
+# via the Zebar cli by running 'zebar open bar --args <ARGS...>'.
 #
 # Docs regarding window: https://some-future-docs-link.com
 window/bar:
@@ -18,16 +10,16 @@ window/bar:
   # Width of the window in physical pixels.
   width: '{{ self.args.MONITOR_WIDTH }}'
   # Height of the window in physical pixels.
-  height: '45'
+  height: '28'
   # X-position of the window in physical pixels.
   position_x: '{{ self.args.MONITOR_X }}'
   # Y-position of the window in physical pixels.
   position_y: '{{ self.args.MONITOR_Y }}'
   # Whether to show the window above/below all others.
   # Allowed values: 'always_on_top', 'always_on_bottom', 'normal'.
-  z_order: 'always_on_top'
+  z_order: 'normal'
   # Whether the window should be shown in the taskbar.
-  show_in_taskbar: false
+  shown_in_taskbar: false
   # Whether the window should have resize handles.
   resizable: false
   # Styles to apply globally within the window. For example, we can use
@@ -35,75 +27,115 @@ window/bar:
   # for a cheatsheet of available Nerdfonts icons.
   global_styles: |
     @import "https://www.nerdfonts.com/assets/css/webfont.css";
-  # CSS/SCSS styles to apply to the root element within the window.
+  # CSS styles to apply to the root element within the window. Using CSS
+  # nesting, we can also target nested elements (e.g. below we set the
+  # color and margin-right of icons).
   styles: |
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     height: 100%;
-    color: #ffffffe6;
-    font-family: ui-monospace, monospace;
-    font-size: 13px;
-    padding: 4px 24px;
-    border-bottom: 1px solid #ffffff08;
-    background: linear-gradient(
-      rgba(14, 14, 28, 0.95),
-      rgba(26, 14, 28, 0.85),
-    );
+    color: #ebdbb2;
+    font-family: 'IBM Plex Sans JP', ui-monospace, monospace;
+    font-size: 14px;
+    padding: 0px 4px;
+    background-color: #282828;
+
+    i {
+      color: #ebdbb2;
+      margin-right: 4px;
+    }
+
   group/left:
     styles: |
       display: flex;
       align-items: center;
 
-    template/logo:
-      styles: |
-        margin-right: 20px;
-      template: |
-        <i class="nf nf-fa-windows"></i>
-
-    template/glazewm:
+    template/glazewm_workspaces:
       styles: |
         display: flex;
         align-items: center;
 
         .workspace {
-          background: rgba(255, 255, 255, 0.05);
-          margin-right: 4px;
-          width: 30px;
-          height: 30px;
-          color: #ffffffe6;
-          border: none;
-          border-radius: 2px;
+          margin: 0 1px;
+          padding: 4px 6px;
+          border-width: 0 0 2px 0;
+          border-style: solid;
+          border-color: transparent;
+          cursor: pointer;
+
+          &.displayed {
+            border-color: #fe8019;
+          }
+
+          &.focused,
+          &:hover {
+            border-color: #458588;
+          }
         }
       providers: ['glazewm']
+      events:
+        - type: 'click'
+          fn_path: 'script.js#focusWorkspace'
+          selector: '.workspace'
       template: |
-        @for (workspace of glazewm.workspacesOnMonitor) {
-          <button class="workspace">{{ workspace.name }}</button>
+        @for (workspace of glazewm.currentWorkspaces) {
+          <button
+            class="workspace {{ workspace.hasFocus ? 'focused' : '' }} {{ workspace.isDisplayed ? 'displayed' : '' }}"
+            id="{{ workspace.name }}"
+          >
+            {{ workspace.displayName ?? workspace.name }}
+          </button>
         }
 
   group/center:
     styles: |
       justify-self: center;
 
-    template/clock:
-      providers: ['date']
-      # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
-      template: |
-        {{ date.toFormat(date.now, 'EEE	d MMM t') }}
-
   group/right:
     styles: |
       justify-self: end;
       display: flex;
 
-      .template {
-        margin-left: 20px;
-      }
+    template/glazewm_other:
+      providers: ['glazewm']
+      styles: |
+        .binding-mode,
+        .tiling-direction {
+          background: #83a598;
+          padding: 0 5px 0 5px;
+          margin: 0 0 0 5px;
+        }
 
-      i {
-        color: #7481b2e1;
-        margin-right: 7px;
-      }
+      template: |
+        @for (bindingMode of glazewm.bindingModes) {
+          <span class="binding-mode">
+            {{ bindingMode.displayName ?? bindingMode.name }}
+          </span>
+        }
+
+        @if (glazewm.tilingDirection === 'horizontal') {
+          <i class="tiling-direction nf nf-md-swap_horizontal"></i>
+        } @else {
+          <i class="tiling-direction nf nf-md-swap_vertical"></i>
+        }
+
+    template/network:
+      providers: ['network']
+      template: |
+        <!-- Show icon based on signal strength. -->
+        @if (network.defaultInterface?.type === 'ethernet') {
+          <i class="nf nf-md-ethernet_cable"></i>
+        } @else if (network.defaultInterface?.type === 'wifi') {
+          @if (network.defaultGateway?.signalStrength >= 80) {<i class="nf nf-md-wifi_strength_4"></i>}
+          @else if (network.defaultGateway?.signalStrength >= 65) {<i class="nf nf-md-wifi_strength_3"></i>}
+          @else if (network.defaultGateway?.signalStrength >= 40) {<i class="nf nf-md-wifi_strength_2"></i>}
+          @else if (network.defaultGateway?.signalStrength >= 25) {<i class="nf nf-md-wifi_strength_1"></i>}
+          @else {<i class="nf nf-md-wifi_strength_outline"></i>}
+          {{ network.defaultGateway?.ssid }}
+        } @else {
+          <i class="nf nf-md-wifi_strength_off_outline"></i>
+        }
 
     template/memory:
       providers: ['memory']
@@ -151,21 +183,8 @@ window/bar:
 
         {{ Math.round(battery.chargePercent) }}%
 
-    template/weather:
-      providers: ['weather']
+    template/clock:
+      providers: ['date']
+      # Available date tokens: https://moment.github.io/luxon/#/formatting?id=table-of-tokens
       template: |
-        @switch (weather.status) {
-          @case ('clear_day') {<i class="nf nf-weather-day_sunny"></i>}
-          @case ('clear_night') {<i class="nf nf-weather-night_clear"></i>}
-          @case ('cloudy_day') {<i class="nf nf-weather-day_cloudy"></i>}
-          @case ('cloudy_night') {<i class="nf nf-weather-night_alt_cloudy"></i>}
-          @case ('light_rain_day') {<i class="nf nf-weather-day_sprinkle"></i>}
-          @case ('light_rain_night') {<i class="nf nf-weather-night_alt_sprinkle"></i>}
-          @case ('heavy_rain_day') {<i class="nf nf-weather-day_rain"></i>}
-          @case ('heavy_rain_night') {<i class="nf nf-weather-night_alt_rain"></i>}
-          @case ('snow_day') {<i class="nf nf-weather-day_snow"></i>}
-          @case ('snow_night') {<i class="nf nf-weather-night_alt_snow"></i>}
-          @case ('thunder_day') {<i class="nf nf-weather-day_lightning"></i>}
-          @case ('thunder_night') {<i class="nf nf-weather-night_alt_lightning"></i>}
-        }
-        {{ weather.celsiusTemp }}°
+        {{ date.toFormat(date.now, 'EEE	d MMM t') }}
