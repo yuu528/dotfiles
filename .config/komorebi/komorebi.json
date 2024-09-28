@@ -9,8 +9,8 @@
   "border_padding": 0,
   "border_offset": -1,
   "border_width": 4,
-  "active_window_border": true,
-  "active_window_border_colours": {
+  "border": true,
+  "border_colours": {
     "single": "#b8bb26",
     "stack": "#83a598",
     "monocle": "#fabd2f",
