@@ -163,8 +163,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
--- load plugins(small) instead of full plugins for poor systems(like rpi)
-if os == 'win' or string.find(arch, 'x86_64') then
+
+-- load for vscode, normal env or rpi
+if vim.g.vscode then
+    require 'lazy'.setup('plugins_vscode', {
+        defaults = {
+            lazy = true
+        }
+    })
+elseif os == 'win' or string.find(arch, 'x86_64') then
     require 'lazy'.setup('plugins', {
         defaults = {
             lazy = true
