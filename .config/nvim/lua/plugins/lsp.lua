@@ -54,7 +54,6 @@ return {
                 'sqlls',
                 'taplo',
                 'texlab',
-                'tsserver',
                 'vimls',
                 'yamlls',
             }
