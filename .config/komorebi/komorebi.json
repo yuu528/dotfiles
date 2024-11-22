@@ -1,21 +1,18 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.24/schema.json",
-  "app_specific_configuration_path": "$Env:USERPROFILE/.config/komorebi/applications.yaml",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.30/schema.json",
+  "app_specific_configuration_path": "$Env:USERPROFILE/.config/komorebi/applications.json",
   "window_hiding_behaviour": "Cloak",
   "cross_monitor_move_behaviour": "Insert",
   "mouse_follows_focus": false,
   "default_workspace_padding": 1,
   "default_container_padding": 5,
+  "transparency": true,
+  "resize_delta": 200,
   "border_padding": 0,
   "border_offset": -1,
   "border_width": 4,
   "border": true,
-  "border_colours": {
-    "single": "#b8bb26",
-    "stack": "#83a598",
-    "monocle": "#fabd2f",
-    "unfocused": "#928374"
-  },
+  "border_z_order": "Bottom",
   "monitors": [
     {
       "workspaces": [
@@ -63,14 +60,11 @@
     "mode": "OnStack",
     "tabs": {
       "width": 180,
-      "focused_text": "#8ec07c",
-      "unfocused_text": "#928374",
-      "background": "#282828",
       "font_size": 18,
       "fomt_family": "IBM Plex Sans JP"
     }
   },
-  "float_rules": [
+  "floating_applications": [
     {
       "kind": "Exe",
       "id": "Zebar.exe",
@@ -93,5 +87,9 @@
     "enabled": true,
     "duration": 200,
     "style": "EaseInOutCirc"
+  },
+  "theme": {
+    "name": "GruvboxDarkMedium",
+    "palette": "Base16"
   }
 }

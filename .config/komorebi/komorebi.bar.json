@@ -1,12 +1,12 @@
 {
-  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.29/schema.bar.json",
+  "$schema": "https://raw.githubusercontent.com/LGUG2Z/komorebi/v0.1.30/schema.bar.json",
   "monitor": {
     "index": 0,
     "work_area_offset": {
       "left": 0,
-      "top": 40,
+      "top": 50,
       "right": 0,
-      "bottom": 40
+      "bottom": 50
     }
   },
   "font_family": "IBM Plex Sans JP",
