@@ -82,6 +82,13 @@
       "matching_strategy": "Equals"
     }
   ],
+  "ignore_rules": [
+    {
+      "kind": "Class",
+      "id": "OneNote::CNavigationUIPerMonitorDpiAwareWindow",
+      "matching_strategy": "Equals"
+    }
+  ],
   "animation": {
     "enabled": true,
     "duration": 200,
