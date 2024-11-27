@@ -108,22 +108,27 @@ vim.api.nvim_create_autocmd(
 vim.b.disable_autoformat = false
 vim.g.disable_autoformat = false
 
-vim.api.nvim_create_user_command("FormatDisable", function(args)
-    if args.bang then
-        vim.b.disable_autoformat = true
-    else
-        vim.g.disable_autoformat = true
-    end
-end, {
+vim.api.nvim_create_user_command(
+    "FormatDisable",
+    function(args)
+        if args.bang then
+            vim.b.disable_autoformat = true
+        else
+            vim.g.disable_autoformat = true
+        end
+    end,
+    {
         desc = "Disable autoformat-on-save",
         bang = true,
     }
 )
 
-vim.api.nvim_create_user_command("FormatEnable", function()
-    vim.b.disable_autoformat = false
-    vim.g.disable_autoformat = false
-end, {
+vim.api.nvim_create_user_command("FormatEnable",
+    function()
+        vim.b.disable_autoformat = false
+        vim.g.disable_autoformat = false
+    end,
+    {
         desc = "Re-enable autoformat-on-save",
     }
 )
@@ -146,6 +151,10 @@ if os == 'win' then
     if vim.fn.executable(pyenv_python) then
         vim.g.python3_host_prog = pyenv_python
     end
+
+    if vim.fn.executable('pwsh') then
+        vim.o.shell = 'pwsh'
+    end
 end
 
 
@@ -166,6 +175,10 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load for vscode, normal env or rpi
 if vim.g.vscode then
+    vim.keymap.set('n', '<LOCALLEADER><SPACE>', '<CMD>noh<CR>',
+        { noremap = true, silent = true, desc = 'Clear highlights' }
+    )
+
     require 'lazy'.setup('plugins_vscode', {
         defaults = {
             lazy = true
