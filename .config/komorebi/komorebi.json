@@ -6,7 +6,6 @@
   "mouse_follows_focus": false,
   "default_workspace_padding": 1,
   "default_container_padding": 5,
-  "transparency": true,
   "resize_delta": 200,
   "border_padding": 0,
   "border_offset": -1,
