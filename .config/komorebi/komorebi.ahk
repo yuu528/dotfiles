@@ -35,8 +35,9 @@ DisableLockWorkstation()
 
 #+!l::WinShiftAltLAction()
 
-#d::Reload
-#+d::Komorebic("reload-configuration")
+#a::Reload
+#+a::Komorebic("reload-configuration")
+#d::Send("!d")
 #Enter::Run("wezterm-gui")
 
 #+q::Komorebic("close")
