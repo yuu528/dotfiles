@@ -14,14 +14,22 @@ EnableLockWorkstation() {
 }
 
 WinLAction() {
-    DisableLockWorkstation()
     Komorebic("focus right")
-    EnableLockWorkstation()
 }
 
 WinShiftAltLAction() {
+    EnableLockWorkstation()
+    Sleep(500)
     DllCall("LockWorkStation")
+    Sleep(500)
+    DisableLockWorkstation()
 }
+
+OnExitCallback(ExitReason, ExitCode) {
+    EnableLockWorkstation()
+}
+
+DisableLockWorkstation()
 
 ; # = Win, + = Shift, ! = Alt, ^ = Ctrl
 
