@@ -13,6 +13,10 @@
   "border_width": 4,
   "border": true,
   "border_z_order": "Bottom",
+  "bar_configurations": [
+    "$Env:USERPROFILE/.config/komorebi/komorebi.bar.monitor1.json",
+    "$Env:USERPROFILE/.config/komorebi/komorebi.bar.monitor2.json"
+  ],
   "monitors": [
     {
       "workspaces": [
