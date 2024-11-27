@@ -175,6 +175,10 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load for vscode, normal env or rpi
 if vim.g.vscode then
+    vim.keymap.set('n', '<LOCALLEADER><SPACE>', '<CMD>noh<CR>',
+        { noremap = true, silent = true, desc = 'Clear highlights' }
+    )
+
     require 'lazy'.setup('plugins_vscode', {
         defaults = {
             lazy = true
