@@ -73,6 +73,11 @@
       "kind": "Exe",
       "id": "quartus.exe",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "winlister.exe",
+      "matching_strategy": "Equals"
     }
   ],
   "ignore_rules": [
