@@ -85,6 +85,11 @@
       "kind": "Class",
       "id": "OneNote::CNavigationUIPerMonitorDpiAwareWindow",
       "matching_strategy": "Equals"
+    },
+    {
+      "kind": "Exe",
+      "id": "AdskAccessUIHost.exe",
+      "matching_strategy": "Equals"
     }
   ],
   "animation": {
