@@ -21,19 +21,18 @@ WinShiftAltLAction() {
     EnableLockWorkstation()
     Sleep(500)
     DllCall("LockWorkStation")
-    Sleep(500)
-    DisableLockWorkstation()
 }
 
 OnExitCallback(ExitReason, ExitCode) {
     EnableLockWorkstation()
 }
 
-DisableLockWorkstation()
-
 ; # = Win, + = Shift, ! = Alt, ^ = Ctrl
 
 #+!l::WinShiftAltLAction()
+
+*~LWin::DisableLockWorkstation()
+*~LWin Up::EnableLockWorkstation()
 
 #a::Reload
 #+a::Komorebic("reload-configuration")
