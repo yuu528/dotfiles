@@ -89,7 +89,19 @@
       "kind": "Exe",
       "id": "winlister.exe",
       "matching_strategy": "Equals"
-    }
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "LTspice.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "LTspice",
+        "matching_strategy": "DoesNotStartWith"
+      }
+    ]
   ],
   "ignore_rules": [
     {
