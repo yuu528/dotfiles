@@ -1,9 +1,12 @@
+local FONT_SIZE_MM = 3.6 -- Set font size in mm
+
+
 local wezterm = require 'wezterm'
 
 local config = {}
 
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+    config = wezterm.config_builder()
 end
 
 -- Renderer
@@ -53,5 +56,19 @@ if wezterm.target_triple == 'x86_64-pc-windows-msvc' then
 elseif wezterm.target_triple == 'x86_64-unknown-linux-gnu' then
     config.default_prog = { 'bash' }
 end
+
+local prev_dpi = 0
+wezterm.on('update-status', function(window, _)
+    local dpi = window:get_dimensions().dpi
+    if dpi == prev_dpi then
+        return
+    end
+
+    prev_dpi = dpi
+
+    local overrides = window:get_config_overrides() or {}
+    overrides.font_size = math.floor((dpi * (FONT_SIZE_MM / 25.4)) + 0.5)
+    window:set_config_overrides(overrides)
+end)
 
 return config
