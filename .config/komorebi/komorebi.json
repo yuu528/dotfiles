@@ -96,6 +96,18 @@
         "id": "Quartus Prime Lite Edition",
         "matching_strategy": "DoesNotStartWith"
       }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "GP6.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "GreenPAK Designer v",
+        "matching_strategy": "DoesNotContain"
+      }
     ]
   ],
   "ignore_rules": [
