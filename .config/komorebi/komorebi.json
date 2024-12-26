@@ -82,11 +82,6 @@
     },
     {
       "kind": "Exe",
-      "id": "quartus.exe",
-      "matching_strategy": "Equals"
-    },
-    {
-      "kind": "Exe",
       "id": "winlister.exe",
       "matching_strategy": "Equals"
     },
@@ -100,6 +95,30 @@
         "kind": "Title",
         "id": "LTspice",
         "matching_strategy": "DoesNotStartWith"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "quartus.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "Quartus Prime Lite Edition",
+        "matching_strategy": "DoesNotStartWith"
+      }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "GP6.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "GreenPAK Designer v",
+        "matching_strategy": "DoesNotContain"
       }
     ]
   ],
