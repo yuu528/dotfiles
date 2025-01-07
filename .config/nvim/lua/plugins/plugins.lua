@@ -50,54 +50,6 @@ return {
         ft = { 'html', 'css' }
     },
     {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons'
-        },
-        keys = {
-            { '<C-n>', '<CMD>NvimTreeToggle<CR>', desc = 'Toggle file explorer', silent = true }
-        },
-        config = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-            require 'nvim-tree'.setup {
-                view = {
-                    width = 35
-                },
-                renderer = {
-                    group_empty = true,
-                    icons = {
-                        glyphs = {
-                            folder = {
-                                arrow_closed = '',
-                                arrow_open = '',
-                                default = '',
-                                open = '',
-                                empty = '',
-                                empty_open = '',
-                                symlink = '',
-                                symlink_open = '',
-
-                            },
-                            git = {
-                                unstaged = '',
-                                staged = '',
-                                unmerged = '',
-                                renamed = '',
-                                untracked = '',
-                                deleted = '',
-                                ignored = ''
-                            }
-                        }
-                    }
-                },
-                filters = {
-                    dotfiles = false
-                }
-            }
-        end
-    },
-    {
         'lewis6991/gitsigns.nvim',
         event = { 'BufRead', 'BufNewFile' },
         config = true
@@ -384,6 +336,36 @@ return {
             vim.g.vimtex_view_general_viewer = 'SumatraPDF'
             vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
         end
+    },
+    {
+        'lambdalisue/vim-fern',
+        dependencies = {
+            'lambdalisue/vim-fern-git-status',
+            'lambdalisue/vim-fern-renderer-nerdfont'
+        },
+        keys = {
+            { '<C-n>', '<CMD>Fern . -reveal=% -drawer -toggle<CR>', desc = 'Toggle file explorer', silent = true }
+        },
+        config = function()
+            vim.g['fern#renderer'] = 'nerdfont'
+            vim.g['fern#renderer#nerdfont#indent_markers'] = 1
+            vim.g['fern#default_hidden'] = 1
+
+            vim.fn['fern_git_status#init']()
+
+            vim.api.nvim_create_augroup('fern-custom', { clear = true })
+            vim.api.nvim_create_autocmd({ 'FileType' }, {
+                pattern = 'fern',
+                group = 'fern-custom',
+                command = 'setlocal nonumber | setlocal norelativenumber | setlocal signcolumn=no'
+            })
+        end
+    },
+    {
+        'lambdalisue/vim-fern-renderer-nerdfont',
+        dependencies = {
+            'lambdalisue/vim-nerdfont'
+        }
     },
     {
         'RRethy/vim-illuminate',
