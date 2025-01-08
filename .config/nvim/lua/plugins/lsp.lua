@@ -80,6 +80,19 @@ return {
         end
     },
     {
+        'SmiteshP/nvim-navic',
+        dependencies = {
+            'neovim/nvim-lspconfig'
+        },
+        event = { 'BufRead', 'BufNewFile' },
+        config = true,
+        opts = {
+            lsp = {
+                auto_attach = true
+            }
+        }
+    },
+    {
         'williamboman/mason.nvim',
         lazy = false,
         config = true
