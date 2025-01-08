@@ -1,4 +1,4 @@
-local FONT_SIZE_MM = 3.5 -- Set font size in mm
+local FONT_SIZE_MM = 3.6 -- Set font size in mm
 
 
 local wezterm = require 'wezterm'
