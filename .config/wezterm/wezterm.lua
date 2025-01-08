@@ -3,7 +3,7 @@ local wezterm = require 'wezterm'
 local config = {}
 
 if wezterm.config_builder then
-	config = wezterm.config_builder()
+    config = wezterm.config_builder()
 end
 
 -- Renderer
@@ -28,8 +28,8 @@ config.webgpu_preferred_adapter = gpus[preferred_gpu]
 config.front_end = 'WebGpu'
 
 -- Font
-config.font = wezterm.font('PlemolJP Console NF', { weight = 'Medium' })
-config.font_size = 10
+config.font = wezterm.font('PlemolJP Console NF')
+config.font_size = 12
 
 -- Color
 config.color_scheme = 'GruvboxDark'
