@@ -4,9 +4,19 @@
     "index": 0,
     "work_area_offset": {
       "left": 0,
-      "top": 50,
+      "top": 34,
       "right": 0,
-      "bottom": 50
+      "bottom": 34
+    }
+  },
+  "position": {
+    "start": {
+      "x": 0,
+      "y": 0
+    },
+    "end": {
+      "x": 2160,
+      "y": 32
     }
   },
   "font_family": "IBM Plex Sans JP",
