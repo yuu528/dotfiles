@@ -4,29 +4,26 @@ return {
         cmd = { 'Bdelete', 'Bwipeout' }
     },
     {
-        'akinsho/bufferline.nvim',
-        version = '*',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-            'ellisonleao/gruvbox.nvim'
+        'uga-rosa/ccc.nvim',
+        cmd = {
+            'CccPick',
+            'CccConvert',
+            'CccHighlighterEnable',
+            'CccHighlighterDisable',
+            'CccHighlighterToggle'
         },
-        event = 'VimEnter',
-        config = function()
-            require 'bufferline'.setup {
-                options = {
-                    color_icons = true,
-                    diagnostics = 'coc',
-                    separator_style = 'slant',
-                    numbers = 'buffer_id'
-                }
-            }
-
-            vim.keymap.set('n', '<C-j>', ':BufferLineCyclePrev<CR>',
-                { silent = true, desc = 'Switch to previous buffer' })
-            vim.keymap.set('n', '<C-k>', ':BufferLineCycleNext<CR>', { silent = true, desc = 'Switch to next buffer' })
-            vim.keymap.set('n', '<C-h>', ':BufferLineMovePrev<CR>', { silent = true, desc = 'Move buffer to next' })
-            vim.keymap.set('n', '<C-l>', ':BufferLineMoveNext<CR>', { silent = true, desc = 'Move buffer to previous' })
-        end
+        config = true
+    },
+    {
+        'rhysd/clever-f.vim',
+        keys = {
+            { 'f' },
+            { 'F' },
+            { 't' },
+            { 'T' },
+            { ';', '<Plug>(clever-f-repeat-forward)', desc = 'Repeat forward' },
+            { ',', '<Plug>(clever-f-repeat-back)',    desc = 'Repeat back' }
+        }
     },
     {
         'yutkat/confirm-quit.nvim',
@@ -50,59 +47,6 @@ return {
         ft = { 'html', 'css' }
     },
     {
-        'nvim-tree/nvim-tree.lua',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons'
-        },
-        keys = {
-            { '<C-n>', '<CMD>NvimTreeToggle<CR>', desc = 'Toggle file explorer', silent = true }
-        },
-        config = function()
-            vim.g.loaded_netrw = 1
-            vim.g.loaded_netrwPlugin = 1
-            require 'nvim-tree'.setup {
-                view = {
-                    width = 35
-                },
-                renderer = {
-                    group_empty = true,
-                    icons = {
-                        glyphs = {
-                            folder = {
-                                arrow_closed = '',
-                                arrow_open = '',
-                                default = '',
-                                open = '',
-                                empty = '',
-                                empty_open = '',
-                                symlink = '',
-                                symlink_open = '',
-
-                            },
-                            git = {
-                                unstaged = '',
-                                staged = '',
-                                unmerged = '',
-                                renamed = '',
-                                untracked = '',
-                                deleted = '',
-                                ignored = ''
-                            }
-                        }
-                    }
-                },
-                filters = {
-                    dotfiles = false
-                }
-            }
-        end
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-        event = { 'BufRead', 'BufNewFile' },
-        config = true
-    },
-    {
         'NMAC427/guess-indent.nvim',
         event = { 'BufRead', 'BufNewFile' },
         config = true,
@@ -111,86 +55,17 @@ return {
         }
     },
     {
-        'RaafatTurki/hex.nvim',
-        event = { 'BufRead' },
-        cmd = { 'HexDump', 'HexAssemble', 'HexToggle' },
+        'ysmb-wtsg/in-and-out.nvim',
+        keys = {
+            {
+                '<C-CR>',
+                function()
+                    require('in-and-out').in_and_out()
+                end,
+                mode = 'i'
+            }
+        },
         config = true
-    },
-    {
-        'lukas-reineke/indent-blankline.nvim',
-        dependencies = {
-            'nvim-treesitter/nvim-treesitter'
-        },
-        main = 'ibl',
-        event = { 'BufRead', 'BufNewFile' },
-        config = function()
-            --[[
-            local highlight = {
-                'GruvboxRed', 'GruvboxGreen', 'GruvboxYellow', 'GruvboxBlue', 'GruvboxPurple', 'GruvboxAqua', 'GruvboxOrange'
-            }
-            ]]
-
-            require 'ibl'.setup {
-                indent = {
-                    char = '▏',
-                    tab_char = '▏',
-                    --highlight = highlight
-                },
-                scope = {
-                    show_start = false,
-                    show_end = false
-                }
-            }
-        end
-    },
-    {
-        'nvim-lualine/lualine.nvim',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons',
-            'SmiteshP/nvim-navic'
-        },
-        event = 'VimEnter',
-        config = function()
-            local utils = require("lualine.utils.utils")
-            local highlight = require("lualine.highlight")
-
-            local diagnostics_message = require("lualine.component"):extend()
-
-            diagnostics_message.default = {
-                colors = {
-                    error = utils.extract_color_from_hllist(
-                        { "fg", "sp" },
-                        { "DiagnosticError", "LspDiagnosticsDefaultError", "DiffDelete" },
-                        "#e32636"
-                    ),
-                    warning = utils.extract_color_from_hllist(
-                        { "fg", "sp" },
-                        { "DiagnosticWarn", "LspDiagnosticsDefaultWarning", "DiffText" },
-                        "#ffa500"
-                    ),
-                    info = utils.extract_color_from_hllist(
-                        { "fg", "sp" },
-                        { "DiagnosticInfo", "LspDiagnosticsDefaultInformation", "DiffChange" },
-                        "#ffffff"
-                    ),
-                    hint = utils.extract_color_from_hllist(
-                        { "fg", "sp" },
-                        { "DiagnosticHint", "LspDiagnosticsDefaultHint", "DiffAdd" },
-                        "#273faf"
-                    ),
-                },
-            }
-
-            require("lualine").setup({
-                sections = {
-                    lualine_c = {
-                        {
-                            'navic'
-                        },
-                    },
-                }
-            })
-        end
     },
     {
         'iamcco/markdown-preview.nvim',
@@ -206,15 +81,8 @@ return {
         end
     },
     {
-        'NeogitOrg/neogit',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'nvim-telescope/telescope.nvim'
-        },
-        keys = {
-            { '<LEADER>t', '<CMD>Neogit<CR>' }
-        },
-        config = true
+        'jghauser/mkdir.nvim',
+        event = { 'BufRead', 'BufNewFile' }
     },
     {
         'equalsraf/neovim-gui-shim',
@@ -239,22 +107,8 @@ return {
         end
     },
     {
-        'norcalli/nvim-colorizer.lua',
-        event = 'VeryLazy',
-        config = true,
-        opts = {
-            '*'
-        }
-    },
-    {
-        'andersevenrud/nvim_context_vt',
-        event = 'BufReadPost',
-        config = true,
-        opts = {
-            enabled = true,
-            prefix = '',
-            disable_virtual_lines = true
-        }
+        'nacro90/numb.nvim',
+        config = true
     },
     {
         'kevinhwang91/nvim-hlslens',
@@ -288,94 +142,25 @@ return {
         end
     },
     {
-        'SmiteshP/nvim-navic',
-        dependencies = {
-            'neovim/nvim-lspconfig'
-        },
-        event = { 'BufRead', 'BufNewFile' },
-        config = true,
-        opts = {
-            lsp = {
-                auto_attach = true
-            }
-        }
-    },
-    {
-        'dstein64/nvim-scrollview',
-        event = { 'VeryLazy' },
-        config = function()
-            vim.api.nvim_create_augroup('InsertScrollView', { clear = true })
-            vim.api.nvim_create_autocmd(
-                { 'InsertEnter' },
-                {
-                    group = 'InsertScrollView',
-                    command = 'ScrollViewDisable'
-                }
-            )
-            vim.api.nvim_create_autocmd(
-                { 'InsertLeave' },
-                {
-                    group = 'InsertScrollView',
-                    command = 'ScrollViewEnable'
-                }
-            )
-            require 'scrollview'.setup {
-                signs_on_startup = {
-                    'all'
-                }
-            }
-        end
-    },
-    {
-        'nvim-treesitter/nvim-treesitter',
-        build = ':TSUpdate',
-        event = { 'BufRead', 'BufNewFile' },
-        dependencies = {
-            'windwp/nvim-ts-autotag'
-        },
-        config = function()
-            require 'nvim-treesitter.install'.prefer_git = false
-            require 'nvim-treesitter.configs'.setup {
-                ensure_installed = {
-                    'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
-                    'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
-                    'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-                    'lua', 'make', 'markdown', 'php', 'python', 'regex', 'sql',
-                    'toml', 'tsv', 'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
-                },
-                highlight = {
-                    enable = true
-                },
-                indent = {
-                    enable = true
-                },
-                autotag = {
-                    enable = true
-                }
-            }
-        end
-    },
-    {
-        'windwp/nvim-ts-autotag',
-    },
-    {
-        'nvim-tree/nvim-web-devicons'
-    },
-    {
         'nvim-lua/plenary.nvim'
     },
     {
         'nvim-telescope/telescope.nvim',
-        tag = '0.1.4',
+        tag = '0.1.8',
         dependencies = {
             'nvim-lua/plenary.nvim'
         },
+        cmd = 'Telescope',
         keys = {
             { '<LEADER>ff', '<CMD>Telescope find_files hidden=true<CR>', desc = 'Open file finder' },
             { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',              desc = 'Open live grep' },
             { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                desc = 'Open buffer finder' },
-            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',              desc = 'Open help finder' }
-        }
+            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',              desc = 'Open help finder' },
+            { '<LEADER>fn', '<CMD>Telescope notify<CR>',                 desc = 'Open notification finder' }
+        },
+        config = function()
+            require('telescope').load_extension('notify')
+        end
     },
     {
         'lervag/vimtex',
@@ -386,17 +171,34 @@ return {
         end
     },
     {
-        'RRethy/vim-illuminate',
-        event = { 'BufRead', 'BufNewFile' },
+        'lambdalisue/vim-fern',
+        dependencies = {
+            'lambdalisue/vim-fern-git-status',
+            'lambdalisue/vim-fern-renderer-nerdfont'
+        },
+        keys = {
+            { '<C-n>', '<CMD>Fern . -reveal=% -drawer -toggle<CR>', desc = 'Toggle file explorer', silent = true }
+        },
         config = function()
-            require 'illuminate'.configure {
-                providers = {
-                    'lsp',
-                    'treesitter',
-                    'regex'
-                }
-            }
+            vim.g['fern#renderer'] = 'nerdfont'
+            vim.g['fern#renderer#nerdfont#indent_markers'] = 1
+            vim.g['fern#default_hidden'] = 1
+
+            vim.fn['fern_git_status#init']()
+
+            vim.api.nvim_create_augroup('fern-custom', { clear = true })
+            vim.api.nvim_create_autocmd({ 'FileType' }, {
+                pattern = 'fern',
+                group = 'fern-custom',
+                command = 'setlocal nonumber | setlocal norelativenumber | setlocal signcolumn=no'
+            })
         end
+    },
+    {
+        'lambdalisue/vim-fern-renderer-nerdfont',
+        dependencies = {
+            'lambdalisue/vim-nerdfont'
+        }
     },
     {
         'machakann/vim-sandwich',
@@ -421,10 +223,6 @@ return {
         config = function()
             vim.cmd 'AlterCommand bd Bdelete'
         end
-    },
-    {
-        'ntpeters/vim-better-whitespace',
-        event = { 'BufRead', 'BufNewFile' }
     },
     {
         'yutkat/wb-only-current-line.nvim',
