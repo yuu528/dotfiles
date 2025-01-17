@@ -18,6 +18,8 @@ $scriptPath = Split-Path -Parent $MyInvocation.MyCommand.Path
 $dotfilesPath = Split-Path -Parent $scriptPath
 
 # copy misc files
+New-Item $GEN_KOMOREBI_DIR -ItemType Directory -Force
+
 Copy-Item -Path (Join-Path $dotfilesPath $KOMOREBI_CONFIG_DIR '*') -Destination $GEN_KOMOREBI_DIR -Recurse -Force
 Remove-Item -Path (Join-Path $GEN_KOMOREBI_DIR 'komorebi*.json') -Force
 
@@ -28,7 +30,6 @@ $komorebiBarSubObj = Get-Content -Path (Join-Path $dotfilesPath $KOMOREBI_BAR_SU
 
 # generate komorebi bar configs
 $komorebiObj | Add-Member -MemberType NoteProperty -Name 'bar_configurations' -Value $()
-New-Item $GEN_KOMOREBI_DIR -ItemType Directory -Force
 
 Add-Type -AssemblyName System.Windows.Forms
 $screens = [System.Windows.Forms.Screen]::AllScreens
