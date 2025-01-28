@@ -71,6 +71,18 @@
         "id": "GreenPAK Designer v",
         "matching_strategy": "DoesNotContain"
       }
+    ],
+    [
+      {
+        "kind": "Path",
+        "id": "[^\\]*\\\\Gowin_V[^\\]*\\\\IDE\\\\.*$",
+        "matching_strategy": "Regex"
+      },
+      {
+        "kind": "Title",
+        "id": "GOWIN FPGA Designer - [",
+        "matching_strategy": "DoesNotStartWith"
+      }
     ]
   ],
   "ignore_rules": [
