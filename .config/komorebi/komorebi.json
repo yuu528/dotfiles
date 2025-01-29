@@ -75,7 +75,7 @@
     [
       {
         "kind": "Path",
-        "id": "[^\\]*\\\\Gowin_V[^\\]*\\\\IDE\\\\.*$",
+        "id": "[^\\\\]*\\\\Gowin_V[^\\\\]*\\\\IDE\\\\.*$",
         "matching_strategy": "Regex"
       },
       {
