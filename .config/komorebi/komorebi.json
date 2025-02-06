@@ -83,6 +83,23 @@
         "id": "GOWIN FPGA Designer - [",
         "matching_strategy": "DoesNotStartWith"
       }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "gimp-[0-9].[0-9]*.exe",
+        "matching_strategy": "Regex"
+      },
+      {
+        "kind": "Title",
+        "id": "– GIMP",
+        "matching_strategy": "DoesNotEndWith"
+      },
+      {
+        "kind": "Title",
+        "id": "GIMP (GNU Image Manipulation Program)",
+        "matching_strategy": "DoesNotEqual"
+      }
     ]
   ],
   "ignore_rules": [
