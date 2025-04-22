@@ -165,4 +165,4 @@ bar {
         status_command i3status
 }
 
-exec --no-startup-id fcitx
+exec --no-startup-id fcitx5
