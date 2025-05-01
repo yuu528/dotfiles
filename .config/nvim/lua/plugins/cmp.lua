@@ -1,20 +1,19 @@
 return {
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-document-symbol',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'hrsh7th/cmp-path',
+    'onsails/lspkind.nvim',
+    'rafamadriz/friendly-snippets',
+    'saadparwaiz1/cmp_luasnip',
     {
         'hrsh7th/nvim-cmp',
         dependencies = {
-            'hrsh7th/cmp-nvim-lsp',
-            'saadparwaiz1/cmp_luasnip',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-path',
-            'zbirenbaum/copilot-cmp'
         },
         event = { 'InsertEnter' },
         config = function()
-            local lsp_zero = require 'lsp-zero'
-            lsp_zero.extend_cmp()
-
             local cmp = require 'cmp'
-            local cmp_action = lsp_zero.cmp_action()
 
             local lspkind = require 'lspkind'
             local luasnip = require 'luasnip'
@@ -29,6 +28,7 @@ return {
                     { name = 'buffer' },
                     { name = 'luasnip' },
                     { name = 'copilot' },
+                    { name = 'lazydev' },
                     { name = 'nvim_lsp' },
                     { name = 'path' }
                 },
@@ -100,48 +100,14 @@ return {
         end
     },
     {
-        'hrsh7th/cmp-buffer'
-    },
-    {
-        'saadparwaiz1/cmp_luasnip',
-        dependencies = {
-            'L3MON4D3/LuaSnip'
-        },
-    },
-    {
-        'hrsh7th/cmp-nvim-lsp'
-    },
-    {
-        'hrsh7th/cmp-nvim-lsp-document-symbol'
-    },
-    {
-        'hrsh7th/cmp-nvim-lsp-signature-help'
-    },
-    {
-        'hrsh7th/cmp-path'
-    },
-    {
         'zbirenbaum/copilot-cmp',
-        dependencies = {
-            'zbirenbaum/copilot.lua'
-        },
         config = true
     },
     {
-        'rafamadriz/friendly-snippets'
-    },
-    {
-        'onsails/lspkind.nvim'
-    },
-    {
         'L3MON4D3/LuaSnip',
-        dependencies = {
-            'rafamadriz/friendly-snippets'
-        },
         config = function()
             require 'snippets.tex'
             require 'luasnip.loaders/from_vscode'.lazy_load()
         end
     }
 }
-
