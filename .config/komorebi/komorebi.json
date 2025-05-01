@@ -115,9 +115,7 @@
     }
   ],
   "animation": {
-    "enabled": true,
-    "duration": 200,
-    "style": "EaseInOutCirc"
+    "enabled": false
   },
   "theme": {
     "name": "GruvboxDarkMedium",
