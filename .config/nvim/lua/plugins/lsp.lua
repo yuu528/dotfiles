@@ -51,21 +51,6 @@ return {
 
             setup_lsp()
             setup_linter()
-
-            vim.diagnostic.config {
-                signs = {
-                    text = {
-                        [vim.diagnostic.severity.ERROR] = " ",
-                        [vim.diagnostic.severity.WARN]  = " ",
-                        [vim.diagnostic.severity.HINT]  = "󰌶 ",
-                        [vim.diagnostic.severity.INFO]  = " "
-                    }
-                }
-            }
-
-            vim.diagnostic.config {
-                virtual_text = false
-            }
         end
     },
     {
@@ -86,8 +71,17 @@ return {
         'dgagn/diagflow.nvim',
         event = 'LspAttach',
         opts = {
-            padding_right = 2,
-            show_sign = true
+            format = function(diagnostic)
+                return string.format(
+                    '%s  %s (%s #%s)',
+                    vim.diagnostic.config().signs.text[diagnostic.severity],
+                    diagnostic.message,
+                    diagnostic.source,
+                    diagnostic.code
+                )
+            end,
+            toggle_event = { 'InsertEnter', 'InsertLeave' },
+            padding_right = 2
         }
     },
     {
