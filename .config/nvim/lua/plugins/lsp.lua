@@ -8,7 +8,7 @@ return {
         'neovim/nvim-lspconfig',
         lazy = false,
         config = function()
-            function setup_lsp()
+            local function setup_lsp()
                 require 'mason'.setup()
 
                 local mason_lspconfig = require 'mason-lspconfig'
@@ -18,11 +18,15 @@ return {
                 local lspconfig = require 'lspconfig'
 
                 mason_lspconfig.setup_handlers {
-                    function (server)
+                    function(server)
                         lspconfig[server].setup {}
                     end,
                     ['ts_ls'] = function()
-                        local vue_ts_plugin = require 'mason-registry'.get_package 'vue-language-server':get_install_path() .. '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+                        local vue_ts_plugin =
+                            require 'mason-registry'
+                            .get_package 'vue-language-server'
+                            :get_install_path() ..
+                            '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
 
                         lspconfig['ts_ls'].setup {
                             init_options = {
@@ -43,7 +47,7 @@ return {
                 }
             end
 
-            function setup_linter()
+            local function setup_linter()
                 vim.api.nvim_create_augroup('Linting', { clear = true })
                 vim.api.nvim_create_autocmd(
                     { 'BufEnter', 'BufWritePost', 'InsertLeave' },
