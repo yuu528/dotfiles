@@ -1,17 +1,29 @@
 return {
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-nvim-lsp-document-symbol',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'hrsh7th/cmp-path',
-    'onsails/lspkind.nvim',
-    'rafamadriz/friendly-snippets',
-    'saadparwaiz1/cmp_luasnip',
+    {
+        'zbirenbaum/copilot-cmp',
+        config = true
+    },
+    {
+        'L3MON4D3/LuaSnip',
+        config = function()
+            require 'snippets.tex'
+            require 'luasnip.loaders/from_vscode'.lazy_load()
+        end
+    },
     {
         'hrsh7th/nvim-cmp',
-        dependencies = {
-        },
         event = { 'InsertEnter' },
+        dependencies = {
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-nvim-lsp-document-symbol',
+            'hrsh7th/cmp-nvim-lsp-signature-help',
+            'hrsh7th/cmp-path',
+            'onsails/lspkind.nvim',
+            'rafamadriz/friendly-snippets',
+            'saadparwaiz1/cmp_luasnip',
+            'zbirenbaum/copilot-cmp',
+        },
         config = function()
             local cmp = require 'cmp'
 
@@ -97,17 +109,6 @@ return {
                     ghost_text = true
                 }
             }
-        end
-    },
-    {
-        'zbirenbaum/copilot-cmp',
-        config = true
-    },
-    {
-        'L3MON4D3/LuaSnip',
-        config = function()
-            require 'snippets.tex'
-            require 'luasnip.loaders/from_vscode'.lazy_load()
         end
     }
 }
