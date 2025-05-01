@@ -92,9 +92,13 @@ return {
     },
     {
         'folke/trouble.nvim',
+        cmd = {
+            'Trouble'
+        },
         keys = {
-            { '<LEADER>xx', '<CMD>TroubleToggle<CR>', desc = 'Toggle trouble.nvim' }
-        }
+            { '<LEADER>xx', '<CMD>Trouble diagnostics toggle<CR>', desc = 'Toggle trouble.nvim' }
+        },
+        config = true
     },
     {
         'folke/lazydev.nvim',
