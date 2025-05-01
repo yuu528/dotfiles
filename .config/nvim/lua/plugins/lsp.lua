@@ -11,11 +11,34 @@ return {
             function setup_lsp()
                 require 'mason'.setup()
 
-                require 'mason-lspconfig'.setup()
+                local mason_lspconfig = require 'mason-lspconfig'
 
-                require 'mason-lspconfig'.setup_handlers {
+                mason_lspconfig.setup()
+
+                local lspconfig = require 'lspconfig'
+
+                mason_lspconfig.setup_handlers {
                     function (server)
-                        require 'lspconfig'[server].setup {}
+                        lspconfig[server].setup {}
+                    end,
+                    ['ts_ls'] = function()
+                        local vue_ts_plugin = require 'mason-registry'.get_package 'vue-language-server':get_install_path() .. '/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin'
+
+                        lspconfig['ts_ls'].setup {
+                            init_options = {
+                                plugins = {
+                                    {
+                                        name = '@vue/typescript-plugin',
+                                        location = vue_ts_plugin,
+                                        languages = {
+                                            'javascript',
+                                            'typescript',
+                                            'vue'
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     end
                 }
             end
