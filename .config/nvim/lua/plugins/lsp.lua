@@ -2,8 +2,14 @@ return {
     'mfussenegger/nvim-jdtls',
     'mfussenegger/nvim-lint',
     'rshkarin/mason-nvim-lint',
-    'williamboman/mason-lspconfig.nvim',
-    'williamboman/mason.nvim',
+    {
+        'williamboman/mason-lspconfig.nvim',
+        tag = 'v1.32.0'
+    },
+    {
+        'williamboman/mason.nvim',
+        tag = 'v1.11.0'
+    },
     {
         'neovim/nvim-lspconfig',
         lazy = false,
