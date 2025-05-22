@@ -11,6 +11,8 @@ return {
             'neovim/nvim-lspconfig',
         },
         config = function()
+            local lspconfig = require 'lspconfig'
+
             -- ts_ls config
             local vue_ts_plugin = vim.fn.expand(
                 '$MASON/packages/vue-language-server/node_modules/@vue/typescript-plugin'
@@ -30,6 +32,11 @@ return {
                         }
                     }
                 }
+            })
+
+            -- denols config
+            vim.lsp.config('denols', {
+                root_dir = lspconfig.util.root_pattern('deno.json')
             })
 
             require 'mason'.setup()
