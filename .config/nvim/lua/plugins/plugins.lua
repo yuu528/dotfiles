@@ -166,11 +166,11 @@ return {
         },
         cmd = 'Telescope',
         keys = {
-            { '<LEADER>ff', '<CMD>Telescope find_files hidden=true<CR>', desc = 'Open file finder' },
-            { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',              desc = 'Open live grep' },
-            { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                desc = 'Open buffer finder' },
-            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',              desc = 'Open help finder' },
-            { '<LEADER>fn', '<CMD>Telescope notify<CR>',                 desc = 'Open notification finder' }
+            { '<LEADER>ff', '<CMD>Telescope find_files' .. ((vim.g.os ~= 'win') and 'hidden=true' or '') .. '<CR>', desc = 'Open file finder' },
+            { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',                                                         desc = 'Open live grep' },
+            { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                                                           desc = 'Open buffer finder' },
+            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',                                                         desc = 'Open help finder' },
+            { '<LEADER>fn', '<CMD>Telescope notify<CR>',                                                            desc = 'Open notification finder' }
         },
         config = function()
             require('telescope').load_extension('notify')

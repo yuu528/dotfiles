@@ -154,6 +154,9 @@ elseif vim.fn.executable('uname') then
     arch = vim.fn.system('uname -m')
 end
 
+vim.g.os = os
+vim.g.arch = arch
+
 
 -- paths
 if os == 'win' then
