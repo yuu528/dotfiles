@@ -132,7 +132,7 @@ return {
         config = function()
             local notify = require 'notify'
             notify.setup({
-                background_colour = 'Normal',
+                background_colour = '#282828',
                 timeout = 500
             })
             vim.notify = notify
