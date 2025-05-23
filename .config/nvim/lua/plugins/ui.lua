@@ -52,6 +52,7 @@ return {
     {
         'nvim-lualine/lualine.nvim',
         dependencies = {
+            'AndreM222/copilot-lualine',
             'nvim-tree/nvim-web-devicons',
             'SmiteshP/nvim-navic'
         },
@@ -94,6 +95,16 @@ return {
                             'navic'
                         },
                     },
+                    lualine_x = {
+                        {
+                            'copilot',
+                            show_colors = true,
+                            show_loading = true
+                        },
+                        'encoding',
+                        'fileformat',
+                        'filetype'
+                    }
                 }
             })
         end
