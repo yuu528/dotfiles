@@ -72,6 +72,10 @@ return {
             require 'mason-nvim-lint'.setup {
                 automatic_installation = false
             }
+
+            require 'mason-nvim-dap'.setup {
+                automatic_installation = false
+            }
         end
     },
     {
@@ -121,6 +125,7 @@ return {
         opts = {
             library = {
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                'nvim-dap-ui'
             },
         }
     }
