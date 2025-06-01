@@ -63,12 +63,18 @@ local lm_opts = {
     noremap = true,
     silent = true
 }
-vim.keymap.set('n', 'j', function()
-    return vim.v.count > 0 and 'j' or 'gj'
-end, lm_opts)
-vim.keymap.set('n', 'k', function()
-    return vim.v.count > 0 and 'k' or 'gk'
-end, lm_opts)
+
+if vim.g.vscode then
+    vim.keymap.set('n', 'j', 'gj', lm_opts)
+    vim.keymap.set('n', 'k', 'gk', lm_opts)
+else
+    vim.keymap.set('n', 'j', function()
+        return vim.v.count > 0 and 'j' or 'gj'
+    end, lm_opts)
+    vim.keymap.set('n', 'k', function()
+        return vim.v.count > 0 and 'k' or 'gk'
+    end, lm_opts)
+end
 
 
 -- autocmds
