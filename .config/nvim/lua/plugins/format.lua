@@ -23,6 +23,7 @@ return {
                     bash = { 'beautysh' },
                     javascript = { 'eslint_d' },
                     typescript = { 'eslint_d' },
+                    typescriptreact = { 'eslint_d' },
                     markdown = { 'markdownlint' },
                     latex = { 'latexindent' },
                     tex = { 'latexindent' },
