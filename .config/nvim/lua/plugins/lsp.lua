@@ -46,6 +46,8 @@ return {
                 }
             }
 
+            vim.lsp.set_log_level("OFF")
+
             vim.api.nvim_create_augroup('Linting', { clear = true })
             vim.api.nvim_create_autocmd(
                 { 'BufEnter', 'BufWritePost', 'InsertLeave' },
