@@ -117,7 +117,6 @@ return {
         'folke/noice.nvim',
         dependencies = {
             'MunifTanjim/nui.nvim',
-            'rcarriga/nvim-notify'
         },
         event = 'VeryLazy',
         opts = {
@@ -136,18 +135,6 @@ return {
                 lsp_doc_border = false
             },
         }
-    },
-    {
-        'rcarriga/nvim-notify',
-        lazy = false,
-        config = function()
-            local notify = require 'notify'
-            notify.setup({
-                background_colour = '#282828',
-                timeout = 500
-            })
-            vim.notify = notify
-        end
     },
     {
         'dstein64/nvim-scrollview',

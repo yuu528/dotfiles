@@ -170,10 +170,12 @@ return {
             { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',                                                         desc = 'Open live grep' },
             { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                                                           desc = 'Open buffer finder' },
             { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',                                                         desc = 'Open help finder' },
-            { '<LEADER>fn', '<CMD>Telescope notify<CR>',                                                            desc = 'Open notification finder' }
+            { '<LEADER>fn', '<CMD>Telescope noice<CR>',                                                             desc = 'Open notification finder' }
         },
         config = function()
-            require('telescope').load_extension('notify')
+            require 'telescope'.load_extension 'noice'
+            require 'telescope'.setup {
+            }
         end
     },
     {
