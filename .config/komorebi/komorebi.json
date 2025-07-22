@@ -100,6 +100,18 @@
         "id": "GIMP (GNU Image Manipulation Program)",
         "matching_strategy": "DoesNotEqual"
       }
+    ],
+    [
+      {
+        "kind": "Exe",
+        "id": "LogicAnalyzer.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Class",
+        "id": "ZPMainFrame",
+        "matching_strategy": "DoesNotEqual"
+      }
     ]
   ],
   "ignore_rules": [
