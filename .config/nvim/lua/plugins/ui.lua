@@ -88,7 +88,23 @@ return {
                 },
             }
 
-            require("lualine").setup({
+            -- Recording indicator
+            vim.api.nvim_create_autocmd({ 'RecordingEnter', 'RecordingLeave' }, {
+                callback = function()
+                    require 'lualine'.refresh({ place = { 'statusline' } })
+                end
+            })
+
+            local function recording_indicator()
+                local reg = vim.fn.reg_recording()
+                if reg ~= '' then
+                    return '󰑊 ' .. reg
+                else
+                    return ''
+                end
+            end
+
+            require 'lualine'.setup({
                 sections = {
                     lualine_c = {
                         {
@@ -96,6 +112,10 @@ return {
                         },
                     },
                     lualine_x = {
+                        {
+                            recording_indicator,
+                            color = { fg = '#FF5555' }
+                        },
                         {
                             'copilot',
                             show_colors = true,
