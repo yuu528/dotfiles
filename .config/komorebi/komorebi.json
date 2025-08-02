@@ -124,7 +124,19 @@
       "kind": "Exe",
       "id": "AdskAccessUIHost.exe",
       "matching_strategy": "Equals"
-    }
+    },
+    [
+      {
+        "kind": "Exe",
+        "id": "aviutl.exe",
+        "matching_strategy": "Equals"
+      },
+      {
+        "kind": "Title",
+        "id": "SplitWindow",
+        "matching_strategy": "DoesNotEqual"
+      }
+    ]
   ],
   "animation": {
     "enabled": false
