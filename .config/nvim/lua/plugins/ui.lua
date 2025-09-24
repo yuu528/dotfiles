@@ -11,9 +11,13 @@ return {
             require 'bufferline'.setup {
                 options = {
                     color_icons = true,
-                    diagnostics = 'coc',
+                    diagnostics = 'nvim_lsp',
                     separator_style = 'slant',
-                    numbers = 'buffer_id'
+                    numbers = 'buffer_id',
+                    diagnostics_indicator = function(count, level)
+                        local icon = level:match("error") and " " or " "
+                        return " " .. icon .. count
+                    end
                 }
             }
 
