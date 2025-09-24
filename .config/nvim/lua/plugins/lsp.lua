@@ -96,11 +96,6 @@ return {
         }
     },
     {
-        'j-hui/fidget.nvim',
-        tag = 'v1.0.0',
-        config = true
-    },
-    {
         'dgagn/diagflow.nvim',
         event = 'LspAttach',
         opts = {
