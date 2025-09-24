@@ -60,7 +60,9 @@ return {
                 }
             )
 
-            require 'lint'.linters_by_ft = {
+            local lint = require 'lint'
+
+            lint.linters_by_ft = {
                 javascript = { 'eslint_d' },
                 typescript = { 'eslint_d' },
                 python = { 'pylint' },
@@ -71,6 +73,9 @@ return {
                 tex = { 'lacheck' },
                 latex = { 'lacheck' }
             }
+
+            -- luacheck config
+            lint.linters.luacheck.args = { '--globals', 'vim' }
 
             require 'mason-nvim-lint'.setup {
                 automatic_installation = false
