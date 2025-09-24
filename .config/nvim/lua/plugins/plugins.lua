@@ -98,6 +98,14 @@ return {
         end
     },
     {
+        'nvim-mini/mini.nvim',
+        version = '*'
+    },
+    {
+        'nvim-mini/mini.pairs',
+        version = '*'
+    },
+    {
         'jghauser/mkdir.nvim',
         event = { 'BufRead', 'BufNewFile' }
     },
