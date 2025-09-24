@@ -103,7 +103,9 @@ return {
     },
     {
         'nvim-mini/mini.pairs',
-        version = '*'
+        version = '*',
+        event = 'InsertEnter',
+        config = true
     },
     {
         'jghauser/mkdir.nvim',
