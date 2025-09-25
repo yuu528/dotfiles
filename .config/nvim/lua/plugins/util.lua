@@ -100,7 +100,9 @@ return {
             { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',                                                         desc = 'Open live grep' },
             { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                                                           desc = 'Open buffer finder' },
             { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',                                                         desc = 'Open help finder' },
-            { '<LEADER>fn', '<CMD>Telescope noice<CR>',                                                             desc = 'Open notification finder' }
+            { '<LEADER>fn', '<CMD>Telescope noice<CR>',                                                             desc = 'Open notification finder' },
+            { '<LEADER>fd', '<CMD>Telescope lsp_definitions<CR>',                                                   desc = 'Open definitions finder' },
+            { '<LEADER>fr', '<CMD>Telescope lsp_references<CR>',                                                    desc = 'Open references finder' }
         },
         config = function()
             require 'telescope'.load_extension 'noice'
