@@ -34,7 +34,7 @@ return {
                     enabled = true
                 }
             },
-            snippet = {
+            snippets = {
                 preset = 'luasnip'
             },
             sources = {
