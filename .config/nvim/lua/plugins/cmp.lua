@@ -1,13 +1,5 @@
 return {
     {
-        'L3MON4D3/LuaSnip',
-        version = '2.*',
-        config = function()
-            require 'snippets.tex'
-            require 'luasnip.loaders/from_vscode'.lazy_load()
-        end
-    },
-    {
         'saghen/blink.cmp',
         dependencies = {
             'rafamadriz/friendly-snippets',
