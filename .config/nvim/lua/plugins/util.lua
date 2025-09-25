@@ -105,6 +105,7 @@ return {
         config = function()
             require 'telescope'.load_extension 'noice'
             require 'telescope'.setup {
+                file_ignore_patterns = { 'node_modules', '.git/' }
             }
         end
     },
