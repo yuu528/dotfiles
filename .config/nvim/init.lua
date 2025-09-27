@@ -203,6 +203,8 @@ vim.opt.rtp:prepend(lazypath)
 
 -- load for vscode, normal env or rpi
 if vim.g.vscode then
+    local vscode = require('vscode')
+
     local keymap_opts = {
         noremap = true,
         silent = true
@@ -211,8 +213,12 @@ if vim.g.vscode then
     vim.keymap.set('n', '<LOCALLEADER><SPACE>', '<CMD>noh<CR>', keymap_opts)
     vim.keymap.set('n', '<C-j>', '<CMD>Tabprevious<CR>', keymap_opts)
     vim.keymap.set('n', '<C-k>', '<CMD>Tabnext<CR>', keymap_opts)
-    vim.keymap.set('n', '<C-h>', '<CMD>VSCodeCall("workbench.action.moveEditorLeftInGroup")<CR>', keymap_opts)
-    vim.keymap.set('n', '<C-l>', '<CMD>VSCodeCall("workbench.action.moveEditorRightInGroup")<CR>', keymap_opts)
+    vim.keymap.set('n', '<C-h>', function()
+        vscode.call('workbench.action.moveEditorLeftInGroup')
+    end, keymap_opts)
+    vim.keymap.set('n', '<C-l>', function()
+        vscode.call('workbench.action.moveEditorRightInGroup')
+    end, keymap_opts)
 
     require 'lazy'.setup('plugins_vscode', {
         defaults = {
