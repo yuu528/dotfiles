@@ -46,6 +46,18 @@ return {
         config = true
     },
     {
+        'OXY2DEV/markview.nvim',
+        lazy = false,
+        keys = {
+            { '<LOCALLEADER>m', '<CMD>Markview Toggle<CR>', desc = 'Toggle Markview' }
+        },
+        opts = {
+            preview = {
+                icon_provider = 'devicons'
+            }
+        }
+    },
+    {
         'kevinhwang91/nvim-hlslens',
         event = 'CmdlineEnter',
         config = function()
