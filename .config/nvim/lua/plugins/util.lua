@@ -96,18 +96,25 @@ return {
         },
         cmd = 'Telescope',
         keys = {
-            { '<LEADER>ff', '<CMD>Telescope find_files' .. ((vim.g.os ~= 'win') and 'hidden=true' or '') .. '<CR>', desc = 'Open file finder' },
-            { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',                                                         desc = 'Open live grep' },
-            { '<LEADER>fb', '<CMD>Telescope buffers<CR>',                                                           desc = 'Open buffer finder' },
-            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',                                                         desc = 'Open help finder' },
-            { '<LEADER>fn', '<CMD>Telescope noice<CR>',                                                             desc = 'Open notification finder' },
-            { '<LEADER>fd', '<CMD>Telescope lsp_definitions<CR>',                                                   desc = 'Open definitions finder' },
-            { '<LEADER>fr', '<CMD>Telescope lsp_references<CR>',                                                    desc = 'Open references finder' }
+            { '<LEADER>ff', '<CMD>Telescope find_files<CR>',      desc = 'Open file finder' },
+            { '<LEADER>fg', '<CMD>Telescope live_grep<CR>',       desc = 'Open live grep' },
+            { '<LEADER>fb', '<CMD>Telescope buffers<CR>',         desc = 'Open buffer finder' },
+            { '<LEADER>fh', '<CMD>Telescope help_tags<CR>',       desc = 'Open help finder' },
+            { '<LEADER>fn', '<CMD>Telescope noice<CR>',           desc = 'Open notification finder' },
+            { '<LEADER>fd', '<CMD>Telescope lsp_definitions<CR>', desc = 'Open definitions finder' },
+            { '<LEADER>fr', '<CMD>Telescope lsp_references<CR>',  desc = 'Open references finder' }
         },
         config = function()
             require 'telescope'.load_extension 'noice'
             require 'telescope'.setup {
-                file_ignore_patterns = { 'node_modules', '.git/' }
+                file_ignore_patterns = { 'node_modules', '.git/' },
+                pickers = {
+                    find_files = {
+                        find_command = { 'rg', '--files', '--hidden', '-g', '!.git' },
+                        hidden = true,
+                        no_ignore = true
+                    }
+                }
             }
         end
     },
