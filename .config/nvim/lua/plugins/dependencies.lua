@@ -11,7 +11,6 @@ return {
         'antosha417/nvim-lsp-file-operations',
         dependencies = {
             'nvim-lua/plenary.nvim',
-            'nvim-neo-tree/neo-tree.nvim'
         },
         config = true
     },
@@ -23,7 +22,7 @@ return {
                 include_current_win = false,
                 autoselect_one = true,
                 bo = {
-                    filetype = { 'neo-tree', 'neo-tree-popup', 'notify' },
+                    filetype = { 'notify' },
                     buftype = { 'terminal', 'quickfix' }
                 }
             },
