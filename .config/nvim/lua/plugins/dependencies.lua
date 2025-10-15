@@ -28,10 +28,4 @@ return {
             },
         }
     },
-    {
-        'lambdalisue/vim-fern-renderer-nerdfont',
-        dependencies = {
-            'lambdalisue/vim-nerdfont'
-        }
-    },
 }

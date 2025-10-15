@@ -27,9 +27,6 @@ return {
             'MunifTanjim/nui.nvim'
         },
         config = {
-            disabled_filetypes = {
-                'fern'
-            },
             disable_mouse = false,
             disabled_keys = {
                 ['<Up>'] = false,
@@ -48,6 +45,41 @@ return {
         end,
         config = function()
             vim.g.mkdp_browser = 'falkon'
+        end
+    },
+    {
+        'nvim-mini/mini.files',
+        version = '*',
+        keys = {
+            {
+                '<C-n>',
+                function()
+                    MiniFiles.open()
+                end,
+                desc = 'Open file explorer'
+            }
+        },
+        config = function()
+            local mini_files = require 'mini.files'
+
+            mini_files.setup()
+
+            -- Use ':w' to synchronize
+            vim.api.nvim_create_autocmd('User', {
+                pattern = 'MiniFilesBufferCreate',
+                callback = function(ev)
+                    vim.schedule(function()
+                        vim.api.nvim_set_option_value('buftype', 'acwrite', { buf = 0 })
+                        vim.api.nvim_buf_set_name(0, tostring(vim.api.nvim_get_current_win()))
+                        vim.api.nvim_create_autocmd('BufWriteCmd', {
+                            buffer = ev.data.buf_id,
+                            callback = function()
+                                mini_files.synchronize()
+                            end
+                        })
+                    end)
+                end
+            })
         end
     },
     {
@@ -102,29 +134,5 @@ return {
             vim.g.vimtex_view_general_viewer = 'SumatraPDF'
             vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
         end
-    },
-    {
-        'lambdalisue/vim-fern',
-        dependencies = {
-            'lambdalisue/vim-fern-git-status',
-            'lambdalisue/vim-fern-renderer-nerdfont'
-        },
-        keys = {
-            { '<C-n>', '<CMD>Fern . -reveal=% -drawer -toggle<CR>', desc = 'Toggle file explorer', silent = true }
-        },
-        config = function()
-            vim.g['fern#renderer'] = 'nerdfont'
-            vim.g['fern#renderer#nerdfont#indent_markers'] = 1
-            vim.g['fern#default_hidden'] = 1
-
-            vim.fn['fern_git_status#init']()
-
-            vim.api.nvim_create_augroup('fern-custom', { clear = true })
-            vim.api.nvim_create_autocmd({ 'FileType' }, {
-                pattern = 'fern',
-                group = 'fern-custom',
-                command = 'setlocal nonumber | setlocal norelativenumber | setlocal signcolumn=no'
-            })
-        end
-    },
+    }
 }

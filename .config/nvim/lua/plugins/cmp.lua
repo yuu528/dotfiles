@@ -10,6 +10,11 @@ return {
         event = { 'InsertEnter' },
         version = '1.*',
         opts = {
+            enabled = function()
+                return not vim.tbl_contains({
+                    'minifiles'
+                }, vim.bo.filetype)
+            end,
             keymap = {
                 preset = 'enter',
                 ['<Tab>'] = { 'select_next', 'fallback' },
