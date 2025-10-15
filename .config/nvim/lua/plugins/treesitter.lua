@@ -22,28 +22,28 @@ return {
     },
     {
         'nvim-treesitter/nvim-treesitter',
+        lazy = false,
+        branch = 'main',
+        version = false,
         build = ':TSUpdate',
-        event = { 'BufRead', 'BufNewFile' },
         dependencies = {
             'windwp/nvim-ts-autotag'
         },
         config = function()
-            require 'nvim-treesitter.install'.prefer_git = false
-            require 'nvim-treesitter.configs'.setup {
-                ensure_installed = {
-                    'bash', 'c', 'cmake', 'css', 'csv', 'diff', 'dot',
-                    'git_config', 'git_rebase', 'gitattributes', 'gitcommit',
-                    'gitignore', 'html', 'ini', 'java', 'javascript', 'json',
-                    'lua', 'make', 'markdown', 'php', 'python', 'regex', 'sql',
-                    'toml', 'tsv', 'typescript', 'vim', 'vimdoc', 'vue', 'xml', 'yaml'
-                },
-                highlight = {
-                    enable = true
-                },
-                indent = {
-                    enable = true
-                }
-            }
+            local group = vim.api.nvim_create_augroup('TreesitterConfig', { clear = true })
+            vim.api.nvim_create_autocmd('FileType', {
+                group = group,
+                pattern = { '*' },
+                callback = function(ctx)
+                    local hasStarted = pcall(vim.treesitter.start)
+
+                    if hasStarted then
+                        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                        vim.bo[ctx.buf].syntax = 'on'
+                        vim.bo[ctx.buf].indentexpr = 'v:lua.require "nvim-treesitter".indentexpr()'
+                    end
+                end
+            })
         end
     },
     {

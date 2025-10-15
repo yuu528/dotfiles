@@ -108,6 +108,11 @@ return {
             require 'telescope'.load_extension 'noice'
             require 'telescope'.setup {
                 file_ignore_patterns = { 'node_modules', '.git/' },
+                defaults = {
+                    preview = {
+                        treesitter = false
+                    }
+                },
                 pickers = {
                     find_files = {
                         find_command = { 'rg', '--files', '--hidden', '-g', '!.git' },
