@@ -4,14 +4,6 @@ return {
         ft = { 'html', 'css' }
     },
     {
-        'NMAC427/guess-indent.nvim',
-        event = { 'BufRead', 'BufNewFile' },
-        config = true,
-        opts = {
-            auto_cmd = true,
-        }
-    },
-    {
         'windwp/nvim-autopairs',
         event = 'InsertEnter',
         opts = {
