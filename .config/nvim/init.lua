@@ -125,7 +125,11 @@ vim.api.nvim_create_autocmd(
     'InsertLeave',
     {
         group = 'LineNumberMode',
-        command = 'set relativenumber'
+        callback = function()
+            if vim.wo.number then
+                vim.wo.relativenumber = true
+            end
+        end
     }
 )
 
