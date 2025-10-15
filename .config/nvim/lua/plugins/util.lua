@@ -27,6 +27,9 @@ return {
             'MunifTanjim/nui.nvim'
         },
         config = {
+            disabled_filetypes = {
+                'fern'
+            },
             disable_mouse = false,
             disabled_keys = {
                 ['<Up>'] = false,
@@ -50,38 +53,6 @@ return {
     {
         'jghauser/mkdir.nvim',
         event = { 'BufRead', 'BufNewFile' }
-    },
-    {
-        'nvim-neo-tree/neo-tree.nvim',
-        branch = 'v3.x',
-        dependencies = {
-            'nvim-lua/plenary.nvim',
-            'MunifTanjim/nui.nvim',
-            'nvim-tree/nvim-web-devicons'
-        },
-        lazy = false,
-        config = function()
-            vim.keymap.set('n', '<C-n>', '<CMD>Neotree toggle<CR>', {
-                noremap = true, silent = true, desc = 'Toggle file explorer'
-            })
-
-            require 'neo-tree'.setup {
-                close_if_last_window = true,
-                window = {
-                    mappings = {
-                        ['l'] = 'open'
-                    }
-                },
-                filesystem = {
-                    filtered_items = {
-                        visible = true,
-                        hide_dotfiles = false,
-                        hide_gitignored = false,
-                        hide_hidden = false
-                    }
-                }
-            }
-        end
     },
     {
         'nacro90/numb.nvim',
@@ -130,6 +101,30 @@ return {
         init = function()
             vim.g.vimtex_view_general_viewer = 'SumatraPDF'
             vim.g.vimtex_view_general_options = '-reuse-instance -forward-search @tex @line @pdf'
+        end
+    },
+    {
+        'lambdalisue/vim-fern',
+        dependencies = {
+            'lambdalisue/vim-fern-git-status',
+            'lambdalisue/vim-fern-renderer-nerdfont'
+        },
+        keys = {
+            { '<C-n>', '<CMD>Fern . -reveal=% -drawer -toggle<CR>', desc = 'Toggle file explorer', silent = true }
+        },
+        config = function()
+            vim.g['fern#renderer'] = 'nerdfont'
+            vim.g['fern#renderer#nerdfont#indent_markers'] = 1
+            vim.g['fern#default_hidden'] = 1
+
+            vim.fn['fern_git_status#init']()
+
+            vim.api.nvim_create_augroup('fern-custom', { clear = true })
+            vim.api.nvim_create_autocmd({ 'FileType' }, {
+                pattern = 'fern',
+                group = 'fern-custom',
+                command = 'setlocal nonumber | setlocal norelativenumber | setlocal signcolumn=no'
+            })
         end
     },
 }
