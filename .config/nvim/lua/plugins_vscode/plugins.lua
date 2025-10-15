@@ -4,13 +4,6 @@ return {
         ft = { 'html', 'css' }
     },
     {
-        'windwp/nvim-autopairs',
-        event = 'InsertEnter',
-        opts = {
-            map_cr = true
-        }
-    },
-    {
         'machakann/vim-sandwich',
         event = { 'BufRead', 'BufNewFile' }
     },
