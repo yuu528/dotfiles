@@ -219,6 +219,9 @@ if vim.g.vscode then
     vim.keymap.set('n', '<C-l>', function()
         vscode.call('workbench.action.moveEditorRightInGroup')
     end, keymap_opts)
+    vim.keymap.set('n', 'gn', function()
+        vscode.call('editor.action.rename')
+    end, keymap_opts)
 
     require 'lazy'.setup('plugins_vscode', {
         defaults = {
