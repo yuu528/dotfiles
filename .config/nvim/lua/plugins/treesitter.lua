@@ -39,8 +39,8 @@ return {
 
                     if hasStarted then
                         vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                        vim.bo[ctx.buf].syntax = 'on'
-                        vim.bo[ctx.buf].indentexpr = 'v:lua.require "nvim-treesitter".indentexpr()'
+                        vim.bo.syntax = 'on'
+                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
                     end
                 end
             })
