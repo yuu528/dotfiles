@@ -35,12 +35,14 @@ return {
                 group = group,
                 pattern = { '*' },
                 callback = function(ctx)
-                    local hasStarted = pcall(vim.treesitter.start)
+                    if not vim.tbl_contains({ 'tex' }, vim.bo.filetype) then
+                        local hasStarted = pcall(vim.treesitter.start)
 
-                    if hasStarted then
-                        vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                        vim.bo.syntax = 'on'
-                        vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                        if hasStarted then
+                            vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                            vim.bo.syntax = 'on'
+                            vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                        end
                     end
                 end
             })
