@@ -1,16 +1,5 @@
 return {
     {
-        'rhysd/clever-f.vim',
-        keys = {
-            { 'f' },
-            { 'F' },
-            { 't' },
-            { 'T' },
-            { ';', '<Plug>(clever-f-repeat-forward)', desc = 'Repeat forward' },
-            { ',', '<Plug>(clever-f-repeat-back)',    desc = 'Repeat back' }
-        }
-    },
-    {
         'nvim-mini/mini.pairs',
         version = '*',
         event = 'InsertEnter',
