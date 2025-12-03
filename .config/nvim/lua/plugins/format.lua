@@ -19,6 +19,7 @@ return {
                 formatters_by_ft = {
                     lua = { 'stylua' },
                     c = { 'astyle' },
+                    cpp = { 'clang-format' },
                     java = { 'astyle' },
                     bash = { 'beautysh' },
                     javascript = { 'eslint_d' },
