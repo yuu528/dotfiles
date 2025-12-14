@@ -13,6 +13,26 @@ return {
 		config = true,
 	},
 	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", branch = "master" },
+		},
+		build = "make tiktoken",
+		cmd = {
+			"CopilotChat", "CopilotChatOpen", "CopilotChatToggle",
+			"CopilotChatLoad", "CopilotChatPrompts", "CopilotChatModels"
+		},
+		keys = {
+			{ "<LEADER>cc", "<CMD>CopilotChatToggle<CR>", desc = "Toggle Copilot Chat" },
+		},
+		opts = {
+			window = {
+				layout = 'float'
+			},
+			auto_insert_mode = true
+		}
+	},
+	{
 		"NMAC427/guess-indent.nvim",
 		event = { "BufReadPre", "BufNewFile" },
 		config = true,
