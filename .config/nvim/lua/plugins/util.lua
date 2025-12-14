@@ -14,7 +14,7 @@ return {
 	},
 	{
 		"NMAC427/guess-indent.nvim",
-		event = { "BufRead", "BufNewFile" },
+		event = { "BufReadPre", "BufNewFile" },
 		config = true,
 		opts = {
 			auto_cmd = true,
