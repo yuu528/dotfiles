@@ -1,11 +1,5 @@
 return {
     {
-        'nvim-mini/mini.pairs',
-        version = '*',
-        event = 'InsertEnter',
-        config = true
-    },
-    {
         'mattn/emmet-vim',
         ft = { 'html', 'css' }
     },

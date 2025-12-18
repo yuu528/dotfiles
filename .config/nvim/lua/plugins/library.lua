@@ -1,14 +1,5 @@
 return {
     {
-        'nvim-mini/mini.icons',
-        version = '*',
-        config = true
-    },
-    {
-        'nvim-mini/mini.nvim',
-        version = '*'
-    },
-    {
         'equalsraf/neovim-gui-shim',
         lazy = false
     },

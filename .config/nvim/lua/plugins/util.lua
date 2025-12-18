@@ -67,27 +67,6 @@ return {
 		end,
 	},
 	{
-		"nvim-mini/mini.files",
-		dependencies = {
-			"nvim-mini/mini.icons",
-		},
-		version = "*",
-		keys = {
-			{
-				"<C-n>",
-				function()
-					MiniFiles.open()
-				end,
-				desc = "Open file explorer",
-			},
-		},
-		config = function()
-			local mini_files = require("mini.files")
-
-			mini_files.setup()
-		end,
-	},
-	{
 		"jghauser/mkdir.nvim",
 		event = { "BufRead", "BufNewFile" },
 	},
