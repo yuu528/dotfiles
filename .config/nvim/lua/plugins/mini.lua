@@ -6,9 +6,7 @@ return {
 		keys = {
 			{
 				"<C-n>",
-				function()
-					require("mini.files").open()
-				end,
+				"<CMD>lua MiniFiles.open()<CR>",
 				desc = "Open file explorer",
 			},
 		},
