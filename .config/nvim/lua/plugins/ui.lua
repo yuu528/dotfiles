@@ -13,6 +13,7 @@ return {
                     color_icons = true,
                     diagnostics = 'nvim_lsp',
                     separator_style = 'slant',
+                    sort_by = 'insert_after_current',
                     numbers = 'buffer_id',
                     diagnostics_indicator = function(count, level)
                         local icon = level:match("error") and " " or " "
