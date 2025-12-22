@@ -8,6 +8,33 @@ return {
 		end,
 	},
 	{
+		"olimorris/codecompanion.nvim",
+		version = "^18.0.0",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		keys = {
+			{ "<LEADER>cc", "<CMD>CodeCompanionChat Toggle<CR>", desc = "Code Companion" },
+		},
+		opts = {
+			opts = {
+				language = "Japanese",
+			},
+			interactions = {
+				chat = {
+					adapter = "copilot",
+				},
+				inline = {
+					adapter = "copilot",
+				},
+				cmd = {
+					adapter = "copilot",
+				},
+			},
+		},
+	},
+	{
 		"yutkat/confirm-quit.nvim",
 		event = "CmdlineEnter",
 		config = true,
