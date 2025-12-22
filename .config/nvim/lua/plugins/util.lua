@@ -8,25 +8,6 @@ return {
 		end,
 	},
 	{
-		"yetone/avante.nvim",
-		build = vim.fn.has("win32") ~= 0
-				and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-			or "make",
-		event = "VeryLazy",
-		version = false,
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-			"zbirenbaum/copilot.lua",
-		},
-		opts = {
-			provider = "gemini-cli",
-			instructions_file = "avante.md",
-		},
-	},
-	{
 		"yutkat/confirm-quit.nvim",
 		event = "CmdlineEnter",
 		config = true,
