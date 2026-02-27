@@ -122,7 +122,7 @@ return {
 		"akinsho/toggleterm.nvim",
 		version = "*",
 		keys = {
-			{ "<LEADER>te" },
+			{ "<LEADER>te", "<CMD>ToggleTerm<CR>", mode = "n" },
 		},
 		config = function()
 			require("toggleterm").setup({
@@ -133,7 +133,6 @@ return {
 						return vim.o.columns * 0.4
 					end
 				end,
-				open_mapping = [[<LEADER>te]],
 			})
 
 			if vim.fn.executable("pwsh") == 1 or vim.fn.executable("powershell") == 1 then
@@ -151,10 +150,6 @@ return {
 				end
 			end
 		end,
-		opts = {
-			open_mapping = [[<LEADER>te]],
-			hide_numbers = false,
-		},
 	},
 	{
 		"lervag/vimtex",
