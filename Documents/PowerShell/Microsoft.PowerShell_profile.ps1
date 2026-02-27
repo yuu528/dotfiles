@@ -14,3 +14,6 @@ Invoke-Expression (&scoop-search --hook)
 
 # Environments
 $Env:KOMOREBI_CONFIG_HOME = Join-Path $Env:USERPROFILE '.config' 'komorebi'
+
+# Cursor
+Write-Host "`e[6 q"
